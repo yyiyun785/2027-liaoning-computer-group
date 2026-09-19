@@ -1,0 +1,33 @@
+# ===== 依赖（不提交，体积大）=====
+node_modules/
+*/node_modules/
+**/node_modules/
+
+# ===== 打包产物（不提交）=====
+dist/
+辽宁专升本备考助手/
+辽宁专升本备考助手_旧版备份/
+*_旧版备份*
+*.idsig
+
+# ===== 安卓构建中间文件 =====
+android-app/build/
+android-app/gen/
+android-app/out/
+*.class
+
+# ===== 其他 APK（保留正式版 辽宁专升本备考助手.apk）=====
+*_旧版备份.apk
+
+# ===== 临时文件 =====
+tmp/
+*.log
+
+# ===== 不纳入仓库的原始材料 =====
+zhaoshengjihua.pdf
+screenshot.png
+
+# ===== 系统文件 =====
+Thumbs.db
+desktop.ini
+.DS_Store

@@ -1,0 +1,2609 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>辽宁专升本备考助手 - 计算机组</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap">
+<style>
+:root{--primary:#1e3a5f;--primary-light:#2d5599;--accent:#f59e0b;--accent-light:#fbbf24;--bg:#f1f5f9;--card:#fff;--text:#1e293b;--text-sec:#64748b;--text-light:#94a3b8;--border:#e2e8f0;--success:#10b981;--warning:#f59e0b;--danger:#ef4444;--info:#3b82f6;--radius:12px;--shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);--nav-h:60px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:calc(var(--nav-h) + 20px)}
+.container{max-width:900px;margin:0 auto;padding:0 16px}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;margin-bottom:16px}
+.section-title{font-size:18px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.section-title::before{content:'';width:4px;height:20px;background:var(--accent);border-radius:2px}
+.badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:500}
+.badge-primary{background:#dbeafe;color:#1e40af}.badge-success{background:#d1fae5;color:#065f46}.badge-warning{background:#fef3c7;color:#92400e}.badge-danger{background:#fee2e2;color:#991b1b}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);background:var(--card);border-top:1px solid var(--border);display:flex;z-index:100;box-shadow:0 -2px 10px rgba(0,0,0,.04)}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;color:var(--text-light);transition:color .2s;text-decoration:none;padding:8px 0}
+.nav-item.active{color:var(--primary)}
+.nav-item svg{width:22px;height:22px}.nav-item span{font-size:11px;font-weight:500}
+.view{display:none;padding-top:20px}.view.active{display:block}
+.hero{background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;border-radius:var(--radius);padding:28px 24px;margin-bottom:20px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:-30px;right:-30px;width:150px;height:150px;background:rgba(255,255,255,.05);border-radius:50%}
+.hero h1{font-size:22px;font-weight:700;margin-bottom:8px}.hero p{font-size:14px;opacity:.85;margin-bottom:20px}
+.countdown-box{display:flex;gap:16px;align-items:flex-end}
+.cd-meta{margin-top:12px;font-size:12.5px;opacity:.92;line-height:1.9}
+.cd-meta b{font-weight:700}
+.cd-clock{font-variant-numeric:tabular-nums}
+.cd-note{margin-top:8px;font-size:10.5px;opacity:.6;line-height:1.5}
+.countdown-num{font-size:42px;font-weight:900;line-height:1;color:var(--accent-light)}
+.countdown-label{font-size:13px;opacity:.8;margin-bottom:4px}
+.score-overview{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.score-card{background:var(--card);border-radius:var(--radius);padding:16px;text-align:center;box-shadow:var(--shadow)}
+.score-card[onclick]{cursor:pointer;transition:transform .12s,box-shadow .12s}
+.score-card[onclick]:active{transform:scale(.96)}
+.score-card .value.empty{font-size:13px;font-weight:500;color:var(--text-light);margin-top:4px}
+.target-tip{margin:10px 2px 0;font-size:12px;color:var(--primary);background:var(--primary-50);border:1px dashed var(--primary);border-radius:8px;padding:9px 12px;cursor:pointer;text-align:center}
+.score-card .label{font-size:12px;color:var(--text-sec);margin-bottom:6px}
+.score-card .value{font-size:24px;font-weight:700;color:var(--primary)}
+.score-card .full{font-size:11px;color:var(--text-light);margin-top:2px}
+.quick-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.quick-item{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);cursor:pointer;transition:transform .15s;display:flex;align-items:center;gap:12px}
+.quick-item:active{transform:scale(.98)}
+.resource-link{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--border);text-decoration:none;color:var(--text)}
+.resource-link:last-child{border-bottom:none}
+.resource-link:active{background:var(--bg)}
+.resource-name{font-size:14px;font-weight:600}
+.resource-desc{font-size:12px;color:var(--text-light);margin-top:2px}
+.resource-arrow{font-size:20px;color:var(--text-light)}
+.quick-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.qi-blue{background:#dbeafe;color:#2563eb}.qi-orange{background:#fef3c7;color:#d97706}.qi-green{background:#d1fae5;color:#059669}.qi-purple{background:#ede9fe;color:#7c3aed}
+.quick-text .title{font-size:14px;font-weight:600}.quick-text .desc{font-size:12px;color:var(--text-sec);margin-top:2px}
+.subject-list{display:flex;flex-direction:column;gap:10px}
+.subject-item{display:flex;align-items:center;padding:14px;background:#f8fafc;border-radius:10px;gap:12px}
+.subject-color{width:8px;height:40px;border-radius:4px;flex-shrink:0}
+.subject-info{flex:1}.subject-name{font-size:14px;font-weight:600}.subject-detail{font-size:12px;color:var(--text-sec);margin-top:2px}
+.subject-score{font-size:18px;font-weight:700;color:var(--primary)}
+.subject-tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:12px;margin-bottom:16px;-webkit-overflow-scrolling:touch}
+.subject-tab{padding:8px 16px;border-radius:20px;background:var(--card);border:1px solid var(--border);font-size:13px;white-space:nowrap;cursor:pointer;transition:all .2s;color:var(--text-sec)}
+.subject-tab.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.exam-groups{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
+.exam-group{background:#fff;border:1px solid var(--border);border-top:3px solid #ccc;border-radius:10px;padding:10px 8px;text-align:center;cursor:pointer;transition:all .15s}
+.exam-group.active{background:var(--primary-50);border-color:var(--primary);box-shadow:0 2px 8px rgba(30,58,95,.12)}
+.exam-group:active{transform:scale(.97)}
+.eg-name{font-size:13px;font-weight:700;color:var(--text)}
+.eg-score{font-size:22px;font-weight:800;color:var(--primary);line-height:1.3}
+.eg-score span{font-size:11px;font-weight:400;color:var(--text-light)}
+.eg-desc{font-size:9.5px;color:var(--text-light);line-height:1.4;margin-top:3px}
+@media(max-width:380px){.eg-desc{font-size:8.5px}.eg-name{font-size:12px}}
+.topic-card{background:var(--card);border-radius:var(--radius);margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden}
+.topic-header{padding:16px;display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none}
+.topic-num{width:28px;height:28px;border-radius:8px;background:#eff6ff;color:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0}
+.topic-title{flex:1;font-size:15px;font-weight:600}
+.topic-arrow{width:18px;height:18px;transition:transform .2s;color:var(--text-light)}
+.topic-card.open .topic-arrow{transform:rotate(90deg)}
+.topic-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.topic-card.open .topic-body{max-height:5000px}
+.topic-inner{padding:0 16px 16px 56px;border-top:1px solid var(--border);padding-top:14px}
+.topic-section{margin-bottom:14px}
+.topic-section h4{font-size:13px;color:var(--accent);margin-bottom:6px;font-weight:600}
+.topic-section p,.topic-section li{font-size:13px;color:var(--text);line-height:1.7}
+.topic-section ul{padding-left:18px}.topic-section li{margin-bottom:4px}
+.tip-box{background:#fffbeb;border-left:3px solid var(--accent);padding:10px 12px;border-radius:0 8px 8px 0;font-size:12px;color:#92400e;margin-top:8px}
+.key-point{background:#f0f9ff;border-radius:6px;padding:8px 10px;font-size:12px;margin:6px 0;color:#0c4a6e}
+.code-block{background:#1e293b;color:#e2e8f0;padding:12px;border-radius:8px;font-family:monospace;font-size:12px;overflow-x:auto;margin:8px 0;line-height:1.5}
+.quiz-card{background:var(--card);border-radius:var(--radius);padding:20px;margin-bottom:16px;box-shadow:var(--shadow)}
+.quiz-progress{display:flex;justify-content:space-between;font-size:13px;color:var(--text-sec);margin-bottom:12px}
+.quiz-progress-bar{height:6px;background:#e2e8f0;border-radius:3px;margin-bottom:20px;overflow:hidden}
+.quiz-progress-fill{height:100%;background:var(--primary);border-radius:3px;transition:width .3s}
+.question-text{font-size:15px;font-weight:600;margin-bottom:16px;line-height:1.7}
+.option-item{padding:12px 14px;border:1px solid var(--border);border-radius:8px;margin-bottom:8px;cursor:pointer;transition:all .2s;font-size:14px;display:flex;align-items:flex-start;gap:10px}
+.option-item:hover{border-color:var(--primary-light);background:#f8fafc}
+.option-item.selected{border-color:var(--primary);background:#eff6ff}
+.option-item.correct{border-color:var(--success);background:#d1fae5}
+.option-item.wrong{border-color:var(--danger);background:#fee2e2}
+.option-label{font-weight:700;flex-shrink:0;width:24px}
+.explanation{background:#f8fafc;border-radius:8px;padding:12px;margin-top:12px;font-size:13px;display:none}
+.explanation.show{display:block}
+.explanation .title{font-weight:600;color:var(--primary);margin-bottom:4px}
+.quiz-nav{display:flex;gap:10px;margin-top:16px}
+.btn{padding:10px 20px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;border:none}
+.btn-primary{background:var(--primary);color:#fff;flex:1}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text-sec)}
+.quiz-result{text-align:center;padding:30px 20px}
+.quiz-result .score-big{font-size:48px;font-weight:900;color:var(--primary)}
+.quiz-result .score-label{font-size:14px;color:var(--text-sec);margin-bottom:20px}
+.filter-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.filter-chip{padding:6px 14px;border-radius:16px;background:var(--card);border:1px solid var(--border);font-size:12px;cursor:pointer;transition:all .2s;color:var(--text-sec)}
+.filter-chip.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.score-range-input{display:flex;align-items:center;gap:8px;background:var(--card);padding:10px 16px;border-radius:var(--radius);margin-bottom:16px;box-shadow:var(--shadow)}
+.score-range-input label{font-size:13px;color:var(--text-sec);white-space:nowrap}
+.score-range-input input{flex:1;border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:14px;outline:none}
+.school-card{background:var(--card);border-radius:var(--radius);padding:16px;margin-bottom:12px;box-shadow:var(--shadow);display:flex;align-items:center;gap:14px}
+.school-rank{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;flex-shrink:0}
+.rank-1{background:#fef3c7;color:#b45309}.rank-2{background:#e0e7ff;color:#4338ca}.rank-3{background:#fee2e2;color:#b91c1c}.rank-other{background:#f1f5f9;color:var(--text-sec)}
+.school-info{flex:1;min-width:0}.school-name{font-size:15px;font-weight:600;margin-bottom:4px}.school-major{font-size:12px;color:var(--text-sec)}
+.school-score{text-align:right;flex-shrink:0}.score-num{font-size:22px;font-weight:700;line-height:1}.score-label{font-size:11px;color:var(--text-light);margin-top:2px}
+.score-high{color:#059669}.score-mid{color:#d97706}.score-low{color:#dc2626}
+.year-tag{display:inline-block;background:#dcfce7;color:#166534;font-size:11px;padding:2px 8px;border-radius:10px;margin-left:6px}
+.progress-card{background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;border-radius:var(--radius);padding:24px;margin-bottom:16px}
+.progress-circle{width:120px;height:120px;margin:0 auto 16px;position:relative}
+.progress-circle svg{transform:rotate(-90deg)}
+.progress-circle .num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+.progress-circle .num .big{font-size:28px;font-weight:700}.progress-circle .num .small{font-size:11px;opacity:.8}
+.stat-row{display:flex;justify-content:space-around;text-align:center}
+.stat-item .num{font-size:20px;font-weight:700}.stat-item .label{font-size:11px;opacity:.8;margin-top:2px}
+.settings-list{display:flex;flex-direction:column;gap:0}
+.setting-item{display:flex;align-items:center;padding:16px;background:var(--card);border-bottom:1px solid var(--border);cursor:pointer}
+.setting-item:first-child{border-radius:var(--radius) var(--radius) 0 0}.setting-item:last-child{border-radius:0 0 var(--radius) var(--radius);border-bottom:none}
+.setting-icon{width:36px;height:36px;border-radius:8px;background:#eff6ff;color:var(--primary);display:flex;align-items:center;justify-content:center;margin-right:12px;flex-shrink:0}
+.setting-label{flex:1;font-size:14px}.setting-value{font-size:13px;color:var(--text-sec);margin-right:8px}
+.modal-mask{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:200;display:none;align-items:flex-end;justify-content:center}
+.modal-mask.show{display:flex}
+.modal-panel{background:#fff;width:100%;max-width:500px;border-radius:20px 20px 0 0;padding:24px;max-height:80vh;overflow-y:auto}
+.modal-handle{width:40px;height:4px;background:#e2e8f0;border-radius:2px;margin:0 auto 20px}
+.modal-title{font-size:18px;font-weight:700;margin-bottom:16px}
+.input-group{margin-bottom:16px}.input-group label{display:block;font-size:13px;color:var(--text-sec);margin-bottom:6px}
+.input-group input{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:15px;outline:none}
+.btn-primary-full{width:100%;padding:12px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer}
+@media(min-width:768px){.bottom-nav{max-width:500px;left:50%;transform:translateX(-50%);border-radius:16px 16px 0 0}}
+@media(max-width:375px){.score-overview{grid-template-columns:repeat(2,1fr)}}
+
+/* ===== 错题本 & 收藏（新增）===== */
+.back-bar{display:inline-flex;align-items:center;font-size:14px;color:var(--primary-light);padding:6px 0 10px;cursor:pointer;font-weight:500}
+.quiz-tools{display:flex;justify-content:flex-end;margin:2px 0 8px}
+.fav-btn{font-size:13px;color:var(--text-light);cursor:pointer;padding:3px 10px;border:1px solid var(--border);border-radius:14px;user-select:none;transition:.15s}
+.fav-btn.on{color:#d97706;border-color:#fbbf24;background:#fffbeb;font-weight:600}
+</style>
+</head>
+<body>
+
+<section class="view active" id="view-home"><div class="container">
+  <div class="hero"><h1>辽宁专升本备考助手</h1><p>计算机组 · 2027考试 · 2026分数线已更新</p>
+    <div class="countdown-box"><div><div class="countdown-label">距离考试还有</div><div class="countdown-num" id="cd-days">--</div></div><div style="font-size:14px;opacity:.7;padding-bottom:6px;">天</div></div>
+    <div class="cd-meta">
+      <div>预计考试：<b id="cd-exam-date">2027年4月17日（周六）</b></div>
+      <div class="cd-clock">本机时间：<span id="cd-now">--</span></div>
+    </div>
+    <div class="cd-note">考试日期为根据往年规律预估，以辽宁省招考办官方通知为准</div>
+  </div>
+  <div class="score-overview">
+    <div class="score-card" onclick="openTarget()"><div class="label">数学</div><div class="value" id="t-math">点击设置</div><div class="full">满分120</div></div>
+    <div class="score-card" onclick="openTarget()"><div class="label">外语</div><div class="value" id="t-eng">点击设置</div><div class="full">满分120</div></div>
+    <div class="score-card" onclick="openTarget()"><div class="label">计算机基础</div><div class="value" id="t-comp">点击设置</div><div class="full">满分100</div></div>
+  </div>
+  <div class="target-tip" onclick="openTarget()">🎯 点卡片设置你的公共课目标分（也可在「我的」里修改）</div>
+  <div class="card"><div class="section-title">考试结构（计算机组 · 总分740）</div>
+    <div class="subject-list">
+      <div class="subject-item"><div class="subject-color" style="background:#3b82f6"></div><div class="subject-info"><div class="subject-name">公共课（统考）</div><div class="subject-detail">数学120 + 外语120 + 计算机基础100</div></div><div class="subject-score">340</div></div>
+      <div class="subject-item"><div class="subject-color" style="background:#f59e0b"></div><div class="subject-info"><div class="subject-name">专业综合课（笔试）</div><div class="subject-detail">C语言程序设计100 + 计算机网络100 + 数据库100</div></div><div class="subject-score">300</div></div>
+      <div class="subject-item"><div class="subject-color" style="background:#10b981"></div><div class="subject-info"><div class="subject-name">技能考核（笔试）</div><div class="subject-detail">网页设计与制作50 + 应用文档编辑与数据处理50</div></div><div class="subject-score">100</div></div>
+    </div>
+  </div>
+  <div class="section-title">快速入口</div>
+  <div class="quick-grid">
+    <div class="quick-item" onclick="go('topics')"><div class="quick-icon qi-blue">📚</div><div class="quick-text"><div class="title">知识精讲</div><div class="desc">8科详细知识点</div></div></div>
+    <div class="quick-item" onclick="go('quiz')"><div class="quick-icon qi-orange">✏️</div><div class="quick-text"><div class="title">刷题练习</div><div class="desc">316道 · 按考点编写</div></div></div>
+    <div class="quick-item" onclick="go('scores')"><div class="quick-icon qi-green">🎯</div><div class="quick-text"><div class="title">2026分数线</div><div class="desc">最新录取数据</div></div></div>
+    <div class="quick-item" onclick="go('profile')"><div class="quick-icon qi-purple">📊</div><div class="quick-text"><div class="title">学习进度</div><div class="desc">目标与统计</div></div></div>
+  </div>
+
+  <div class="section-title" style="margin-top:20px">官方渠道（最权威，优先看）</div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <a href="https://www.lnzsks.com" target="_blank" class="resource-link"><div class="resource-info"><div class="resource-name">辽宁招生考试之窗（官方）</div><div class="resource-desc">报名入口、招生计划、考纲、录取分数线、一分一段表</div></div><div class="resource-arrow">›</div></a>
+    <a href="https://jyt.ln.gov.cn/" target="_blank" class="resource-link"><div class="resource-info"><div class="resource-name">辽宁省教育厅（官方）</div><div class="resource-desc">专升本招生政策、考纲通知原文、专业组考试科目</div></div><div class="resource-arrow">›</div></a>
+    <a href="https://zhaosheng.sie.edu.cn/" target="_blank" class="resource-link"><div class="resource-info"><div class="resource-name">沈阳工业大学招生网（考点）</div><div class="resource-desc">计算机组考点、技能考核要点、考试须知</div></div><div class="resource-arrow">›</div></a>
+  </div>
+
+  <div class="section-title" style="margin-top:20px">免费真题资源</div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <a href="https://www.hlsok.com/news/linianzhenti/ln/" target="_blank" class="resource-link"><div class="resource-info"><div class="resource-name">好老师升学帮 · 辽宁真题</div><div class="resource-desc">2023英语/高数真题还原、历年试题</div></div><div class="resource-arrow">›</div></a>
+    <a href="https://www.educity.cn/zhuanjieben/c1631/liaoning-1.html" target="_blank" class="resource-link"><div class="resource-info"><div class="resource-name">希赛网 · 辽宁专升本真题</div><div class="resource-desc">2022高数/英语/计算机真题及答案</div></div><div class="resource-arrow">›</div></a>
+    <a href="https://www.zikaosw.cn/zsbks/subject-6710.html" target="_blank" class="resource-link"><div class="resource-info"><div class="resource-name">自考生网 · 计算机基础真题</div><div class="resource-desc">2010-2016年辽宁专升本计算机真题</div></div><div class="resource-arrow">›</div></a>
+    <a href="https://m.etest8.com/product/db-13856.html" target="_blank" class="resource-link"><div class="resource-info"><div class="resource-name">易考吧 · 计算机在线题库</div><div class="resource-desc">2020-2024计算机应用基础真题及答案</div></div><div class="resource-arrow">›</div></a>
+    <a href="https://m.huajiwap.cn/book/21761" target="_blank" class="resource-link"><div class="resource-info"><div class="resource-name">滑记 · 计算机基础历年真题</div><div class="resource-desc">2014年起历年真题（含程序题）</div></div><div class="resource-arrow">›</div></a>
+  </div>
+
+  <div class="section-title" style="margin-top:20px">免费视频课</div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <a href="https://search.bilibili.com/all?keyword=%E8%BE%BD%E5%AE%81%E4%B8%93%E5%8D%87%E6%9C%AC" target="_blank" class="resource-link"><div class="resource-info"><div class="resource-name">B站 · 搜索"辽宁专升本"</div><div class="resource-desc">各科免费课程、真题讲解、备考经验</div></div><div class="resource-arrow">›</div></a>
+    <a href="https://search.bilibili.com/all?keyword=%E4%B8%93%E5%8D%87%E6%9C%AC%E8%AE%A1%E7%AE%97%E6%9C%BA" target="_blank" class="resource-link"><div class="resource-info"><div class="resource-name">B站 · 搜索"专升本计算机"</div><div class="resource-desc">计算机基础/C语言/数据库 专项课</div></div><div class="resource-arrow">›</div></a>
+  </div>
+
+  <div class="tip-box" style="margin-top:12px">
+    📥 <b>拿到真题后怎么做？</b>用「我的 → 导入题目」把题目粘贴进去，就能刷题、进错题本、加收藏了。<br>
+    ⚖️ 真题版权归考试院所有，请通过官方/公开渠道获取学习使用，<b>不要传播牟利</b>。
+  </div>
+</div></section>
+
+<section class="view" id="view-topics"><div class="container">
+  <div class="section-title">知识精讲</div>
+  <div class="exam-groups" id="topic-groups"></div>
+  <div class="subject-tabs" id="topic-tabs"></div>
+  <div id="topic-list"></div>
+</div></section>
+
+<section class="view" id="view-quiz"><div class="container">
+  <div class="section-title">刷题练习</div>
+  <div class="tip-box" style="margin-bottom:12px">本页为按考点编写的<b>练习题</b>（非历年真题）。历年真题请通过首页「免费真题资源」中的官方渠道获取。</div>
+  <div class="exam-groups" id="quiz-groups"></div>
+  <div class="subject-tabs" id="quiz-tabs"></div>
+  <div id="quiz-box"></div>
+</div></section>
+
+<section class="view" id="view-scores"><div class="container">
+  <div class="section-title">2026年录取分数线 <span class="year-tag">最新</span></div>
+  <div class="filter-bar" id="major-filter"></div>
+  <div class="score-range-input"><label>最低分 ≥</label><input type="number" id="min-score" placeholder="如500" min="0" max="700"><span style="color:var(--text-light)">分</span></div>
+  <div id="school-list"></div>
+  <div class="card" style="font-size:12px;color:var(--text-light);margin-top:16px">数据来源：辽宁招生考试之窗2026年普通类录取最低分、各高校招生网。仅供参考。</div>
+</div></section>
+
+<section class="view" id="view-profile"><div class="container">
+  <div class="section-title">我的备考</div>
+  <div class="progress-card">
+    <div class="progress-circle"><svg width="120" height="120"><circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="8"/><circle id="prog-ring" cx="60" cy="60" r="52" fill="none" stroke="#fbbf24" stroke-width="8" stroke-dasharray="326.7" stroke-dashoffset="326.7" stroke-linecap="round"/></svg>
+      <div class="num"><div class="big" id="prog-pct">0%</div><div class="small">已掌握进度</div></div></div>
+    <div class="stat-row">
+      <div class="stat-item"><div class="num" id="st-topics">0</div><div class="label">知识点</div></div>
+      <div class="stat-item"><div class="num" id="st-quiz">0</div><div class="label">做题数</div></div>
+      <div class="stat-item"><div class="num" id="st-right">0</div><div class="label">答对</div></div>
+    </div>
+  </div>
+  <div class="section-title">学习工具</div>
+  <div class="settings-list">
+    <div class="setting-item" onclick="go('wrong')"><div class="setting-icon" style="background:#fee2e2;color:#dc2626">📕</div><div class="setting-label">我的错题本</div><div class="setting-value" id="set-wrong">0 题</div><div style="color:var(--text-light)">›</div></div>
+    <div class="setting-item" onclick="go('fav')"><div class="setting-icon" style="background:#fef3c7;color:#d97706">⭐</div><div class="setting-label">我的收藏</div><div class="setting-value" id="set-fav">0 题</div><div style="color:var(--text-light)">›</div></div>
+    <div class="setting-item" onclick="go('import')"><div class="setting-icon" style="background:#e0e7ff;color:#4f46e5">📥</div><div class="setting-label">导入题目</div><div class="setting-value" id="set-imp">0 题</div><div style="color:var(--text-light)">›</div></div>
+  </div>
+  <div class="section-title">备考设置</div>
+  <div class="settings-list">
+    <div class="setting-item" onclick="openTarget()"><div class="setting-icon">🎯</div><div class="setting-label">公共课目标分</div><div class="setting-value" id="set-target">未设置</div><div style="color:var(--text-light)">›</div></div>
+    <div class="setting-item" onclick="resetAll()"><div class="setting-icon" style="background:#fee2e2;color:#dc2626">↺</div><div class="setting-label">重置学习进度</div><div style="color:var(--text-light)">›</div></div>
+  </div>
+</div></section>
+
+<section class="view" id="view-wrong"><div class="container">
+  <div class="back-bar" onclick="go('profile')">‹ 返回我的</div>
+  <div class="section-title">我的错题本 <span class="year-tag" id="wrong-count-tag">0</span></div>
+  <div class="tip-box" style="margin-bottom:12px">做错的题会自动收录到这里。答对后会自动移出（说明已掌握）。</div>
+  <div id="wrong-list"></div>
+</div></section>
+
+<section class="view" id="view-fav"><div class="container">
+  <div class="back-bar" onclick="go('profile')">‹ 返回我的</div>
+  <div class="section-title">我的收藏 <span class="year-tag" id="fav-count-tag">0</span></div>
+  <div class="tip-box" style="margin-bottom:12px">刷题时点「☆ 收藏」就能把重点题存到这里，随时回看。</div>
+  <div id="fav-list"></div>
+</div></section>
+
+<section class="view" id="view-import"><div class="container">
+  <div class="back-bar" onclick="go('profile')">‹ 返回我的</div>
+  <div class="section-title">导入题目（真题/资料）</div>
+  <div class="tip-box" style="margin-bottom:12px">
+    <b>🤖 自动挡：直接粘贴就行，格式自动识别</b><br>
+    支持：题号（1. / 1、/ 第1题）、选项（A. / A、/ A) / ①②③④）、答案（答案：A / 【答案】A）、
+    解析（解析：/ 【解析】）、<b>判断题</b>（答案：正确）、全角字母数字（Ａ Ｂ）——都能自动转换。
+  </div>
+  <div class="card">
+    <div class="input-group"><label>① 选择题目所属科目</label>
+      <select id="imp-subject" style="width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:15px;background:#fff"></select>
+    </div>
+    <div class="input-group"><label>② 粘贴题目内容</label>
+      <textarea id="imp-text" rows="10" style="width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;line-height:1.6" placeholder="直接从网页/文档复制粘贴，格式乱也没关系&#10;例：&#10;1、1KB等于多少字节？&#10;A、1000  B、1024  C、512  D、2048&#10;【答案】B&#10;【解析】1KB=1024B"></textarea>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+      <button class="btn btn-outline" style="flex:1;min-width:120px" onclick="pasteFromClipboard()">📋 读剪贴板</button>
+      <button class="btn btn-outline" style="flex:1;min-width:120px" onclick="fillImportSample()">📄 填示例</button>
+      <button class="btn btn-outline" style="flex:1;min-width:120px" onclick="showFormatHelp()">❓ 格式说明</button>
+    </div>
+    <button class="btn-primary-full" onclick="doImport()">导入题目（自动识别格式）</button>
+  </div>
+  <div class="section-title">已导入的题目 <span class="year-tag" id="imp-count">0</span></div>
+  <div class="tip-box" style="margin-bottom:12px">导入的题目会加在对应科目题库的末尾，可以正常刷题、进错题本和收藏。</div>
+  <div id="imp-list"></div>
+</div></section>
+
+<nav class="bottom-nav">
+  <a class="nav-item active" data-v="home" onclick="go('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg><span>首页</span></a>
+  <a class="nav-item" data-v="topics" onclick="go('topics')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20V4H6.5A2.5 2.5 0 004 6.5v13z"/></svg><span>知识精讲</span></a>
+  <a class="nav-item" data-v="quiz" onclick="go('quiz')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11H5a2 2 0 00-2 2v7h6v-7a2 2 0 012-2 2 2 0 012 2v7h6v-7a2 2 0 00-2-2h-4"/></svg><span>刷题</span></a>
+  <a class="nav-item" data-v="scores" onclick="go('scores')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 14l4-4 4 4 5-5"/></svg><span>分数线</span></a>
+  <a class="nav-item" data-v="profile" onclick="go('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a6 6 0 016-6h4a6 6 0 016 6v2"/></svg><span>我的</span></a>
+</nav>
+
+<div class="modal-mask" id="target-modal"><div class="modal-panel">
+  <div class="modal-handle"></div><div class="modal-title">设置公共课目标分</div>
+  <div class="input-group"><label>数学（满分120）</label><input type="number" id="in-math" min="0" max="120" placeholder="如90"></div>
+  <div class="input-group"><label>外语（满分120）</label><input type="number" id="in-eng" min="0" max="120" placeholder="如80"></div>
+  <div class="input-group"><label>计算机基础（满分100）</label><input type="number" id="in-comp" min="0" max="100" placeholder="如80"></div>
+  <button class="btn-primary-full" onclick="saveTarget()">保存目标</button>
+</div></div>
+
+<script>
+// ========== 知识精讲数据 ==========
+const topics = {
+  comp: {
+    name: '计算机应用基础',
+    list: [
+      { title: '计算机概述与发展', html: `
+        <div class="topic-section"><h4>核心考点</h4><ul>
+        <li><b>ENIAC</b>：1946年诞生于美国宾夕法尼亚大学，世界第一台通用电子数字计算机</li>
+        <li><b>冯·诺依曼两大贡献</b>：①采用二进制 ②存储程序控制</li>
+        <li><b>四大特点</b>：运算速度快、计算精度高、存储容量大、可靠性高</li>
+        <li><b>四代计算机</b>：电子管(1946-1958)→晶体管(1958-1964)→集成电路(1964-1970)→大规模/超大规模集成电路(1970至今)</li>
+        <li><b>发展趋势</b>：巨型化、微型化、网络化、智能化、多媒体化</li>
+        <li><b>应用领域</b>：科学计算、数据处理(最广)、过程控制、计算机辅助(CAD/CAM/CAI)、人工智能</li>
+        </ul></div>
+        <div class="topic-section"><h4>计算机分类</h4><ul>
+        <li>按性能规模：巨型机、大型机、中型机、小型机、微型机、工作站、服务器</li>
+        <li>按数据类型：数字计算机、模拟计算机、混合计算机</li>
+        </ul></div>
+        <div class="tip-box">必考：1946 ENIAC、冯·诺依曼、四代元器件、数据处理是最广泛应用</div>` },
+      { title: '信息编码与数制', html: `
+        <div class="topic-section"><h4>数制转换（必考计算题）</h4><ul>
+        <li>二进制(B)→十进制：按权展开求和，如(1011)₂=1×8+0×4+1×2+1×1=11</li>
+        <li>十进制→二进制：整数除2取余(逆序)，小数乘2取整(顺序)</li>
+        <li>二进制↔八进制：每3位一组；二进制↔十六进制：每4位一组</li>
+        </ul></div>
+        <div class="topic-section"><h4>ASCII码</h4><ul>
+        <li>7位二进制表示128个字符，占1字节(最高位0)</li>
+        <li>数字'0'=48，大写'A'=65，小写'a'=97，大小写差32</li>
+        <li>控制字符(0-31)不可见，空格=32，DEL=127</li>
+        </ul></div>
+        <div class="topic-section"><h4>汉字编码</h4><ul>
+        <li>输入码(拼音/五笔)→国标码GB2312→机内码(存储)→字形码(显示)</li>
+        <li>一个汉字占2字节</li>
+        </ul></div>
+        <div class="topic-section"><h4>存储单位换算</h4><ul>
+        <li>1B=8bit；1KB=1024B；1MB=1024KB；1GB=1024MB；1TB=1024GB</li>
+        <li>字长：CPU一次处理的二进制位数(8/16/32/64位)，决定计算精度</li>
+        </ul></div>` },
+      { title: '计算机系统组成', html: `
+        <div class="topic-section"><h4>硬件五大部件</h4><ul>
+        <li><b>运算器ALU</b>：算术运算+逻辑运算</li>
+        <li><b>控制器CU</b>：指挥协调，CPU=运算器+控制器</li>
+        <li><b>存储器</b>：内存(RAM随机/ROM只读/CMOS) + 外存(硬盘/U盘/光盘)</li>
+        <li><b>输入设备</b>：键盘、鼠标、扫描仪、麦克风</li>
+        <li><b>输出设备</b>：显示器、打印机、音箱、绘图仪</li>
+        </ul></div>
+        <div class="topic-section"><h4>内存对比</h4><ul>
+        <li>RAM：随机存取，可读可写，断电丢失（内存条）</li>
+        <li>ROM：只读存储器，断电不丢失（BIOS）</li>
+        <li>Cache高速缓存：解决CPU与内存速度不匹配</li>
+        </ul></div>
+        <div class="topic-section"><h4>软件分类</h4><ul>
+        <li><b>系统软件</b>：操作系统(Windows/Linux/Unix/DOS)、语言处理程序、数据库管理系统、服务程序</li>
+        <li><b>应用软件</b>：Office、PS、浏览器、游戏等</li>
+        <li>程序设计语言：机器语言(二进制)→汇编语言→高级语言(C/Java/Python)</li>
+        </ul></div>
+        <div class="key-point">重要：CPU=运算器+控制器；RAM断电丢失；操作系统是最核心的系统软件</div>` },
+      { title: 'Windows 10 操作系统', html: `
+        <div class="topic-section"><h4>操作系统功能</h4><p>五大功能：处理器管理、存储管理、设备管理、文件管理、作业管理</p></div>
+        <div class="topic-section"><h4>文件管理</h4><ul>
+        <li>文件名=主名.扩展名，扩展名标识类型</li>
+        <li>扩展名：.txt文本 .docx Word .xlsx Excel .pptx PPT .exe可执行 .bat批处理</li>
+        <li>文件属性：只读、隐藏、存档</li>
+        <li>回收站：硬盘上删除的文件暂存处，可还原；U盘/Shift+Delete删除不进回收站</li>
+        </ul></div>
+        <div class="topic-section"><h4>常用快捷键（必考）</h4><ul>
+        <li>Ctrl+C复制 / Ctrl+X剪切 / Ctrl+V粘贴 / Ctrl+Z撤销 / Ctrl+A全选</li>
+        <li>Ctrl+F查找 / Ctrl+H替换 / Ctrl+S保存 / Ctrl+P打印</li>
+        <li>Delete删除到回收站 / Shift+Delete永久删除</li>
+        <li>PrintScreen整屏截图 / Alt+PrintScreen当前窗口截图</li>
+        <li>Alt+Tab切换窗口 / Alt+F4关闭程序 / Win+D显示桌面</li>
+        </ul></div>
+        <div class="topic-section"><h4>剪贴板</h4><p>内存中的临时存储区域，关机重启后内容清空。Copy/Cut的内容先放剪贴板，再Paste出来。</p></div>` },
+      { title: 'Word 2016 文字处理', html: `
+        <div class="topic-section"><h4>文档操作</h4><ul>
+        <li>新建/打开/保存/另存为/打印</li>
+        <li>Ctrl+S保存，F12另存为，Ctrl+P打印</li>
+        </ul></div>
+        <div class="topic-section"><h4>格式设置</h4><ul>
+        <li><b>字符格式</b>：字体、字号、字形(加粗/倾斜/下划线)、颜色、边框、底纹、字符间距</li>
+        <li><b>段落格式</b>：对齐(左/居中/右/两端/分散)、缩进(首行缩进2字符最常用)、行距、段间距</li>
+        <li><b>格式刷</b>：复制已有格式，单击用一次，双击多次使用</li>
+        </ul></div>
+        <div class="topic-section"><h4>版面设计</h4><ul>
+        <li>页面设置：纸张大小(A4)、页边距、方向(横向/纵向)</li>
+        <li>分隔：分页符、分节符；分栏、首字下沉、水印</li>
+        <li>页眉页脚、页码、脚注尾注、目录</li>
+        </ul></div>
+        <div class="topic-section"><h4>表格与图文混排</h4><ul>
+        <li>表格：插入行列、合并/拆分单元格、边框底纹、排序计算</li>
+        <li>图片：插入、缩放、裁剪、文字环绕(嵌入型/四周型/紧密型/衬于文字下方/浮于文字上方)</li>
+        <li>文本框、艺术字、SmartArt</li>
+        </ul></div>
+        <div class="topic-section"><h4>高级功能</h4><ul>
+        <li>查找替换(Ctrl+H)、拼写语法检查、字数统计</li>
+        <li>邮件合并：批量生成信件/邀请函/成绩条</li>
+        <li>文档保护、修订、批注</li>
+        </ul></div>` },
+      { title: 'Excel 2016 电子表格', html: `
+        <div class="topic-section"><h4>基本概念</h4><ul>
+        <li>工作簿(.xlsx)=多个工作表(Sheet1/2/3)=单元格</li>
+        <li>单元格地址：列标(A,B,C...)+行号(1,2,3...)，如A1、B5</li>
+        <li>单元格引用：相对(A1)、绝对($A$1)、混合($A1/A$1)</li>
+        </ul></div>
+        <div class="topic-section"><h4>常用函数（必考）</h4><ul>
+        <li><b>SUM(A1:A10)</b>：求和</li>
+        <li><b>AVERAGE(A1:A10)</b>：平均值</li>
+        <li><b>MAX/MIN</b>：最大/最小值</li>
+        <li><b>COUNT(A1:A10)</b>：统计数字个数；COUNTA统计非空单元格</li>
+        <li><b>IF(条件,值1,值2)</b>：条件判断，如=IF(A1>=60,"及格","不及格")</li>
+        <li><b>SUMIF(范围,条件,求和范围)</b>：条件求和</li>
+        <li><b>COUNTIF(范围,条件)</b>：条件计数</li>
+        <li><b>VLOOKUP(找什么,在哪找,返回第几列,0)</b>：垂直查找</li>
+        <li><b>RANK(数,范围)</b>：排名</li>
+        </ul></div>
+        <div class="topic-section"><h4>数据管理</h4><ul>
+        <li>排序：升序↑/降序↓，可多关键字排序</li>
+        <li>筛选：自动筛选(下拉箭头)、高级筛选(条件区域)</li>
+        <li>分类汇总：<b>必须先按分类字段排序</b>，再汇总</li>
+        <li>数据透视表：多维度交叉分析，拖拽字段</li>
+        </ul></div>
+        <div class="topic-section"><h4>图表</h4><ul>
+        <li>柱形图/条形图：比较大小；折线图：趋势变化；饼图：占比构成</li>
+        </ul></div>` },
+      { title: 'PowerPoint 2016', html: `
+        <div class="topic-section"><h4>基本概念</h4><ul>
+        <li>演示文稿(.pptx)由多张幻灯片组成</li>
+        <li>视图：普通视图(编辑)、幻灯片浏览(排序)、备注页、阅读视图、幻灯片放映(F5)</li>
+        </ul></div>
+        <div class="topic-section"><h4>设计原则</h4><ul>
+        <li><b>母版</b>：统一设置所有幻灯片的格式、Logo、字体、占位符位置</li>
+        <li><b>版式</b>：单张幻灯片的内容布局方式</li>
+        <li><b>模板/主题</b>：一套设计方案(颜色+字体+效果)</li>
+        </ul></div>
+        <div class="topic-section"><h4>动画与切换</h4><ul>
+        <li><b>切换效果</b>：幻灯片之间的过渡(淡入/推进/擦除等)</li>
+        <li><b>动画效果</b>：幻灯片内对象的进入/强调/退出/动作路径</li>
+        <li>超链接：链接到其他幻灯片、文件、网页、邮件</li>
+        <li>动作按钮：返回、跳转等交互</li>
+        </ul></div>
+        <div class="topic-section"><h4>放映</h4><ul>
+        <li>F5从第一页放映；Shift+F5从当前页放映</li>
+        <li>自定义放映：选择部分幻灯片组成新放映方案</li>
+        </ul></div>` },
+      { title: '计算机网络基础', html: `
+        <div class="topic-section"><h4>网络概述</h4><ul>
+        <li><b>定义</b>：将分散的计算机通过通信线路连接，实现资源共享和信息传递</li>
+        <li><b>三大功能</b>：资源共享(最主要)、数据通信、分布式处理</li>
+        <li><b>分类</b>：LAN局域网、MAN城域网、WAN广域网(Internet)</li>
+        <li><b>拓扑结构</b>：星型(最常用，中心交换机)、总线型、环型、树型、网状型</li>
+        </ul></div>
+        <div class="topic-section"><h4>OSI七层模型（必背）</h4><ul>
+        <li>7应用层：用户接口(HTTP/FTP/DNS/Email)</li>
+        <li>6表示层：数据格式转换、加密压缩</li>
+        <li>5会话层：建立/管理会话</li>
+        <li>4传输层：端到端(TCP/UDP、端口号)</li>
+        <li>3网络层：路由选择(IP协议、IP地址)</li>
+        <li>2数据链路层：成帧(以太网、MAC地址)</li>
+        <li>1物理层：比特流传输(电缆/光纤)</li>
+        </ul>
+        <div class="tip-box">口诀：物-数-网-传-会-表-应（从下到上）</div></div>
+        <div class="topic-section"><h4>IP地址</h4><ul>
+        <li>32位二进制，4段十进制(0-255)，点分十进制</li>
+        <li>A类：1-126开头，255.0.0.0（大型网）</li>
+        <li>B类：128-191开头，255.255.0.0（中型网）</li>
+        <li>C类：192-223开头，255.255.255.0（小型网）</li>
+        <li>特殊：127.0.0.1本机回环；192.168.x.x私有地址</li>
+        </ul></div>
+        <div class="topic-section"><h4>常用协议端口</h4><ul>
+        <li>HTTP:80 / HTTPS:443 / FTP:21 / SSH:22 / Telnet:23</li>
+        <li>SMTP:25(发邮件) / POP3:110(收邮件) / DNS:53 / DHCP:67/68</li>
+        </ul></div>
+        <div class="topic-section"><h4>域名与URL</h4><ul>
+        <li>域名结构：主机名.机构.网络.顶级域，如www.school.edu.cn</li>
+        <li>顶级域：.com商业 .edu教育 .gov政府 .cn中国 .org组织</li>
+        <li>DNS：域名→IP地址解析</li>
+        </ul></div>` },
+      { title: '信息安全与多媒体', html: `
+        <div class="topic-section"><h4>计算机病毒</h4><ul>
+        <li><b>定义</b>：人为编制的、能自我复制、具有破坏性的程序代码</li>
+        <li><b>六大特征</b>：传染性(最本质)、破坏性、隐蔽性、潜伏性、寄生性、可触发性</li>
+        <li><b>传播途径</b>：网络、U盘移动存储、邮件附件、下载文件、盗版软件</li>
+        <li><b>症状</b>：运行变慢、文件变大、异常重启、莫名弹窗、文件被加密</li>
+        <li><b>防治</b>：装杀毒软件并更新病毒库、不打开陌生邮件附件、定期备份、开启防火墙、及时打补丁</li>
+        </ul></div>
+        <div class="topic-section"><h4>网络安全</h4><ul>
+        <li><b>防火墙</b>：隔离内外网，过滤不安全服务，不能防病毒</li>
+        <li>黑客：未经授权入侵他人系统的人</li>
+        <li>密码安全：字母+数字+符号组合，8位以上，定期更换，不同账号不同密码</li>
+        </ul></div>
+        <div class="topic-section"><h4>多媒体技术</h4><ul>
+        <li>多媒体特征：集成性、交互性、数字化、实时性、多样性</li>
+        <li>图像格式：BMP(无压缩)、JPEG(有损压缩)、GIF(动图)、PNG(透明背景)</li>
+        <li>音频：WAV(无压缩)、MP3(压缩)、MIDI</li>
+        <li>视频：AVI、MP4、RMVB、MKV</li>
+        </ul></div>` },
+      { title: '硬件系统详解', html: `
+        <div class="topic-section"><h4>五大部件</h4><ul>
+        <li><b>运算器(ALU)</b>：完成算术运算和逻辑运算</li>
+        <li><b>控制器(CU)</b>：指挥协调各部件工作，是计算机的"神经中枢"</li>
+        <li><b>存储器</b>：存放程序和数据</li>
+        <li><b>输入设备</b>：键盘、鼠标、扫描仪、摄像头、麦克风、手写板</li>
+        <li><b>输出设备</b>：显示器、打印机、音箱、投影仪、绘图仪</li>
+        <li>运算器 + 控制器 = <b>中央处理器(CPU)</b>；CPU + 内存 = <b>主机</b></li>
+        </ul></div>
+        <div class="topic-section"><h4>CPU 核心指标</h4><ul>
+        <li><b>主频</b>：单位 GHz，越高运算越快</li>
+        <li><b>字长</b>：一次能处理的二进制位数（32位/64位），越长精度越高</li>
+        <li><b>核心数/线程数</b>：多核可并行处理任务</li>
+        <li><b>缓存(Cache)</b>：L1 → L2 → L3，速度递减、容量递增</li>
+        </ul></div>
+        <div class="topic-section"><h4>存储器层次</h4><ul>
+        <li><b>内存(RAM)</b>：断电后数据丢失，直接与 CPU 交换数据，速度最快</li>
+        <li><b>外存</b>：硬盘/SSD/U盘/光盘，断电不丢、容量大、速度较慢</li>
+        <li><b>ROM</b>：只读存储器，断电不丢失（存放 BIOS）</li>
+        <li><b>Cache</b>：位于 CPU 与内存之间，解决两者速度不匹配问题</li>
+        </ul></div>
+        <div class="tip-box">必考：CPU = 运算器 + 控制器；内存断电丢失、外存不丢失；Cache 解决速度差异</div>` },
+      { title: '存储容量与单位换算', html: `
+        <div class="topic-section"><h4>基本单位（必考换算）</h4><ul>
+        <li><b>位(bit)</b>：最小单位，1 bit = 一个 0 或 1</li>
+        <li><b>字节(Byte, B)</b>：基本存储单位，<b>1 B = 8 bit</b></li>
+        <li>1 KB = 1024 B；1 MB = 1024 KB；1 GB = 1024 MB；1 TB = 1024 GB</li>
+        <li><b>关键：1024 = 2¹⁰</b>，不是 1000 —— 这是最常见的坑</li>
+        </ul></div>
+        <div class="topic-section"><h4>典型换算与估算题</h4><ul>
+        <li>2 GB = 2 × 1024 MB = <b>2048 MB</b></li>
+        <li>1 MB 能存多少汉字？1 个汉字占 2 字节 → 1024×1024÷2 ≈ <b>52 万个</b></li>
+        <li>1 MB 能存多少英文字符？1 个字符占 1 字节 → 约 <b>104 万个</b></li>
+        <li>存储容量 = 字节数；传输速率常用 bps（比特/秒），注意 bit 与 Byte 差 8 倍</li>
+        </ul></div>
+        <div class="tip-box">高频计算题：单位换算（×1024）+ 汉字占 2 字节 / 英文字符占 1 字节</div>` },
+      { title: '软件系统与程序设计语言', html: `
+        <div class="topic-section"><h4>软件分类（必考）</h4><ul>
+        <li><b>系统软件</b>：操作系统、语言处理程序、数据库管理系统、诊断程序、服务程序</li>
+        <li><b>应用软件</b>：办公软件、图形图像软件、杀毒软件、浏览器、游戏</li>
+        <li>操作系统是最重要的系统软件，是<b>用户与计算机硬件的接口</b></li>
+        </ul></div>
+        <div class="topic-section"><h4>程序设计语言（三代）</h4><ul>
+        <li><b>机器语言</b>：二进制指令，计算机可直接执行、速度最快、最难编写</li>
+        <li><b>汇编语言</b>：用助记符表示，需汇编程序翻译</li>
+        <li><b>高级语言</b>：C / Java / Python，接近自然语言，需翻译后执行</li>
+        </ul></div>
+        <div class="topic-section"><h4>编译 vs 解释（高频）</h4><ul>
+        <li><b>编译</b>：一次性翻译成目标程序，生成可执行文件，执行快（如 C 语言）</li>
+        <li><b>解释</b>：逐句翻译、逐句执行，不生成文件，速度较慢（如 Python）</li>
+        <li>流程：源程序 → 编译/解释 → 目标程序</li>
+        </ul></div>
+        <div class="tip-box">必考：系统软件 vs 应用软件的区分；机器语言执行最快；编译生成文件、解释不生成</div>` },
+      { title: '数据库基础', html: `
+        <div class="topic-section"><h4>基本概念</h4><ul>
+        <li><b>数据库(DB)</b>：长期存储、有组织、可共享的数据集合</li>
+        <li><b>数据库管理系统(DBMS)</b>：如 MySQL、SQL Server、Oracle、Access</li>
+        <li><b>数据库系统(DBS)</b> = 数据库 + DBMS + 应用程序 + 人员</li>
+        </ul></div>
+        <div class="topic-section"><h4>数据表结构</h4><ul>
+        <li><b>字段（列）</b>：一列描述一个属性；<b>记录（行）</b>：一行是一条完整数据</li>
+        <li><b>主键</b>：唯一标识一条记录，<b>不能重复、不能为空</b></li>
+        <li>常见数据类型：文本、数字、日期/时间、是/否、货币</li>
+        </ul></div>
+        <div class="topic-section"><h4>SQL 四大操作</h4><ul>
+        <li><b>查询</b>：SELECT 字段 FROM 表 WHERE 条件</li>
+        <li><b>插入</b>：INSERT INTO 表 VALUES(...)</li>
+        <li><b>更新</b>：UPDATE 表 SET 字段=值 WHERE 条件</li>
+        <li><b>删除</b>：DELETE FROM 表 WHERE 条件</li>
+        </ul></div>
+        <div class="tip-box">必考：主键特性（唯一 + 非空）；行 = 记录、列 = 字段；SELECT 查询语句写法</div>` },
+      { title: '计算机性能指标', html: `
+        <div class="topic-section"><h4>主要性能指标</h4><ul>
+        <li><b>字长</b>：CPU 一次能处理的二进制位数，越长精度越高</li>
+        <li><b>主频</b>：CPU 时钟频率(GHz)，越高运算越快</li>
+        <li><b>内存容量</b>：影响可同时运行的程序数量</li>
+        <li><b>运算速度</b>：常用 MIPS（每秒百万条指令）衡量</li>
+        <li><b>存取周期</b>：内存完成一次读写所需时间，越短越好</li>
+        </ul></div>
+        <div class="topic-section"><h4>其他常见参数</h4><ul>
+        <li>硬盘容量与转速（SSD 无转速、速度快、抗震）</li>
+        <li>显示器：分辨率（1920×1080）、刷新率(Hz)、色深</li>
+        <li>接口：USB、HDMI、Type-C、VGA</li>
+        </ul></div>
+        <div class="tip-box">易考：衡量 CPU 性能的主要指标是<b>字长和主频</b></div>` },
+      { title: '高频快捷键与操作技巧', html: `
+        <div class="topic-section"><h4>Windows 通用快捷键</h4><ul>
+        <li>Ctrl+C 复制 / Ctrl+X 剪切 / Ctrl+V 粘贴 / Ctrl+Z 撤销 / Ctrl+A 全选 / Ctrl+S 保存</li>
+        <li>Ctrl+F 查找 / Ctrl+P 打印 / Ctrl+Shift+Esc 打开任务管理器</li>
+        <li>Win+D 显示桌面 / Win+E 资源管理器 / Win+L 锁定 / Alt+Tab 切换窗口</li>
+        <li>Win+方向键 窗口贴边 / Win+Shift+S 截图</li>
+        <li><b>Shift+Delete</b>：永久删除，<b>不进入回收站</b></li>
+        </ul></div>
+        <div class="topic-section"><h4>Office 高频操作</h4><ul>
+        <li>Word：Ctrl+B 加粗、Ctrl+E 居中、Ctrl+Enter 插入分页符</li>
+        <li>Excel：Ctrl+方向键跳到数据边缘、F4 切换绝对/相对引用、Ctrl+Shift+L 筛选</li>
+        <li>Excel <b>公式必须以 = 开头</b>，如 =SUM(A1:A10)、=AVERAGE(B1:B5)</li>
+        <li>PPT：F5 从头放映、Shift+F5 从当前页放映</li>
+        </ul></div>
+        <div class="tip-box">易考：Excel 公式以 = 开头；Shift+Delete 不进入回收站</div>` }
+    ]
+  },
+  c: {
+    name: 'C语言程序设计',
+    list: [
+      { title: 'C语言概述', html: `
+        <div class="topic-section"><h4>程序结构</h4><ul>
+        <li>C程序从<b>main()</b>函数开始执行，有且只有一个main</li>
+        <li>开发过程：编辑(.c)→编译(.obj)→链接(.exe)→执行</li>
+        <li>每条语句以分号;结尾，区分大小写</li>
+        <li>注释：//单行，/* */多行（不编译不执行）</li>
+        <li>#include是预处理命令，不是C语句</li>
+        </ul></div>
+        <div class="topic-section"><h4>标识符</h4><ul>
+        <li>组成：字母、数字、下划线，不能以数字开头</li>
+        <li>不能是关键字：int char float double if else for while do switch case break continue return void struct union enum typedef static const sizeof</li>
+        <li>大小写敏感：Sum和sum是两个不同变量</li>
+        </ul></div>` },
+      { title: '数据类型与运算', html: `
+        <div class="topic-section"><h4>基本数据类型</h4><ul>
+        <li>char字符型：1字节，存ASCII码</li>
+        <li>short短整型：2字节；int整型：4字节；long长整型：4/8字节</li>
+        <li>float单精度：4字节；double双精度：8字节(默认浮点型)</li>
+        </ul></div>
+        <div class="topic-section"><h4>常量与变量</h4><ul>
+        <li>整型常量：123、0x1A(十六进制)、017(八进制)</li>
+        <li>实型常量：3.14、1.2e3(科学计数)</li>
+        <li>字符常量：单引号'A'；字符串常量：双引号"ABC"（末尾自动加\\0）</li>
+        </ul></div>
+        <div class="topic-section"><h4>运算符优先级（从高到低）</h4><ul>
+        <li>()括号 → 一元(! ++ -- 负号) → 乘除模(* / %) → 加减(+ -) → 关系(< > <= >=) → 相等(== !=) → 逻辑与&& → 逻辑或|| → 赋值(= +=)</li>
+        </ul></div>
+        <div class="topic-section"><h4>重点运算规则</h4><ul>
+        <li>整数除法截断：5/2=2（不是2.5）；5.0/2=2.5</li>
+        <li>%只能整数：5%2=1，-5%2=-1</li>
+        <li>i++：先用后加；++i：先加后用</li>
+        <li>&&短路：左边假则右边不执行；||短路：左边真则右边不执行</li>
+        </ul></div>` },
+      { title: '顺序与选择结构', html: `
+        <div class="topic-section"><h4>输入输出</h4><ul>
+        <li>printf输出：%d整型 %f浮点 %c字符 %s字符串 %x十六进制 %o八进制</li>
+        <li>scanf输入：scanf("%d",&a); 注意取地址符&</li>
+        <li>getchar()读一个字符；putchar()输出一个字符</li>
+        </ul></div>
+        <div class="topic-section"><h4>if语句</h4><div class="code-block">if(条件) 语句1;
+else if(条件2) 语句2;
+else 语句3;</div></div>
+        <div class="topic-section"><h4>switch语句</h4><div class="code-block">switch(表达式) {
+  case 常量1: 语句; break;
+  case 常量2: 语句; break;
+  default: 语句;
+}</div>
+        <ul><li>表达式只能是整型或字符型</li><li>case后是常量不能重复；break必须写否则穿透</li></ul></div>` },
+      { title: '循环结构', html: `
+        <div class="topic-section"><h4>三种循环</h4><ul>
+        <li><b>while</b>(条件){}：先判断后执行，可能0次</li>
+        <li><b>do{}while(条件);</b>：先执行后判断，至少1次</li>
+        <li><b>for(初始化;条件;增量){}</b>：最常用</li>
+        </ul></div>
+        <div class="topic-section"><h4>循环控制</h4><ul>
+        <li><b>break</b>：跳出当前整个循环（只跳出一层）</li>
+        <li><b>continue</b>：跳过本次循环剩余语句，直接进入下一次</li>
+        </ul></div>
+        <div class="topic-section"><h4>常见编程题</h4><ul>
+        <li>累加求和：1+2+...+100</li>
+        <li>判断素数：只能被1和自身整除</li>
+        <li>水仙花数：三位数各位立方和等于本身(153=1³+5³+3³)</li>
+        <li>九九乘法表、斐波那契数列</li>
+        </ul></div>` },
+      { title: '数组', html: `
+        <div class="topic-section"><h4>一维数组</h4><ul>
+        <li>定义：int a[5]; 下标0~4</li>
+        <li>初始化：int a[5]={1,2,3,4,5}; int a[]={1,2,3};</li>
+        <li>不能整体赋值，只能逐个元素操作</li>
+        </ul></div>
+        <div class="topic-section"><h4>二维数组</h4><ul>
+        <li>int a[3][4]; 3行4列，a[0][0]~a[2][3]</li>
+        <li>按行存储：先存第一行再第二行</li>
+        </ul></div>
+        <div class="topic-section"><h4>字符数组与字符串</h4><ul>
+        <li>字符串以'\\0'结束，"abc"占4字节</li>
+        <li>strlen()：长度(不含\\0)；sizeof()：占内存大小</li>
+        <li>strcpy(dest,src)复制；strcat拼接；strcmp比较</li>
+        <li>puts()输出字符串；gets()输入(不安全用fgets)</li>
+        </ul></div>` },
+      { title: '函数与指针', html: `
+        <div class="topic-section"><h4>函数定义</h4><div class="code-block">返回值类型 函数名(形参列表) {
+  函数体;
+  return 返回值;
+}</div>
+        <ul><li>无返回值用void；必须先声明再调用</li><li>C不允许函数嵌套定义</li></ul></div>
+        <div class="topic-section"><h4>参数传递</h4><ul>
+        <li><b>值传递</b>：实参复制给形参，函数内修改不影响实参（C默认）</li>
+        <li><b>地址传递</b>：传指针，可修改实参</li>
+        </ul></div>
+        <div class="topic-section"><h4>变量作用域</h4><ul>
+        <li>局部变量：函数内，调用时分配，结束释放</li>
+        <li>全局变量：函数外，整个程序有效</li>
+        <li>static静态变量：只初始化一次，值保留</li>
+        </ul></div>
+        <div class="topic-section"><h4>指针基础</h4><ul>
+        <li>int *p; 定义指针变量，存地址</li>
+        <li>&amp;取地址；*取内容</li>
+        <li>int a=10,*p=&amp;a; → *p就是a的值</li>
+        <li>数组名是首元素地址：int a[5],*p=a; p[i]等价a[i]</li>
+        </ul></div>` },
+      { title: '字符串与字符数组', html: `
+        <div class="topic-section"><h4>字符串的本质</h4><ul>
+        <li>C 语言没有字符串类型，用<b>字符数组</b>存放，以 <b>'\0'</b> 作为结束标志</li>
+        <li>char s[]="hello"; 等价于 char s[]={'h','e','l','l','o','\0'};（数组长度 6）</li>
+        </ul></div>
+        <div class="topic-section"><h4>常用字符串函数（需 #include &lt;string.h&gt;）</h4><ul>
+        <li><b>strlen(s)</b>：求字符串长度（<b>不含</b> '\0'）</li>
+        <li><b>strcpy(s1,s2)</b>：把 s2 复制到 s1；<b>strcat(s1,s2)</b>：把 s2 连接到 s1 后面</li>
+        <li><b>strcmp(s1,s2)</b>：比较两串，返回 0 表示相等，正数表示 s1 大，负数表示 s1 小</li>
+        <li>输入输出整串：gets(s)/fgets(s,n,fp)、puts(s)</li>
+        </ul></div>
+        <div class="topic-section"><h4>字符处理函数（ctype.h）</h4><ul>
+        <li>isdigit(c) 判断是否为数字字符；isalpha(c) 判断是否为字母</li>
+        <li>isupper(c)/islower(c) 判断大小写；toupper(c)/tolower(c) 大小写转换</li>
+        </ul></div>
+        <div class="tip-box">易错：strlen 不含 '\0'，sizeof(数组) 含；字符串比较不能用 ==，必须用 strcmp</div>` },
+      { title: '结构体与共用体', html: `
+        <div class="topic-section"><h4>结构体的定义与使用</h4><ul>
+        <li>定义：struct 结构体名{ 成员列表 };</li>
+        <li>声明变量：struct Student s; （配合 typedef 可写成 Student s;）</li>
+        <li>访问成员：变量用 <b>s.name</b>；指针用 <b>p-&gt;name</b></li>
+        <li>初始化：struct Student s={"张三",18};</li>
+        </ul></div>
+        <div class="topic-section"><h4>结构体数组与指针</h4><ul>
+        <li>结构体数组：struct Student s[3]; 访问 s[0].name</li>
+        <li>结构体指针：struct Student *p=&amp;s; 则 p-&gt;name 等价 (*p).name</li>
+        <li>结构体作函数参数：值传递（不改实参）或指针传递（可改实参）</li>
+        </ul></div>
+        <div class="topic-section"><h4>共用体与枚举</h4><ul>
+        <li><b>共用体 union</b>：所有成员<b>共用同一块内存</b>，同一时刻只能存放其中一个</li>
+        <li><b>枚举 enum</b>：如 enum Week{MON,TUE,WED}; 默认值从 0 开始递增</li>
+        </ul></div>
+        <div class="tip-box">必考：成员访问两种方式（. 和 -&gt;）、结构体数组的定义与遍历</div>` },
+      { title: '指针进阶（数组·函数·动态内存）', html: `
+        <div class="topic-section"><h4>指针与数组</h4><ul>
+        <li>数组名就是首元素地址；<b>a[i] 等价 *(a+i)</b></li>
+        <li>指针运算：p+1 指向下一个元素（按所指类型的大小偏移）</li>
+        <li>字符串指针：char *s="hello"; 指向常量区，<b>不能修改内容</b></li>
+        </ul></div>
+        <div class="topic-section"><h4>指针与函数（重点）</h4><ul>
+        <li><b>指针作参数</b>：实现"传址调用"，函数内可修改实参（典型：swap 交换两个数）</li>
+        <li>返回指针的函数：类型 *函数名(参数列表)</li>
+        <li>函数指针：int (*p)(int,int); —— 指向函数的指针</li>
+        </ul></div>
+        <div class="topic-section"><h4>二级指针与动态内存</h4><ul>
+        <li>二级指针：int **pp; —— 指向指针的指针</li>
+        <li>动态内存：malloc(size) 申请、free(p) 释放，<b>必须配对使用</b></li>
+        </ul></div>
+        <div class="tip-box">必考：指针作参数实现交换（传址调用）；区分 *p（取内容）与 &amp;p（取地址）</div>` },
+      { title: '文件操作', html: `
+        <div class="topic-section"><h4>打开与关闭</h4><ul>
+        <li>FILE *fp; fp = fopen("data.txt","r"); —— 打开失败返回 <b>NULL</b>，必须判断</li>
+        <li>打开模式：<b>r</b> 只读、<b>w</b> 只写（会清空原内容）、<b>a</b> 追加、<b>r+</b> 读写、rb/wb 二进制</li>
+        <li>fclose(fp); —— 文件用完必须关闭</li>
+        </ul></div>
+        <div class="topic-section"><h4>读写函数</h4><ul>
+        <li>字符读写：fgetc(fp) 读一个字符、fputc(c,fp) 写一个字符</li>
+        <li>字符串读写：fgets(s,n,fp)、fputs(s,fp)</li>
+        <li>格式化读写：fscanf(fp,"%d",&amp;x)、fprintf(fp,"%d",x)</li>
+        <li>判断文件结束：feof(fp)</li>
+        </ul></div>
+        <div class="tip-box">易错：fopen 后要判断是否为 NULL；用完必须 fclose；"w" 模式会清空原文件</div>` },
+      { title: '常见算法与编程题套路', html: `
+        <div class="topic-section"><h4>必会基础算法</h4><ul>
+        <li><b>求和/平均值</b>：循环累加后相除</li>
+        <li><b>最大最小值</b>：设初值，循环逐个比较更新</li>
+        <li><b>排序</b>：冒泡排序（双重循环，相邻比较交换）、选择排序</li>
+        <li><b>查找</b>：顺序查找；折半查找（要求数据有序）</li>
+        <li><b>素数判断</b>：用 2 到 √n 试除</li>
+        <li><b>斐波那契/阶乘</b>：递归或循环实现</li>
+        </ul></div>
+        <div class="topic-section"><h4>编程题拿分套路</h4><ul>
+        <li>① 看清输入输出要求 → ② 先写框架（#include、main、变量定义）→ ③ 写核心逻辑 → ④ 检查边界</li>
+        <li>常用组合：for 循环遍历 + if 判断 + 数组存储</li>
+        <li>注意：变量先定义后使用；语句末尾别漏分号；数组下标从 0 开始</li>
+        </ul></div>
+        <div class="tip-box">C语言是专业综合课第一门（100分），编程题按步骤给分——写对框架也有分</div>` }
+    ]
+  },
+  net: {
+    name: '计算机网络',
+    list: [
+      { title: '网络体系结构', html: `
+        <div class="topic-section"><h4>OSI七层模型</h4><ul>
+        <li>应用层：为应用程序提供网络服务（HTTP/FTP/DNS/SMTP）</li>
+        <li>表示层：数据格式转换、加密解密、压缩解压</li>
+        <li>会话层：建立、管理、终止会话</li>
+        <li>传输层：端到端可靠/不可靠传输（TCP/UDP）</li>
+        <li>网络层：路由选择、IP寻址（IP/ICMP/ARP）</li>
+        <li>数据链路层：成帧、差错检测（以太网/MAC）</li>
+        <li>物理层：比特流传输（电压/光信号）</li>
+        </ul></div>
+        <div class="topic-section"><h4>TCP/IP四层</h4><p>网络接口层→网际层(IP)→传输层(TCP/UDP)→应用层</p></div>` },
+      { title: '物理层与数据链路层', html: `
+        <div class="topic-section"><h4>传输介质</h4><ul>
+        <li>双绞线：最常用，便宜，短距离(100米)，屏蔽STP/非屏蔽UTP</li>
+        <li>光纤：带宽高、抗干扰、长距离，单模/多模</li>
+        <li>同轴电缆：早期使用</li>
+        <li>无线：WiFi、蓝牙、微波、卫星</li>
+        </ul></div>
+        <div class="topic-section"><h4>以太网与MAC</h4><ul>
+        <li>MAC地址：48位(6字节)，物理地址，固化在网卡</li>
+        <li>CSMA/CD：载波监听多路访问/冲突检测</li>
+        <li>交换机：根据MAC地址转发数据，工作在数据链路层</li>
+        </ul></div>` },
+      { title: '网络层IP协议', html: `
+        <div class="topic-section"><h4>IP地址分类</h4><ul>
+        <li>A类：0xxx开头(1-126)，网络号8位，主机号24位，子网掩码255.0.0.0</li>
+        <li>B类：10xx开头(128-191)，网络号16位，主机号16位，255.255.0.0</li>
+        <li>C类：110x开头(192-223)，网络号24位，主机号8位，255.255.255.0</li>
+        <li>D类：224-239组播；E类：240-255保留</li>
+        </ul></div>
+        <div class="topic-section"><h4>特殊IP</h4><ul>
+        <li>127.0.0.1：环回地址(本机测试)</li>
+        <li>192.168.x.x、10.x.x.x、172.16-31.x.x：私有地址(不路由)</li>
+        <li>255.255.255.255：广播地址</li>
+        </ul></div>
+        <div class="topic-section"><h4>其他协议</h4><ul>
+        <li>ARP：IP地址→MAC地址</li>
+        <li>RARP：MAC→IP</li>
+        <li>ICMP：网络控制报文(ping命令用ICMP)</li>
+        <li>路由器：工作在网络层，根据IP地址路由转发</li>
+        </ul></div>` },
+      { title: '传输层与应用层', html: `
+        <div class="topic-section"><h4>TCP vs UDP</h4><ul>
+        <li><b>TCP</b>：面向连接、可靠、字节流、三次握手/四次挥手、流量控制拥塞控制；用于HTTP/FTP/邮件</li>
+        <li><b>UDP</b>：无连接、不可靠、数据报、开销小速度快；用于DNS/视频/语音/游戏</li>
+        </ul></div>
+        <div class="topic-section"><h4>常用应用层协议</h4><ul>
+        <li>HTTP：超文本传输，80端口；HTTPS加密，443端口</li>
+        <li>FTP：文件传输，控制21/数据20</li>
+        <li>SMTP：发送邮件(25)；POP3收邮件(110)；IMAP(143)</li>
+        <li>DNS：域名解析(53)</li>
+        <li>DHCP：自动分配IP地址(67/68)</li>
+        <li>Telnet：远程登录(23，明文不安全)</li>
+        </ul></div>` },
+      { title: 'IP地址与子网划分（必考计算）', html: `
+        <div class="topic-section"><h4>IP 地址基础</h4><ul>
+        <li>IPv4 地址共 <b>32 位</b>，用点分十进制表示（如 192.168.1.1）</li>
+        <li>组成：<b>网络号 + 主机号</b></li>
+        <li>传统分类：A类(1-126，/8)、B类(128-191，/16)、C类(192-223，/24)</li>
+        <li><b>私有（内网）地址</b>：10.x.x.x、172.16-31.x.x、192.168.x.x</li>
+        <li>特殊地址：<b>127.0.0.1</b> 本机回环；255.255.255.255 广播</li>
+        </ul></div>
+        <div class="topic-section"><h4>子网掩码与计算（高频）</h4><ul>
+        <li>子网掩码用来区分网络号和主机号：连续 <b>1</b> 对应网络号，连续 <b>0</b> 对应主机号</li>
+        <li>常见：255.255.255.0 = <b>/24</b>；255.255.0.0 = /16</li>
+        <li><b>网络地址</b> = IP 与 掩码 按位与运算</li>
+        <li><b>广播地址</b> = 网络地址 + 主机位全置 1</li>
+        <li><b>可用主机数 = 2^(主机位数) − 2</b>（减去网络地址和广播地址）</li>
+        </ul></div>
+        <div class="tip-box">必考计算题：给出 IP + 掩码，求网络地址、广播地址、可用主机数</div>` },
+      { title: '网络设备与拓扑结构', html: `
+        <div class="topic-section"><h4>网络设备（按工作层次区分）</h4><ul>
+        <li><b>中继器 / 集线器(Hub)</b>：工作在<b>物理层</b>，放大信号、多端口转发（共享带宽，易冲突）</li>
+        <li><b>交换机(Switch)</b>：工作在<b>数据链路层</b>，按 <b>MAC 地址</b>转发，每个端口独享带宽</li>
+        <li><b>路由器(Router)</b>：工作在<b>网络层</b>，按 <b>IP 地址</b>选路，用于连接不同网络</li>
+        <li><b>网关</b>：连接使用不同协议的网络</li>
+        <li><b>网卡(NIC)</b>：每块网卡有全球唯一的 MAC 地址（48 位）</li>
+        <li><b>调制解调器(猫)</b>：实现数字信号与模拟信号的相互转换</li>
+        </ul></div>
+        <div class="topic-section"><h4>网络拓扑结构</h4><ul>
+        <li>总线型、<b>星型</b>（最常用）、环型、树型、<b>网状型</b>（可靠性最高，成本也最高）</li>
+        </ul></div>
+        <div class="tip-box">必考：交换机在数据链路层按 MAC 转发；路由器在网络层按 IP 选路</div>` },
+      { title: '常用端口号速查表', html: `
+        <div class="topic-section"><h4>TCP 常用端口</h4><ul>
+        <li><b>FTP 20/21</b>（文件传输）、<b>Telnet 23</b>（远程登录）、<b>SMTP 25</b>（发送邮件）</li>
+        <li><b>HTTP 80</b>（网页）、<b>POP3 110</b>（接收邮件）</li>
+        <li><b>HTTPS 443</b>（加密网页）、<b>远程桌面 3389</b></li>
+        </ul></div>
+        <div class="topic-section"><h4>UDP 常用端口</h4><ul>
+        <li><b>DNS 53</b>、<b>DHCP 67/68</b>、TFTP 69、SNMP 161</li>
+        </ul></div>
+        <div class="topic-section"><h4>记忆口诀</h4><ul>
+        <li>20/21 传文件、23 远程登、25 发邮件、53 解析域名、80 上网、110 收邮件、443 加密</li>
+        </ul></div>
+        <div class="tip-box">高频选择题：给协议问端口，或给端口问协议（这几个必须背熟）</div>` },
+      { title: '网络命令与故障排查', html: `
+        <div class="topic-section"><h4>常用网络命令</h4><ul>
+        <li><b>ipconfig</b>：查看本机 IP、子网掩码、默认网关；<b>ipconfig /all</b> 看 MAC、DNS 等详情</li>
+        <li><b>ipconfig /flushdns</b>：刷新 DNS 解析缓存</li>
+        <li><b>ping</b>：测试与目标主机的连通性（可跟 IP 或域名）</li>
+        <li><b>tracert</b>：跟踪数据包经过的路由路径</li>
+        <li><b>netstat</b>：查看本机网络连接与端口占用情况</li>
+        <li><b>nslookup</b>：查询域名对应的 IP 地址</li>
+        </ul></div>
+        <div class="topic-section"><h4>故障排查顺序（实用）</h4><ul>
+        <li>① 检查网线/网卡指示灯 → ② ipconfig 看是否拿到 IP → ③ ping 网关 → ④ ping 外网 IP → ⑤ ping 域名</li>
+        <li>第④步通、第⑤步不通 → 说明是 <b>DNS 问题</b>；都不通 → 网络链路问题</li>
+        </ul></div>
+        <div class="tip-box">必考：ping 测连通性、ipconfig 查配置、tracert 跟踪路由、nslookup 查 DNS</div>` },
+      { title: '局域网技术与Internet接入', html: `
+        <div class="topic-section"><h4>局域网技术</h4><ul>
+        <li>有线：<b>以太网(Ethernet)</b>是当前最主流的局域网技术</li>
+        <li>无线：<b>WLAN / Wi-Fi</b>（IEEE 802.11 系列标准）</li>
+        <li><b>CSMA/CD</b>：以太网的介质访问控制方法（先听后发、边发边听、冲突后退）</li>
+        <li><b>MAC 地址</b>：48 位，全球唯一，又称物理地址</li>
+        </ul></div>
+        <div class="topic-section"><h4>Internet 接入方式</h4><ul>
+        <li>ADSL（电话线）、<b>光纤 FTTH</b>（当前主流）、有线电视 HFC</li>
+        <li>移动接入 4G/5G；无线接入 Wi-Fi</li>
+        <li>典型家庭组网：光猫 → 路由器 → 交换机/各类终端</li>
+        </ul></div>
+        <div class="tip-box">常考：以太网 + CSMA/CD、MAC 地址 48 位、光纤为当前主流接入方式</div>` }
+    ]
+  },
+  db: {
+    name: '数据库原理',
+    list: [
+      { title: '数据库系统概述', html: `
+        <div class="topic-section"><h4>基本概念</h4><ul>
+        <li><b>数据(Data)</b>：描述事物的符号记录</li>
+        <li><b>数据库DB</b>：长期存储、有组织、可共享的数据集合</li>
+        <li><b>数据库管理系统DBMS</b>：位于用户和OS之间，如MySQL/Oracle/SQL Server/Access</li>
+        <li><b>数据库系统DBS</b>：DB+DBMS+应用+DBA+用户</li>
+        </ul></div>
+        <div class="topic-section"><h4>数据模型三要素</h4><p>数据结构、数据操作、完整性约束</p></div>
+        <div class="topic-section"><h4>常见模型</h4><ul>
+        <li>层次模型：树状结构</li>
+        <li>网状模型：图状结构</li>
+        <li><b>关系模型</b>：二维表（最常用，Oracle/MySQL都是关系型）</li>
+        <li>面向对象模型、对象关系模型</li>
+        </ul></div>` },
+      { title: '关系数据库', html: `
+        <div class="topic-section"><h4>关系术语</h4><ul>
+        <li>关系：一张二维表</li>
+        <li>元组：一行记录</li>
+        <li>属性：一列字段</li>
+        <li><b>主键(Primary Key)</b>：唯一标识一行，非空且唯一</li>
+        <li><b>外键(Foreign Key)</b>：引用另一个表的主键，实现表间关联</li>
+        <li>域：属性取值范围</li>
+        </ul></div>
+        <div class="topic-section"><h4>三类完整性约束</h4><ul>
+        <li><b>实体完整性</b>：主键不能为空、不能重复</li>
+        <li><b>参照完整性</b>：外键要么为空，要么引用已存在的主键值</li>
+        <li><b>用户定义完整性</b>：业务规则(如成绩0-100)</li>
+        </ul></div>
+        <div class="topic-section"><h4>E-R模型</h4><ul>
+        <li>实体(矩形)、属性(椭圆)、联系(菱形)</li>
+        <li>联系类型：1:1一对一、1:N一对多、M:N多对多</li>
+        </ul></div>` },
+      { title: 'SQL语言', html: `
+        <div class="topic-section"><h4>数据查询SELECT（核心）</h4><div class="code-block">SELECT 列名 FROM 表名
+[WHERE 条件]
+[GROUP BY 列名 HAVING 组条件]
+[ORDER BY 列名 ASC|DESC];</div></div>
+        <div class="topic-section"><h4>常用查询</h4><ul>
+        <li>查所有：SELECT * FROM students;</li>
+        <li>条件查询：WHERE score>=60 AND age>18</li>
+        <li>模糊查询：WHERE name LIKE '张%'（%任意多字符，_一个字符）</li>
+        <li>排序：ORDER BY score DESC（降序）/ ASC（升序默认）</li>
+        <li>分组：GROUP BY class HAVING AVG(score)>80</li>
+        <li>聚合：COUNT计数、SUM求和、AVG平均、MAX最大、MIN最小</li>
+        </ul></div>
+        <div class="topic-section"><h4>数据操纵DML</h4><ul>
+        <li>插入：INSERT INTO 表(列1,列2) VALUES(值1,值2);</li>
+        <li>更新：UPDATE 表 SET 列=值 WHERE 条件;</li>
+        <li>删除：DELETE FROM 表 WHERE 条件;（TRUNCATE清空表更快）</li>
+        </ul></div>` },
+      { title: '事务与数据库设计', html: `
+        <div class="topic-section"><h4>事务ACID特性</h4><ul>
+        <li><b>A原子性</b>：事务要么全部完成，要么全部不做</li>
+        <li><b>C一致性</b>：事务前后数据库约束不变</li>
+        <li><b>I隔离性</b>：并发事务互不干扰</li>
+        <li><b>D持久性</b>：提交后永久生效</li>
+        </ul></div>
+        <div class="topic-section"><h4>数据库设计步骤</h4><p>需求分析→概念设计(E-R图)→逻辑设计(表结构)→物理设计→实施→运行维护</p></div>` },
+      { title: '数据查询进阶（连接·子查询·分组）', html: `
+        <div class="topic-section"><h4>查询完整语法</h4><ul>
+        <li>SELECT 列 FROM 表 <b>WHERE</b> 条件 <b>GROUP BY</b> 分组 <b>HAVING</b> 组条件 <b>ORDER BY</b> 排序</li>
+        <li><b>WHERE 在分组前过滤"行"；HAVING 在分组后过滤"组"</b>（高频区别考点）</li>
+        </ul></div>
+        <div class="topic-section"><h4>分组与汇总查询</h4><ul>
+        <li>聚合函数：COUNT(*)、SUM()、AVG()、MAX()、MIN()</li>
+        <li>例：SELECT 班级,AVG(成绩) FROM 学生 GROUP BY 班级 HAVING AVG(成绩)&gt;80</li>
+        </ul></div>
+        <div class="topic-section"><h4>多表连接查询</h4><ul>
+        <li><b>内连接</b>：SELECT * FROM A INNER JOIN B ON A.id=B.aid（只返回两表都匹配的行）</li>
+        <li><b>左外连接</b>：LEFT JOIN（保留左表全部行，右表无匹配则显示 NULL）</li>
+        <li><b>右外连接</b>：RIGHT JOIN</li>
+        </ul></div>
+        <div class="topic-section"><h4>子查询</h4><ul>
+        <li>嵌套在其他语句中的 SELECT 语句</li>
+        <li>例：SELECT * FROM 学生 WHERE 成绩 &gt; (SELECT AVG(成绩) FROM 学生)</li>
+        <li>IN 子查询：WHERE 班级 IN (SELECT 班级 FROM 班级表 WHERE ...)</li>
+        </ul></div>
+        <div class="tip-box">必考：WHERE 与 HAVING 的区别、内连接与左连接的区别、聚合函数配合 GROUP BY</div>` },
+      { title: '约束、索引与视图', html: `
+        <div class="topic-section"><h4>五大约束（必考）</h4><ul>
+        <li><b>PRIMARY KEY 主键</b>：唯一且不能为空，一张表只能有一个</li>
+        <li><b>UNIQUE 唯一</b>：值不能重复，但允许为空，一张表可有多个</li>
+        <li><b>NOT NULL 非空</b>：该列必须有值</li>
+        <li><b>DEFAULT 默认值</b>：不填时自动填入默认值</li>
+        <li><b>CHECK 检查</b>：限制取值范围，如 CHECK(年龄&gt;0)</li>
+        <li><b>FOREIGN KEY 外键</b>：引用另一张表的主键，保证参照完整性</li>
+        </ul></div>
+        <div class="topic-section"><h4>索引</h4><ul>
+        <li>作用：<b>加快查询速度</b>；代价：降低增删改速度、占用额外存储空间</li>
+        <li>创建：CREATE INDEX 索引名 ON 表名(列名)</li>
+        <li>主键会自动创建索引；常用于 WHERE、ORDER BY 涉及的列</li>
+        </ul></div>
+        <div class="topic-section"><h4>视图</h4><ul>
+        <li>视图是<b>虚拟表</b>，本身不存储数据，只保存查询定义</li>
+        <li>创建：CREATE VIEW 视图名 AS SELECT ...</li>
+        <li>作用：简化复杂查询、提高数据安全性（只暴露部分行/列）</li>
+        </ul></div>
+        <div class="tip-box">必考：主键与唯一约束的区别；索引的作用与代价；"视图是虚表不存数据"</div>` },
+      { title: '存储过程与触发器', html: `
+        <div class="topic-section"><h4>存储过程</h4><ul>
+        <li>一组<b>预编译</b>好的 SQL 语句集合，存储在数据库中，可反复调用</li>
+        <li>优点：执行效率高（已编译）、减少网络传输、提高安全性、便于复用</li>
+        <li>创建：CREATE PROCEDURE 过程名(参数) AS BEGIN ... END</li>
+        <li>调用：EXEC 过程名 参数值</li>
+        </ul></div>
+        <div class="topic-section"><h4>触发器（必考）</h4><ul>
+        <li>一种<b>特殊存储过程</b>，由事件<b>自动触发</b>执行，<b>不能手动调用</b></li>
+        <li>三种类型：<b>INSERT 触发器</b>（插入时）、<b>UPDATE 触发器</b>（更新时）、<b>DELETE 触发器</b>（删除时）</li>
+        <li>用途：自动维护数据一致性、记录操作日志、级联更新</li>
+        <li>创建：CREATE TRIGGER 触发器名 ON 表名 FOR INSERT/UPDATE/DELETE AS ...</li>
+        </ul></div>
+        <div class="topic-section"><h4>自定义函数</h4><ul>
+        <li><b>标量值函数</b>：返回单个值</li>
+        <li><b>内嵌表值函数 / 多语句表值函数</b>：返回一张表</li>
+        </ul></div>
+        <div class="tip-box">必考：触发器三种类型 + "自动执行"特点；存储过程与触发器的区别</div>` },
+      { title: '关系规范化（三大范式）', html: `
+        <div class="topic-section"><h4>函数依赖</h4><ul>
+        <li>完全函数依赖、部分函数依赖、传递函数依赖</li>
+        </ul></div>
+        <div class="topic-section"><h4>三大范式（高频）</h4><ul>
+        <li><b>1NF 第一范式</b>：每个字段都是<b>不可再分的原子值</b>（不能"表中有表"）</li>
+        <li><b>2NF 第二范式</b>：满足 1NF，且非主属性<b>完全依赖</b>主键（消除部分依赖）</li>
+        <li><b>3NF 第三范式</b>：满足 2NF，且非主属性<b>不传递依赖</b>主键（消除传递依赖）</li>
+        <li>记忆口诀：<b>1NF 原子性 → 2NF 消部分依赖 → 3NF 消传递依赖</b></li>
+        </ul></div>
+        <div class="topic-section"><h4>规范化的目的</h4><ul>
+        <li>减少数据冗余，避免插入异常、删除异常、更新异常</li>
+        <li>但范式越高表越多、查询越复杂（实际设计会适度反规范化）</li>
+        </ul></div>
+        <div class="tip-box">必考：三个范式的定义与判断（给一张表判断它属于第几范式）</div>` },
+      { title: 'E-R图与数据库设计', html: `
+        <div class="topic-section"><h4>E-R 图三要素</h4><ul>
+        <li><b>实体</b>：用<b>矩形</b>表示（如"学生""课程"）</li>
+        <li><b>属性</b>：用<b>椭圆</b>表示（如"学号""姓名"）</li>
+        <li><b>联系</b>：用<b>菱形</b>表示，分为 <b>1:1（一对一）、1:n（一对多）、m:n（多对多）</b></li>
+        </ul></div>
+        <div class="topic-section"><h4>E-R 图转关系模式（重点）</h4><ul>
+        <li><b>1:1 联系</b>：可并入任意一端（把另一端的码作为属性加进去）</li>
+        <li><b>1:n 联系</b>：把"1"端的主键作为属性放到"n"端表中</li>
+        <li><b>m:n 联系</b>：<b>必须单独建一张表</b>，以两端主键作为联合主键</li>
+        </ul></div>
+        <div class="topic-section"><h4>数据库设计步骤</h4><ul>
+        <li>需求分析 → 概念设计(E-R图) → 逻辑设计(关系模式/表) → 物理设计 → 实施 → 运行维护</li>
+        </ul></div>
+        <div class="tip-box">必考：三种图形对应的含义；m:n 联系必须单独建表；设计步骤的顺序</div>` }
+    ]
+  },
+  math: {
+    name: '高等数学',
+    list: [
+      { title: '函数极限连续', html: `
+        <div class="topic-section"><h4>函数</h4><ul>
+        <li>定义域、值域；奇偶性(奇f(-x)=-f(x)偶f(-x)=f(x))；周期性；单调性；有界性</li>
+        <li>反函数、复合函数、初等函数</li>
+        </ul></div>
+        <div class="topic-section"><h4>极限</h4><ul>
+        <li><b>两个重要极限</b>：lim(x→0) sinx/x=1；lim(x→∞)(1+1/x)^x=e</li>
+        <li>无穷小：极限为0的量；无穷大：极限为∞</li>
+        <li>等价无穷小(x→0)：sinx~x, tanx~x, ln(1+x)~x, e^x-1~x, 1-cosx~x²/2</li>
+        </ul></div>
+        <div class="topic-section"><h4>连续与间断</h4><ul>
+        <li>连续：lim(x→x0)f(x)=f(x0)</li>
+        <li>间断点类型：可去、跳跃、无穷、振荡</li>
+        </ul></div>` },
+      { title: '一元微分学', html: `
+        <div class="topic-section"><h4>导数定义</h4><p>f'(x0)=lim(Δx→0)[f(x0+Δx)-f(x0)]/Δx，几何意义是切线斜率</p></div>
+        <div class="topic-section"><h4>基本求导公式</h4><ul>
+        <li>(C)'=0；(x^n)'=nx^(n-1)；(sinx)'=cosx；(cosx)'=-sinx</li>
+        <li>(e^x)'=e^x；(a^x)'=a^x·lna；(lnx)'=1/x；(log_a x)'=1/(xlna)</li>
+        <li>(tanx)'=sec²x；(arcsinx)'=1/√(1-x²)</li>
+        </ul></div>
+        <div class="topic-section"><h4>求导法则</h4><ul>
+        <li>四则：(u±v)'=u'±v'；(uv)'=u'v+uv'；(u/v)'=(u'v-uv')/v²</li>
+        <li>复合函数链式法则：y=f(g(x)), y'=f'(g(x))·g'(x)</li>
+        </ul></div>
+        <div class="topic-section"><h4>导数应用</h4><ul>
+        <li>洛必达法则：0/0或∞/∞型，分子分母分别求导</li>
+        <li>单调性：f'>0增，f'<0减</li>
+        <li>极值：f'=0，二阶导大于0极小，小于0极大</li>
+        <li>凹凸性：f''>0凹，f''<0凸；拐点凹凸分界点</li>
+        </ul></div>` },
+      { title: '一元积分学', html: `
+        <div class="topic-section"><h4>不定积分公式</h4><ul>
+        <li>∫x^n dx = x^(n+1)/(n+1) + C (n≠-1)</li>
+        <li>∫1/x dx = ln|x| + C</li>
+        <li>∫e^x dx = e^x + C；∫a^x dx = a^x/lna + C</li>
+        <li>∫sinx dx = -cosx + C；∫cosx dx = sinx + C</li>
+        <li>∫sec²x dx = tanx + C；∫1/(1+x²)dx = arctanx + C</li>
+        </ul></div>
+        <div class="topic-section"><h4>定积分</h4><ul>
+        <li>牛顿-莱布尼茨公式：∫[a,b]f(x)dx = F(b)-F(a)</li>
+        <li>几何意义：曲线与x轴围成的面积</li>
+        <li>换元积分法、分部积分法∫u dv = uv - ∫v du</li>
+        </ul></div>` },
+      { title: '微分方程', html: `
+        <div class="topic-section"><h4>一阶微分方程</h4><ul>
+        <li>可分离变量：dy/dx = f(x)g(y) → ∫dy/g(y) = ∫f(x)dx</li>
+        <li>一阶线性：y' + P(x)y = Q(x)，用常数变易法或公式</li>
+        </ul></div>
+        <div class="topic-section"><h4>二阶常系数齐次线性</h4><p>y'' + py' + qy = 0，解特征方程r²+pr+q=0：两不等实根→通解C1e^(r1x)+C2e^(r2x)；重根→(C1+C2x)e^(rx)；共轭复根→e^(αx)(C1cosβx+C2sinβx)</p></div>` },
+      { title: '极限计算方法与技巧', html: `
+        <div class="topic-section"><h4>两个重要极限（必背）</h4><ul>
+        <li>lim(x→0) <b>sinx/x = 1</b></li>
+        <li>lim(x→∞) <b>(1+1/x)^x = e</b>；lim(x→0)(1+x)^(1/x) = e</li>
+        </ul></div>
+        <div class="topic-section"><h4>等价无穷小替换（x→0，最好用）</h4><ul>
+        <li>sinx ~ x，tanx ~ x，arcsinx ~ x，arctanx ~ x</li>
+        <li>ln(1+x) ~ x，e^x−1 ~ x，1−cosx ~ x²/2</li>
+        <li>(1+x)^a − 1 ~ ax</li>
+        <li>⚠️ <b>只能替换乘除中的因子</b>，加减中直接换会出错</li>
+        </ul></div>
+        <div class="topic-section"><h4>洛必达法则</h4><ul>
+        <li>适用 <b>0/0</b> 或 <b>∞/∞</b> 型：lim f/g = lim f'/g'（可反复用）</li>
+        <li>其他类型先化形：0·∞ → 化成 0/0 或 ∞/∞；∞−∞ → 通分；1^∞ → 用重要极限或取对数</li>
+        </ul></div>
+        <div class="topic-section"><h4>解题顺序（套路）</h4><ul>
+        <li>①先代入看类型 → ②能等价替换先换 → ③还是未定式用洛必达 → ④有理式同除最高次幂</li>
+        </ul></div>
+        <div class="tip-box">必考：两个重要极限 + 等价无穷小替换 + 洛必达法则（求极限三大法宝）</div>` },
+      { title: '导数公式与求导法则', html: `
+        <div class="topic-section"><h4>基本导数公式（必背）</h4><ul>
+        <li>(C)' = 0　　(x^n)' = n·x^(n−1)　　(√x)' = 1/(2√x)</li>
+        <li>(sinx)' = cosx　　(cosx)' = −sinx　　(tanx)' = sec²x</li>
+        <li>(e^x)' = e^x　　(a^x)' = a^x·lna　　(lnx)' = 1/x</li>
+        <li>(log_a x)' = 1/(x·lna)</li>
+        </ul></div>
+        <div class="topic-section"><h4>四则运算与复合</h4><ul>
+        <li>(u ± v)' = u' ± v'</li>
+        <li>(uv)' = u'v + uv'（乘积法则）</li>
+        <li>(u/v)' = (u'v − uv')/v²（商法则）</li>
+        <li><b>复合函数（链式法则）</b>：y = f(u), u = φ(x) → dy/dx = f'(u)·φ'(x)，"由外向内层层求导"</li>
+        </ul></div>
+        <div class="topic-section"><h4>其他求导</h4><ul>
+        <li>隐函数求导：两边对 x 求导，把 y 看作 x 的函数，再解出 y'</li>
+        <li>参数方程：dy/dx = (dy/dt)/(dx/dt)</li>
+        </ul></div>
+        <div class="tip-box">必考：复合函数链式法则（最容易出错）；导数的几何意义 = 切线斜率</div>` },
+      { title: '导数的应用（单调性·极值·最值）', html: `
+        <div class="topic-section"><h4>单调性判定</h4><ul>
+        <li>f'(x) > 0 → 函数<b>单调递增</b>；f'(x) < 0 → <b>单调递减</b></li>
+        <li>解题：先求 f'(x)=0 的根，用它把定义域分段，再判断每段符号</li>
+        </ul></div>
+        <div class="topic-section"><h4>极值（必考）</h4><ul>
+        <li>求极值三步：① 求 f'(x) ② 令 f'(x)=0 求驻点 ③ 判断驻点两侧 f' 是否<b>变号</b></li>
+        <li>变号：+ → − 为<b>极大值</b>；− → + 为<b>极小值</b>；不变号则不是极值</li>
+        <li>第二判别法：f'(x₀)=0 且 f''(x₀)>0 → 极小；f''(x₀)<0 → 极大</li>
+        </ul></div>
+        <div class="topic-section"><h4>最值（闭区间）</h4><ul>
+        <li>求闭区间 [a,b] 上最值：比较<b>所有驻点的函数值 + 两个端点值</b>，最大者为最大值，最小者为最小值</li>
+        </ul></div>
+        <div class="topic-section"><h4>凹凸与拐点</h4><ul>
+        <li>f''(x) > 0 → 曲线<b>凹</b>（下凸）；f''(x) < 0 → 曲线<b>凸</b>（上凸）</li>
+        <li>拐点：f''(x)=0 且左右两侧 f'' <b>变号</b>的点</li>
+        </ul></div>
+        <div class="tip-box">高频大题：求单调区间 + 极值（步骤写全就能拿分）</div>` },
+      { title: '不定积分方法与公式表', html: `
+        <div class="topic-section"><h4>基本积分公式（必背）</h4><ul>
+        <li>∫x^n dx = x^(n+1)/(n+1) + C　(n ≠ −1)</li>
+        <li>∫(1/x) dx = ln|x| + C</li>
+        <li>∫e^x dx = e^x + C　　∫a^x dx = a^x/lna + C</li>
+        <li>∫sinx dx = −cosx + C　　∫cosx dx = sinx + C</li>
+        <li>∫1/(1+x²) dx = arctanx + C　　∫1/√(1−x²) dx = arcsinx + C</li>
+        <li>⚠️ 每个结果都要加常数 <b>C</b>（漏了要扣分）</li>
+        </ul></div>
+        <div class="topic-section"><h4>三大积分方法</h4><ul>
+        <li><b>凑微分（第一换元）</b>：∫f(φ(x))·φ'(x)dx = ∫f(u)du，把 φ'(x)dx 凑成 du</li>
+        <li><b>第二换元</b>：遇根号用代换（如 √(a²−x²) 令 x=a·sint）</li>
+        <li><b>分部积分</b>：∫u dv = uv − ∫v du，<b>口诀「反对幂指三」</b>——排在前面的当 u</li>
+        </ul></div>
+        <div class="tip-box">必考：基本公式表；分部积分口诀（反三角函数→对数→幂函数→指数→三角）</div>` },
+      { title: '定积分及其应用', html: `
+        <div class="topic-section"><h4>牛顿-莱布尼茨公式（核心）</h4><ul>
+        <li>∫[a,b] f(x)dx = F(b) − F(a)，其中 F'(x) = f(x)</li>
+        <li>计算定积分：先求原函数，再代入上下限相减</li>
+        </ul></div>
+        <div class="topic-section"><h4>重要性质</h4><ul>
+        <li>奇函数在对称区间 [−a,a] 上积分 = <b>0</b>；偶函数 = <b>2∫[0,a]</b></li>
+        <li>变上限积分求导：(∫[a,x] f(t)dt)' = f(x)</li>
+        <li>区间可加性：∫[a,b] = ∫[a,c] + ∫[c,b]</li>
+        </ul></div>
+        <div class="topic-section"><h4>几何应用（常考大题）</h4><ul>
+        <li><b>平面图形面积</b>：S = ∫[a,b] |f(x) − g(x)| dx（上曲线减下曲线）</li>
+        <li><b>旋转体体积</b>：绕 x 轴 V = π∫[a,b] f²(x) dx</li>
+        </ul></div>
+        <div class="tip-box">必考：牛顿-莱布尼茨公式；奇偶函数在对称区间的积分技巧（能省一半时间）</div>` },
+      { title: '高数常考题型与解题套路', html: `
+        <div class="topic-section"><h4>按题型套方法</h4><ul>
+        <li><b>求极限</b>：先代入定类型 → 等价无穷小替换 → 洛必达 → 有理式同除最高次</li>
+        <li><b>求导数</b>：复合函数由外向内逐层求，别漏乘内层导数</li>
+        <li><b>求极值/最值</b>：求导 → 找驻点 → 判变号 → 比端点</li>
+        <li><b>求积分</b>：先看能不能凑微分 → 不行就换元 → 再不行用分部积分</li>
+        <li><b>应用题</b>：面积套 S=∫|f−g|dx，旋转体套 V=π∫f²dx</li>
+        <li><b>证明题</b>：常用中值定理（罗尔、拉格朗日）</li>
+        </ul></div>
+        <div class="topic-section"><h4>考场提分技巧</h4><ul>
+        <li><b>先易后难</b>：选择填空先拿分，大题留足时间</li>
+        <li><b>步骤写全</b>：专升本按步骤给分，"求导→令0→列表→结论"写清楚就有分</li>
+        <li><b>公式先默写</b>：开考先把导数表、积分表默在草稿纸上，边做边查</li>
+        <li><b>检查易错点</b>：积分漏常数C、复合函数漏乘内层导数、区间端点漏比较</li>
+        </ul></div>
+        <div class="tip-box">提分关键：公式背熟 + 步骤规范。高数是公共课里最容易拉开分差的科目</div>` }
+    ]
+  },
+  eng: {
+    name: '外语（英语）',
+    list: [
+      { title: '语法核心：时态语态', html: `
+        <div class="topic-section"><h4>八大时态</h4><ul>
+        <li>一般现在时：do/does（习惯、客观事实）</li>
+        <li>一般过去时：did（过去发生）</li>
+        <li>一般将来时：will do / be going to do</li>
+        <li>现在进行时：am/is/are doing（正在进行）</li>
+        <li>过去进行时：was/were doing</li>
+        <li>现在完成时：have/has done（已完成，影响现在）</li>
+        <li>过去完成时：had done（过去的过去）</li>
+        <li>过去将来时：would do</li>
+        </ul></div>
+        <div class="topic-section"><h4>被动语态</h4><p>be + 过去分词。各时态被动：is done/was done/will be done/have been done</p></div>` },
+      { title: '语法核心：从句', html: `
+        <div class="topic-section"><h4>定语从句</h4><ul>
+        <li>关系代词：who(人主格) whom(人宾格) whose(所属) which(物) that(人/物)</li>
+        <li>限定性vs非限定性：非限定用逗号隔开，不能用that</li>
+        <li>介词+which/whom：in which, for whom</li>
+        </ul></div>
+        <div class="topic-section"><h4>名词性从句</h4><ul>
+        <li>主语从句、宾语从句、表语从句、同位语从句</li>
+        <li>引导词：that(无词义)、whether/if(是否)、what/who/which、when/where/why/how</li>
+        </ul></div>
+        <div class="topic-section"><h4>状语从句</h4><ul>
+        <li>时间：when/while/as/before/after/since/until/as soon as</li>
+        <li>原因：because/since/as/now that</li>
+        <li>条件：if/unless/as long as</li>
+        <li>让步：though/although/even if/even though</li>
+        <li>目的：so that/in order that；结果：so...that/such...that</li>
+        </ul></div>` },
+      { title: '语法核心：非谓语与虚拟', html: `
+        <div class="topic-section"><h4>非谓语动词</h4><ul>
+        <li><b>不定式to do</b>：表目的、将来，作主语/宾语/定语/状语</li>
+        <li><b>动名词doing</b>：作主语/宾语，enjoy/finish/mind/practice+doing</li>
+        <li><b>分词doing/done</b>：现在分词表主动进行，过去分词表被动完成</li>
+        </ul></div>
+        <div class="topic-section"><h4>虚拟语气</h4><ul>
+        <li>与现在相反：If + 过去时, would/could + do</li>
+        <li>与过去相反：If + had done, would have done</li>
+        <li>与将来相反：If + were to do / should do</li>
+        <li>wish + 过去时(现在) / had done(过去) / would do(将来)</li>
+        </ul></div>
+        <div class="topic-section"><h4>倒装与强调</h4><ul>
+        <li>否定词开头倒装：Never/Hardly/Seldom + 助动词 + 主语</li>
+        <li>Only + 状语开头：Only in this way can we...</li>
+        <li>强调句：It is/was + 被强调部分 + that/who + 其余</li>
+        </ul></div>` },
+      { title: '阅读理解技巧', html: `
+        <div class="topic-section"><h4>题型分类</h4><ul>
+        <li><b>主旨题</b>：找主题句（首段/尾段/各段首句），避免以偏概全</li>
+        <li><b>细节题</b>：定位原文关键词，注意同义替换</li>
+        <li><b>推断题</b>：基于原文合理推断，不选原文直接陈述</li>
+        <li><b>词义题</b>：根据上下文猜词，注意but/however等转折</li>
+        <li><b>态度题</b>：作者态度词positive/negative/neutral/objective/critical</li>
+        </ul></div>
+        <div class="topic-section"><h4>解题步骤</h4><p>先读题干→划关键词→回原文定位→对比选项→排除干扰</p></div>` },
+      { title: '写作模板', html: `
+        <div class="topic-section"><h4>议论文结构</h4><ul>
+        <li>开头：引出话题+表明观点</li>
+        <li>主体：2-3个论点，每段主题句+论据+小结</li>
+        <li>结尾：总结观点+建议/展望</li>
+        </ul></div>
+        <div class="topic-section"><h4>常用连接词</h4><ul>
+        <li>递进：besides, furthermore, moreover, in addition</li>
+        <li>转折：however, nevertheless, on the contrary</li>
+        <li>因果：therefore, thus, as a result, consequently</li>
+        <li>举例：for example, for instance, such as</li>
+        <li>总结：in conclusion, in summary, to sum up</li>
+        </ul></div>
+        <div class="topic-section"><h4>万能句型</h4><p>Nowadays, ... has become a common phenomenon. / It is widely believed that... / As far as I am concerned... / Taking all these factors into consideration, we may draw the conclusion that...</p></div>` },
+      { title: '词汇与词组搭配', html: `
+        <div class="topic-section"><h4>词汇记忆方法</h4><ul>
+        <li>专升本英语词汇量要求约 <b>3500-4000 词</b>，重点是高频词而非生僻词</li>
+        <li>方法：<b>词根词缀法</b>（un- 不、re- 再、-ful 充满、-less 无）+ 联想法 + 例句记忆</li>
+        <li>每天定量（30-50 个），按<b>艾宾浩斯曲线</b>反复滚动复习</li>
+        </ul></div>
+        <div class="topic-section"><h4>高频词组搭配（必背）</h4><ul>
+        <li>be good at、be interested in、be proud of、be afraid of</li>
+        <li><b>look forward to（后接 doing）</b>、pay attention to、be used to doing</li>
+        <li>take care of、make friends with、depend on、consist of</li>
+        <li>in order to、as a result、in spite of、on the contrary</li>
+        </ul></div>
+        <div class="tip-box">必考细节：<b>介词后面接动词必须用 doing 形式</b>（look forward to doing）</div>` },
+      { title: '完形填空技巧', html: `
+        <div class="topic-section"><h4>解题步骤</h4><ul>
+        <li>① <b>先通读全文</b>，抓住文章大意和主题（不要一上来就填）</li>
+        <li>② 再逐句填空，注意前后文提供的线索</li>
+        <li>③ 最后通读检查，看逻辑是否通顺</li>
+        </ul></div>
+        <div class="topic-section"><h4>四大判断依据</h4><ul>
+        <li><b>看搭配</b>：固定搭配、介词搭配（如 depend ___ → on）</li>
+        <li><b>看逻辑</b>：转折(but/however)、因果(because/so)、并列(and/or)</li>
+        <li><b>看语法</b>：时态一致、主谓一致、非谓语动词形式</li>
+        <li><b>看复现</b>：同一词或同义词在上下文中反复出现</li>
+        </ul></div>
+        <div class="tip-box">答题原则：先易后难，不确定的先跳过，靠上下文回头再定</div>` },
+      { title: '英译汉翻译技巧', html: `
+        <div class="topic-section"><h4>翻译步骤</h4><ul>
+        <li>① 通读句子，找出<b>主干</b>（主语 + 谓语 + 宾语）</li>
+        <li>② 分析从句和修饰成分的位置</li>
+        <li>③ 按中文习惯<b>调整语序</b>（定语前置、状语位置调整）</li>
+        <li>④ 润色，让中文读起来通顺自然</li>
+        </ul></div>
+        <div class="topic-section"><h4>常用技巧</h4><ul>
+        <li><b>词性转换</b>：名词转动词、形容词转副词（careful → 仔细地）</li>
+        <li><b>增词/减词</b>：中文习惯补量词，省略冗余代词</li>
+        <li><b>被动变主动</b>：英文被动句译成中文常改为主动表述</li>
+        <li><b>长句拆分</b>：把长定语从句拆成几个短句</li>
+        </ul></div>
+        <div class="tip-box">得分关键：<b>主干译对就有分</b>，不要因个别生词卡住整句</div>` },
+      { title: '基础语法（冠词·介词·代词·一致）', html: `
+        <div class="topic-section"><h4>冠词</h4><ul>
+        <li><b>a/an</b>：泛指，元音音素前用 an（an hour、an apple）</li>
+        <li><b>the</b>：特指、独一无二（the sun）、最高级前</li>
+        <li>不用冠词：专有名词、复数泛指、三餐/球类/学科名词前</li>
+        </ul></div>
+        <div class="topic-section"><h4>介词（高频）</h4><ul>
+        <li>时间：<b>in</b>（年、月）、<b>on</b>（具体某天）、<b>at</b>（具体时刻）</li>
+        <li>地点：in（大地点/内部）、on（表面）、at（具体点）</li>
+        <li>固定搭配：be good at、be interested in、depend on、arrive at/in</li>
+        </ul></div>
+        <div class="topic-section"><h4>代词与主谓一致</h4><ul>
+        <li>主格 I/he，宾格 me/him，形容词性物主 my/his，名词性物主 mine/his</li>
+        <li>反身代词：myself / yourself / himself / themselves</li>
+        <li><b>主谓一致</b>：主语第三人称单数 → 谓语动词加 s</li>
+        <li>each/every/either 后接单数；both/several 后接复数</li>
+        </ul></div>
+        <div class="tip-box">易错点：第三人称单数动词加 s；介词后接 doing；an 用于元音音素前</div>` },
+      { title: '考试题型与答题策略', html: `
+        <div class="topic-section"><h4>常见题型</h4><ul>
+        <li>词汇与语法选择、完形填空、阅读理解、翻译（英译汉）、写作</li>
+        <li>公共课英语满分 <b>120 分</b></li>
+        </ul></div>
+        <div class="topic-section"><h4>答题策略与时间分配</h4><ul>
+        <li><b>先做有把握的</b>：语法词汇 → 阅读 → 完形 → 翻译 → 写作</li>
+        <li>阅读题控制在每题 2 分钟内；不会的先标记跳过，别死磕</li>
+        <li>翻译和写作<b>一定要写满，不留空白</b>（写了就有分）</li>
+        <li>写作先列提纲再动笔，控制词数，注意题目要求</li>
+        </ul></div>
+        <div class="topic-section"><h4>提分重点（性价比排序）</h4><ul>
+        <li>① 背<b>高频词汇 + 固定搭配</b>（最划算）</li>
+        <li>② 背<b>写作模板</b>（开头/主体/结尾各一套，套用即可）</li>
+        <li>③ 每天 1-2 篇阅读保持手感</li>
+        </ul></div>
+        <div class="tip-box">英语基础弱的同学：抓「词汇 + 写作模板」，投入产出比最高</div>` }
+    ]
+  },
+  web: {
+    name: '网页制作',
+    list: [
+      { title: 'HTML基础', html: `
+        <div class="topic-section"><h4>HTML文档结构</h4><ul>
+        <li>&lt;!DOCTYPE html&gt;声明文档类型</li>
+        <li>&lt;html&gt;根标签，包含&lt;head&gt;和&lt;body&gt;</li>
+        <li>&lt;head&gt;：元信息、标题、CSS引入、JS引入</li>
+        <li>&lt;body&gt;：可见的页面内容</li>
+        </ul></div>
+        <div class="topic-section"><h4>常用HTML标签</h4><ul>
+        <li>标题：&lt;h1&gt;~&lt;h6&gt;（h1最大）</li>
+        <li>段落：&lt;p&gt;；换行：&lt;br&gt;；水平线：&lt;hr&gt;</li>
+        <li>超链接：&lt;a href="url"&gt;文本&lt;/a&gt;</li>
+        <li>图片：&lt;img src="图片路径" alt="替代文字"&gt;</li>
+        <li>列表：&lt;ul&gt;无序列表、&lt;ol&gt;有序列表、&lt;li&gt;列表项</li>
+        <li>表格：&lt;table&gt;、&lt;tr&gt;行、&lt;td&gt;单元格、&lt;th&gt;表头</li>
+        <li>容器：&lt;div&gt;块级元素、&lt;span&gt;行内元素</li>
+        <li>表单：&lt;form&gt;、&lt;input&gt;、&lt;button&gt;、&lt;select&gt;</li>
+        </ul></div>
+        <div class="topic-section"><h4>常见input类型</h4><ul>
+        <li>text文本框、password密码框、radio单选、checkbox多选</li>
+        <li>submit提交按钮、reset重置、date日期、file文件上传</li>
+        </ul></div>` },
+      { title: 'CSS样式表', html: `
+        <div class="topic-section"><h4>CSS引入方式</h4><ul>
+        <li>行内样式：style=""属性</li>
+        <li>内部样式：&lt;style&gt;标签写在head中</li>
+        <li>外部样式：&lt;link rel="stylesheet" href="style.css"&gt;</li>
+        </ul></div>
+        <div class="topic-section"><h4>选择器</h4><ul>
+        <li>标签选择器：p { }</li>
+        <li>类选择器：.class名 { }</li>
+        <li>ID选择器：#id名 { }</li>
+        <li>后代选择器：div p { }</li>
+        <li>群组选择器：h1, h2, h3 { }</li>
+        </ul></div>
+        <div class="topic-section"><h4>常用样式属性</h4><ul>
+        <li>文字：color颜色、font-size字号、font-weight字重、text-align对齐、text-decoration下划线</li>
+        <li>背景：background-color、background-image</li>
+        <li>边框：border: 1px solid #ccc</li>
+        <li>间距：margin外边距、padding内边距</li>
+        <li>尺寸：width宽度、height高度</li>
+        <li>显示：display:block/inline/none</li>
+        </ul></div>
+        <div class="topic-section"><h4>盒模型</h4><p>从内到外：content内容 → padding内边距 → border边框 → margin外边距。元素实际宽度=width+padding+border+margin。</p></div>` },
+      { title: 'CSS布局与JavaScript基础', html: `
+        <div class="topic-section"><h4>定位与布局</h4><ul>
+        <li>position: static默认 / relative相对 / absolute绝对 / fixed固定</li>
+        <li>float浮动：left/right，实现多列布局</li>
+        <li>Flex弹性布局：display:flex，justify-content水平对齐，align-items垂直对齐</li>
+        </ul></div>
+        <div class="topic-section"><h4>JavaScript基础</h4><ul>
+        <li>输出：document.write()、alert()、console.log()</li>
+        <li>变量：var/let/const，数据类型：数字、字符串、布尔、数组、对象</li>
+        <li>DOM操作：document.getElementById()获取元素</li>
+        <li>事件：onclick点击、onmouseover鼠标悬停、onload页面加载</li>
+        </ul></div>
+        <div class="topic-section"><h4>考核说明</h4><p>网页设计与制作是 <b>2026年技能考核项目（50分，笔试）</b>，主要考：HTML标签语义、CSS选择器和盒模型、DIV+CSS布局、表单制作、简单JS交互。</p></div>` },
+      { title: 'HTML表格与表单制作', html: `
+        <div class="topic-section"><h4>表格制作（常考）</h4><ul>
+        <li>结构：&lt;table&gt; → &lt;caption&gt;标题；&lt;tr&gt;行 → &lt;th&gt;表头单元格 / &lt;td&gt;数据单元格</li>
+        <li><b>合并单元格</b>：<b>colspan="2"</b> 跨两列（横向合并）；<b>rowspan="2"</b> 跨两行（纵向合并）</li>
+        <li>⚠️ 合并后要<b>删掉被合并位置的多余单元格</b>，否则表格会错位</li>
+        <li>常用属性：border 边框、cellpadding 内边距、cellspacing 单元格间距</li>
+        </ul></div>
+        <div class="topic-section"><h4>表单制作（重点）</h4><ul>
+        <li>容器：&lt;form action="提交地址" method="get/post"&gt;</li>
+        <li>&lt;input&gt; 常用 type：text 文本、password 密码、<b>radio 单选（同组必须同名 name）</b>、checkbox 多选、submit 提交、reset 重置、file 文件、date 日期</li>
+        <li>下拉框：&lt;select&gt;&lt;option&gt;选项&lt;/option&gt;&lt;/select&gt;</li>
+        <li>多行文本：&lt;textarea rows="4" cols="30"&gt;&lt;/textarea&gt;</li>
+        <li>标签关联：&lt;label for="id"&gt; —— 点击文字也能选中对应输入框</li>
+        </ul></div>
+        <div class="tip-box">必考：colspan / rowspan 合并单元格；单选按钮同组必须使用相同的 name</div>` },
+      { title: 'CSS选择器优先级与属性速查', html: `
+        <div class="topic-section"><h4>选择器优先级（必考）</h4><ul>
+        <li>权重排序：<b>行内样式(1000) &gt; ID(100) &gt; 类/伪类(10) &gt; 标签(1)</b></li>
+        <li>例：#box p（100+1）优先级 <b>高于</b> .box p（10+1）</li>
+        <li>!important 优先级最高（慎用）；权重相同时，<b>后写的生效</b></li>
+        </ul></div>
+        <div class="topic-section"><h4>常用属性速查</h4><ul>
+        <li>文字：font-family 字体、font-size 字号、font-weight 粗细、line-height 行高、text-align 对齐、text-indent 首行缩进</li>
+        <li>背景：background-color、background-image、background-size: cover</li>
+        <li>边框：border: 1px solid #ccc；border-radius 圆角、box-shadow 阴影</li>
+        <li>间距：margin 外边距（可为负）、padding 内边距</li>
+        <li>显示：display: block / inline / inline-block / none；visibility: hidden</li>
+        <li>溢出：overflow: hidden / auto / scroll</li>
+        </ul></div>
+        <div class="tip-box">易混：<b>display:none 不占位置</b>，而 <b>visibility:hidden 占位置但看不见</b></div>` },
+      { title: '网页布局实战模板', html: `
+        <div class="topic-section"><h4>水平居中（三招）</h4><ul>
+        <li>块级元素定宽：<b>margin: 0 auto;</b></li>
+        <li>文字 / 行内元素：<b>text-align: center;</b></li>
+        <li>Flex 布局：<b>display:flex; justify-content:center; align-items:center;</b>（水平 + 垂直都居中）</li>
+        </ul></div>
+        <div class="topic-section"><h4>导航栏模板</h4><p>ul{list-style:none; display:flex} <br>li a{display:block; padding:10px 20px; text-decoration:none} <br>li a:hover{background:#2563eb; color:#fff}</p></div>
+        <div class="topic-section"><h4>两栏布局模板（左定宽+右自适应）</h4><p>方案一（浮动）：.left{float:left; width:200px} .right{margin-left:200px} <br>方案二（Flex）：.wrap{display:flex} .right{flex:1}</p></div>
+        <div class="topic-section"><h4>卡片模板</h4><p>.card{background:#fff; border-radius:12px; padding:16px; box-shadow:0 2px 8px rgba(0,0,0,.08)}</p></div>
+        <div class="tip-box">记住"居中三招 + 两栏布局 + 卡片样式"，考试手写页面的题基本够用</div>` },
+      { title: '考核题型与答题要点', html: `
+        <div class="topic-section"><h4>常见考核题型</h4><ul>
+        <li>① <b>写 HTML</b>：按题目要求写出标签结构（表格、表单、列表、图文混排）</li>
+        <li>② <b>写 CSS</b>：给结构添加样式（颜色、字体、居中、边框、盒模型）</li>
+        <li>③ <b>改错题</b>：找出代码错误（标签未闭合、属性拼写错误、选择器写错）</li>
+        <li>④ <b>简单交互</b>：用 JS 实现点击提示、表单验证、内容切换</li>
+        </ul></div>
+        <div class="topic-section"><h4>答题要点（按此检查）</h4><ul>
+        <li>标签必须<b>成对闭合</b>：&lt;div&gt;...&lt;/div&gt;、&lt;p&gt;...&lt;/p&gt;</li>
+        <li>属性值要用<b>双引号</b>括起来：href="index.html"</li>
+        <li>CSS 每条声明以<b>分号结尾</b>：color:#333; font-size:14px;</li>
+        <li>选择器别写错：类用 <b>.</b>、ID 用 <b>#</b>、标签直接写名字</li>
+        <li>代码缩进清晰，卷面整洁（人工阅卷有印象分）</li>
+        </ul></div>
+        <div class="tip-box">技能考核是<b>笔试</b>！重点考"能读懂 + 能写出正确代码"，多手写几遍模板最有帮助</div>` }
+    ]
+  },
+  skill: {
+    name: '技能考核',
+    list: [
+      { title: '技能考核说明（官方考纲）', html: `
+        <div class="topic-section"><h4>考试形式（重要）</h4><ul>
+        <li><b>满分100分</b>，分两个项目，<b>每项50分</b></li>
+        <li><b>采用笔试方式</b>（不是上机！），总用时 <b>60分钟</b></li>
+        <li>考试时间：与专业综合课同一天下午（2026年为4月11日 14:30-15:30）</li>
+        </ul></div>
+        <div class="topic-section"><h4>考核项目（按年有调整）</h4><ul>
+        <li><b>2026年</b>：① 网页设计与制作（50分）② 应用文档编辑与数据处理（50分）</li>
+        <li><b>2025年</b>：① 数据库技术（50分）② 应用文档编辑与数据处理（50分）</li>
+        <li>✅ <b>「应用文档编辑与数据处理」每年都考</b>——这是必拿分项，务必重点复习</li>
+        </ul></div>
+        <div class="tip-box">备考策略：应用文档编辑与数据处理（Word/Excel/PPT）每年必考，先吃透它；另一项关注当年最新考纲</div>` },
+      { title: '网页设计与制作（考核要点）', html: `
+        <div class="topic-section"><h4>HTML 基础</h4><ul>
+        <li>基本结构：&lt;html&gt;&lt;head&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;&lt;body&gt;内容&lt;/body&gt;&lt;/html&gt;</li>
+        <li>常用标签：h1-h6 标题、p 段落、a 超链接、img 图片、ul/ol/li 列表、table 表格、div 容器、form 表单</li>
+        <li>表格：&lt;table&gt;&lt;tr&gt;行&lt;td&gt;单元格，colspan 跨列、rowspan 跨行</li>
+        <li>表单：input（text/password/radio/checkbox/submit）、select、textarea</li>
+        </ul></div>
+        <div class="topic-section"><h4>CSS 样式与布局</h4><ul>
+        <li>三种引入方式：行内 style、内部 &lt;style&gt;、外部 link（优先级：行内最高）</li>
+        <li>选择器：标签、类 .class、ID #id、后代、群组；优先级 <b>ID &gt; 类 &gt; 标签</b></li>
+        <li>常用属性：color、font-size、background、margin、padding、border</li>
+        <li><b>盒模型</b>：content + padding + border + margin（从内到外）</li>
+        <li>布局：float 浮动、position 定位、flex 弹性布局</li>
+        </ul></div>
+        <div class="topic-section"><h4>JavaScript 基础</h4><ul>
+        <li>三种引入：内部 &lt;script&gt;、外部文件、行内事件</li>
+        <li>变量 var/let/const；常用函数 alert()、document.getElementById()</li>
+        <li>事件：onclick、onload、onchange</li>
+        </ul></div>
+        <div class="tip-box">考核重点：能读懂 HTML 结构、写出正确 CSS 选择器、理解盒模型</div>` },
+      { title: '应用文档编辑与数据处理 · Word', html: `
+        <div class="topic-section"><h4>文档编排基本操作（考核要点）</h4><ul>
+        <li>字体字效、标题效果、段落设置（缩进、行距、对齐）</li>
+        <li>文章<b>分段与并段</b>操作</li>
+        <li>项目符号与编号设置（多级列表）</li>
+        <li>图文混排、绘制图形（形状、文本框、艺术字）</li>
+        <li>文本的<b>查找与替换</b>（含格式替换、特殊字符）</li>
+        <li>文章<b>分栏</b>及<b>水印</b>设置</li>
+        </ul></div>
+        <div class="topic-section"><h4>表格处理</h4><ul>
+        <li>插入表格、表格样式、表格布局（合并拆分、行高列宽、对齐）</li>
+        <li>表格与文本相互转换、表格排序与公式计算</li>
+        </ul></div>
+        <div class="topic-section"><h4>长文档排版（重点）</h4><ul>
+        <li><b>页眉和页脚</b>设置（奇偶页不同、首页不同、分节）</li>
+        <li><b>页边距</b>与纸张方向设置</li>
+        <li><b>域</b>的设置（页码、日期、目录）</li>
+        <li><b>文档修订</b>与批注、<b>邮件合并</b>（批量通知书的制作）</li>
+        <li>样式应用与目录自动生成</li>
+        </ul></div>
+        <div class="tip-box">必考：页眉页脚分节设置、邮件合并、查找替换的高级用法</div>` },
+      { title: '应用文档编辑与数据处理 · Excel', html: `
+        <div class="topic-section"><h4>表格基本操作</h4><ul>
+        <li>数据录入、字体设置、<b>单元格合并居中</b></li>
+        <li>行/列添加删除、行高列宽设置</li>
+        <li>表格样式、边框设置</li>
+        <li><b>条件格式</b>设置（突出显示、数据条、色阶）</li>
+        <li>工作表的添加、删除、重命名、移动复制</li>
+        </ul></div>
+        <div class="topic-section"><h4>数据计算（高频）</h4><ul>
+        <li><b>各类常用函数</b>：SUM、AVERAGE、MAX、MIN、COUNT、COUNTA、IF</li>
+        <li>查找函数：VLOOKUP、HLOOKUP；统计函数：SUMIF、COUNTIF</li>
+        <li><b>公式计算</b>：必须以 <b>=</b> 开头；绝对引用 <b>$A$1</b> 与相对引用 A1（F4 切换）</li>
+        <li>插入图表（柱形图、折线图、饼图）并设置图表元素</li>
+        </ul></div>
+        <div class="topic-section"><h4>数据管理</h4><ul>
+        <li>数据<b>排序</b>（多关键字）、数据<b>筛选</b>（自动筛选、高级筛选）</li>
+        <li>数据<b>分类汇总</b>（先排序再汇总）</li>
+        <li>数据分析、数据导入导出</li>
+        <li>数据透视表（多维度汇总分析）</li>
+        </ul></div>
+        <div class="tip-box">必考：常用函数（SUM/AVERAGE/IF/VLOOKUP）、绝对引用与相对引用、排序+分类汇总</div>` },
+      { title: '应用文档编辑与数据处理 · PowerPoint', html: `
+        <div class="topic-section"><h4>基本操作（考核要点）</h4><ul>
+        <li>新建幻灯片：从<b>版式</b>新建、从<b>模板/主题</b>新建</li>
+        <li>幻灯片的删除、移动、复制</li>
+        <li>编辑文本对象（字体、段落、项目符号）</li>
+        <li>插入图片、表格、图表、影片和声音</li>
+        </ul></div>
+        <div class="topic-section"><h4>母版与效果</h4><ul>
+        <li><b>设计幻灯片母版</b>（统一设置标题、正文、页脚样式）</li>
+        <li>设置<b>动画效果</b>（进入、强调、退出、动作路径）</li>
+        <li>设置幻灯片<b>切换效果</b>（含时间、声音设置）</li>
+        <li><b>幻灯片放映设置</b>：从头/从当前、自定义放映、排练计时</li>
+        <li>演示文稿输出（导出 PDF、打包成 CD、视频）</li>
+        </ul></div>
+        <div class="tip-box">必考：母版的作用（统一风格）、动画与切换的区别、放映快捷键 F5/Shift+F5</div>` },
+      { title: '数据库技术（2025年考核项目·参考）', html: `
+        <div class="topic-section"><h4>数据库与表的基本操作</h4><ul>
+        <li>创建数据库；对数据库进行<b>修改和删除</b></li>
+        <li>数据库的<b>分离与附加</b>、<b>备份与还原</b></li>
+        <li>创建表，对已有表进行结构修改及删除</li>
+        </ul></div>
+        <div class="topic-section"><h4>数据操作与查询（重点）</h4><ul>
+        <li><b>基本查询</b>：SELECT 字段 FROM 表 WHERE 条件 ORDER BY 排序</li>
+        <li><b>分组与汇总查询</b>：GROUP BY + COUNT/SUM/AVG/MAX/MIN</li>
+        <li><b>多表连接查询</b>：内连接 INNER JOIN、外连接</li>
+        <li><b>子查询</b>：WHERE 条件中嵌套 SELECT</li>
+        <li>数据的添加、修改和删除（INSERT/UPDATE/DELETE）</li>
+        <li>创建<b>索引和视图</b>，并通过视图对数据进行增删改</li>
+        </ul></div>
+        <div class="topic-section"><h4>约束与高级对象</h4><ul>
+        <li>约束：<b>PRIMARY KEY（主键）、DEFAULT（默认）、CHECK（检查）、UNIQUE（唯一）、FOREIGN KEY（外键）</b></li>
+        <li>自定义函数：标量值函数、内嵌表值函数、多语句表值函数</li>
+        <li><b>存储过程</b>的创建、修改和删除</li>
+        <li><b>触发器</b>：INSERT / DELETE / UPDATE 触发器的创建、查看、修改和删除</li>
+        </ul></div>
+        <div class="tip-box">说明：数据库技术是 2025 年的技能考核项目；2026 年改为「网页设计与制作」，但数据库仍是专业综合课必考科目</div>` }
+    ]
+  }
+};
+
+// ========== 题库数据 ==========
+const quiz = {
+  comp: { name: '计算机应用基础', qs: [
+    {q:'世界上第一台电子计算机ENIAC诞生于哪一年？',o:['1945','1946','1947','1948'],a:1,e:'ENIAC于1946年在美国宾夕法尼亚大学诞生。'},
+    {q:'冯·诺依曼体系结构的核心思想是？',o:['存储程序和二进制','集成电路','人工智能','网络通信'],a:0,e:'冯·诺依曼提出存储程序原理和二进制，奠定现代计算机基础。'},
+    {q:'第二代计算机使用的主要元器件是？',o:['电子管','晶体管','集成电路','大规模集成电路'],a:1,e:'第一代电子管→第二代晶体管→第三代集成电路→第四代大规模集成电路。'},
+    {q:'一个字节(Byte)由多少个二进制位组成？',o:['4位','8位','16位','32位'],a:1,e:'1 Byte=8 bit。'},
+    {q:'标准ASCII码用几位二进制表示？',o:['6位','7位','8位','16位'],a:1,e:'标准ASCII用7位，共128个字符，存储占1字节(最高位0)。'},
+    {q:'大写字母A的ASCII码值是？',o:['64','65','97','98'],a:1,e:'A=65，a=97，大小写差32。'},
+    {q:'在计算机中，RAM的特点是？',o:['只读不写','断电不丢失','断电丢失','速度最慢'],a:2,e:'RAM随机存取，可读可写，断电数据丢失。'},
+    {q:'CPU由哪两部分组成？',o:['运算器和控制器','内存和外存','输入输出','运算器和内存'],a:0,e:'CPU=运算器ALU+控制器CU。'},
+    {q:'下列属于输出设备的是？',o:['键盘','鼠标','扫描仪','打印机'],a:3,e:'键盘鼠标扫描仪是输入设备，打印机显示器是输出设备。'},
+    {q:'计算机中最核心的系统软件是？',o:['操作系统','语言处理程序','数据库管理系统','服务程序'],a:0,e:'操作系统是最基本最重要的系统软件，管理硬件资源。'},
+    {q:'1KB等于多少字节？',o:['1000','1024','512','2048'],a:1,e:'1KB=1024B，都是1024换算。'},
+    {q:'Windows中整屏截图到剪贴板的按键是？',o:['Alt+PrintScreen','PrintScreen','Ctrl+C','Ctrl+V'],a:1,e:'PrintScreen整屏；Alt+PrintScreen当前窗口。'},
+    {q:'U盘上删除的文件去哪里了？',o:['回收站','直接永久删除','内存','剪贴板'],a:1,e:'U盘删除不进回收站，直接删除。回收站只针对硬盘。'},
+    {q:'Word中格式刷双击可以？',o:['用一次','多次使用','不能用','复制格式'],a:1,e:'单击用一次，双击可多次使用，按ESC退出。'},
+    {q:'Word中查找替换的快捷键是？',o:['Ctrl+F','Ctrl+H','Ctrl+G','Ctrl+A'],a:1,e:'Ctrl+H打开查找替换对话框。'},
+    {q:'Word中首行缩进2字符在哪个对话框设置？',o:['字体','段落','页面设置','样式'],a:1,e:'段落对话框中设置特殊格式→首行缩进。'},
+    {q:'Excel工作簿文件的扩展名是？',o:['.docx','.xlsx','.pptx','.txt'],a:1,e:'.xlsx是Excel，.docx是Word，.pptx是PPT。'},
+    {q:'Excel中求平均值的函数是？',o:['SUM','COUNT','AVERAGE','MAX'],a:2,e:'AVERAGE求平均值。'},
+    {q:'Excel中$A$1属于哪种引用？',o:['相对引用','绝对引用','混合引用','交叉引用'],a:1,e:'$锁定行和列，是绝对引用，复制时不变。'},
+    {q:'Excel中VLOOKUP函数的作用是？',o:['求和','按列查找','排序','建图表'],a:1,e:'VLOOKUP在首列查找值，返回同行指定列数据。'},
+    {q:'Excel分类汇总前必须先做什么？',o:['排序','筛选','建图表','保存'],a:0,e:'分类汇总前必须按分类字段排序，否则汇总不正确。'},
+    {q:'PPT中从第一页开始放映的快捷键是？',o:['F1','F5','F9','F12'],a:1,e:'F5从首页放映，Shift+F5从当前页放映。'},
+    {q:'PPT母版的作用是？',o:['设计单页','统一所有幻灯片风格','添加动画','打印设置'],a:1,e:'母版统一设置所有幻灯片的格式、Logo、字体。'},
+    {q:'计算机网络最核心的功能是？',o:['提高速度','资源共享','节省电力','增大存储'],a:1,e:'资源共享和数据通信是网络主要功能，资源共享最核心。'},
+    {q:'IP地址192.168.1.1属于哪类？',o:['A类','B类','C类','D类'],a:2,e:'192开头是C类，范围192-223。'},
+    {q:'HTTP协议默认端口号是？',o:['21','25','80','443'],a:2,e:'HTTP 80，HTTPS 443，FTP 21，SMTP 25。'},
+    {q:'DNS的作用是？',o:['传输文件','域名解析','发送邮件','远程登录'],a:1,e:'DNS将域名解析为IP地址。'},
+    {q:'计算机病毒最本质的特征是？',o:['潜伏性','传染性','破坏性','隐蔽性'],a:1,e:'传染性是病毒最根本的特征。'},
+    {q:'下列哪种是计算机杀病毒软件？',o:['Word文字处理','Excel表格','360安全卫士','Photoshop图像处理'],a:2,e:'360是杀毒软件，其他是应用软件。'},
+    {q:'防火墙的作用是？',o:['防病毒','过滤网络访问','防黑客入侵所有','加快网速'],a:1,e:'防火墙隔离内外网，过滤不安全服务，但不能防病毒。'},
+    {q:'在Internet中，WWW的中文名称是？',o:['互联网','万维网','局域网','城域网'],a:1,e:'WWW=World Wide Web万维网。'},
+    {q:'电子邮件地址zhang@school.edu.cn中，域名是？',o:['zhang','school.edu.cn','@','edu.cn'],a:1,e:'@后面是域名，前面是用户名。'},
+    {q:'下列哪个是图像文件格式？',o:['.mp3','.avi','.jpg','.txt'],a:2,e:'.jpg是图片，.mp3音频，.avi视频，.txt文本。'},
+    {q:'多媒体技术的特征不包括？',o:['集成性','交互性','实时性','封闭性'],a:3,e:'多媒体特征：集成性、交互性、数字化、实时性、多样性。'},
+    {q:'计算机软件系统中，属于系统软件的是？',o:['Word文字处理','Windows操作系统','Photoshop图像处理','QQ聊天软件'],a:1,e:'Windows是操作系统，属于系统软件。'},
+    {q:'决定计算机计算精度的性能指标是？',o:['主频','字长','内存容量','硬盘大小'],a:1,e:'字长是CPU一次处理的位数，决定精度。'},
+    {q:'在Windows中，Alt+Tab键的作用是？',o:['关闭窗口','切换窗口','打开开始菜单','显示桌面'],a:1,e:'Alt+Tab在打开的窗口间切换。'},
+    {q:'Excel中，要统计满足条件的记录数用？',o:['SUM','COUNT','COUNTIF','AVERAGE'],a:2,e:'COUNTIF按条件计数。'},
+    {q:'Internet最早起源于哪个国家？',o:['英国','美国','德国','中国'],a:1,e:'Internet前身是美国ARPANET。'},
+    {q:'下列IP地址合法的是？',o:['192.168.1.256','192.168.1.1','192,168,1,1','192.168.1'],a:1,e:'每段0-255，用点分隔。256非法，逗号分隔错，段数不够错。'}
+  ]},
+  c: { name: 'C语言程序设计', qs: [
+    {q:'C程序的执行入口是？',o:['第一行','main函数','include','define'],a:1,e:'从main函数开始，有且只有一个main。'},
+    {q:'以下哪个是C语言关键字？',o:['define','include','int','main'],a:2,e:'int是关键字，define/include是预处理，main是函数名。'},
+    {q:'表达式5/2的结果是？',o:['2.5','2','3','2.0'],a:1,e:'整数除法截断小数。'},
+    {q:'表达式5%2的结果是？',o:['2','1','2.5','0.5'],a:1,e:'取余运算，5除以2余1。'},
+    {q:'int a=5; a++的值是？',o:['5','6','4','不确定'],a:0,e:'a++先用后加，表达式值为5，a变为6。'},
+    {q:'char类型占几个字节？',o:['1','2','4','8'],a:0,e:'char占1字节。'},
+    {q:'以下哪个是合法标识符？',o:['2abc','int','_score','a-b'],a:2,e:'字母数字下划线，不能数字开头，不能关键字。'},
+    {q:'switch语句中跳出分支用？',o:['break','continue','exit','goto'],a:0,e:'break跳出switch/循环，不写break会穿透。'},
+    {q:'字符串"abc"占几个字节？',o:['3','4','5','6'],a:1,e:'末尾自动加\\0，共4字节。'},
+    {q:'数组int a[5]的下标范围？',o:['1~5','0~5','0~4','1~4'],a:2,e:'下标从0开始，a[0]~a[4]。'},
+    {q:'C语言函数参数传递默认是？',o:['地址传递','值传递','引用传递','双向传递'],a:1,e:'默认值传递，形参是实参的副本。'},
+    {q:'3>2&&5<10的结果是？',o:['0','1','非零','不确定'],a:1,e:'逻辑与全真为真，结果1。'},
+    {q:'循环语句不包括？',o:['for','while','do-while','if'],a:3,e:'if是选择语句。'},
+    {q:'int a=10,*p=&a; *p的值是？',o:['a的地址','10','p的地址','不确定'],a:1,e:'*p取p指向的内容，即a的值10。'},
+    {q:'break在循环中的作用？',o:['跳过本次','跳出整个循环','跳出函数','结束程序'],a:1,e:'break跳出当前循环。'},
+    {q:'continue的作用是？',o:['结束整个循环','跳过本次剩余语句','跳出函数','无作用'],a:1,e:'continue跳过本次，进入下一次循环。'},
+    {q:'C语言中，表示逻辑"与"的是？',o:['&&','||','!','&'],a:0,e:'&&逻辑与，||逻辑或，!逻辑非，&按位与。'},
+    {q:'若int a=3,b=4; a+b*2的值是？',o:['14','11','10','7'],a:1,e:'先乘后加：3+8=11。'},
+    {q:'C语言源文件的后缀是？',o:['.obj','.exe','.c','.cpp'],a:2,e:'.c是源文件，.obj目标文件，.exe可执行。'},
+    {q:'printf函数中输出整型用哪个格式符？',o:['%f','%c','%d','%s'],a:2,e:'%d整型，%f浮点，%c字符，%s字符串。'},
+    {q:'do-while循环至少执行几次？',o:['0次','1次','2次','无限次'],a:1,e:'do-while先执行后判断，至少1次。'},
+    {q:'以下哪个是赋值运算符？',o:['==','=','>','!'],a:1,e:'=赋值，==等于。'},
+    {q:'C语言中，注释符//表示？',o:['多行注释','单行注释','数据定义','函数声明'],a:1,e:'//单行注释，/* */多行注释。'},
+    {q:'若int x=10; x>=10 && x<=20的值？',o:['真(1)','假(0)','非零但不确定','编译错'],a:0,e:'两个条件都满足，结果为真1。'},
+    {q:'函数返回值用哪个关键字？',o:['return','back','exit','goto'],a:0,e:'return返回函数值并结束函数。'},
+    {q:'二维数组int a[3][4]有多少元素？',o:['7','12','3','4'],a:1,e:'3×4=12个元素。'},
+    {q:'C语言中，&&运算的短路特性指？',o:['左边假右边不执行','左边真右边不执行','都不执行','一定都执行'],a:0,e:'&&左边为假，右边表达式不再计算。'},
+    {q:'以下哪个不是循环结构？',o:['for','while','if-else','do-while'],a:2,e:'if-else是选择结构。'},
+    {q:'C程序编译后生成的目标文件后缀？',o:['.c','.obj','.exe','.txt'],a:1,e:'.c编译为.obj，再链接为.exe。'},
+    {q:'若int a=5; printf("%d",a++);输出？',o:['5','6','4','不确定'],a:0,e:'a++先用后加，输出5。'},
+    {q:'字符串结束标志是？',o:['\\0','空格','回车','分号'],a:0,e:'字符串以\\0结束。'},
+    {q:'C语言中，全局变量的作用域是？',o:['整个程序','当前函数','当前文件','当前块'],a:0,e:'全局变量在函数外定义，整个程序有效。'},
+    {q:'以下哪个运算符优先级最高？',o:['*','+','==','&&'],a:0,e:'乘除高于加减高于关系高于逻辑。'},
+    {q:'switch后的表达式不能是？',o:['int','char','float','枚举'],a:2,e:'switch表达式只能是整型或字符型。'},
+    {q:'C语言中，else总是配对？',o:['第一个if','最近的未配对if','缩进相同的if','任意if'],a:1,e:'else与最近的未配对if结合。'}
+  ]},
+  net: { name: '计算机网络', qs: [
+    {q:'OSI参考模型共几层？',o:['4','5','6','7'],a:3,e:'OSI七层：物数网传会表应。'},
+    {q:'IP协议工作在OSI哪一层？',o:['物理层','数据链路层','网络层','传输层'],a:2,e:'IP工作在网络层，负责路由。'},
+    {q:'TCP协议工作在？',o:['网络层','传输层','应用层','链路层'],a:1,e:'TCP/UDP都在传输层。'},
+    {q:'正确的IP地址是？',o:['192.168.1','256.1.1.1','192.168.1.1','192,168,1,1'],a:2,e:'4段0-255，点分十进制。'},
+    {q:'DNS的作用是？',o:['传输文件','域名解析','发邮件','远程登录'],a:1,e:'DNS域名→IP。'},
+    {q:'TCP建立连接需要几次握手？',o:['2','3','4','5'],a:1,e:'三次握手建立，四次挥手断开。'},
+    {q:'哪个是C类IP地址？',o:['10.1.1.1','172.16.1.1','192.168.1.1','127.0.0.1'],a:2,e:'192-223开头为C类。'},
+    {q:'局域网英文缩写？',o:['WAN','MAN','LAN','Internet'],a:2,e:'LAN局域网，WAN广域网。'},
+    {q:'星型拓扑的中心设备故障会？',o:['局部受影响','全网瘫痪','无影响','变慢'],a:1,e:'星型所有节点连中心设备，中心故障全网瘫。'},
+    {q:'UDP协议特点？',o:['面向连接可靠','无连接不可靠','面向连接不可靠','无连接可靠'],a:1,e:'UDP无连接、不可靠、速度快。'},
+    {q:'HTTPS默认端口？',o:['80','443','21','25'],a:1,e:'HTTP 80，HTTPS 443。'},
+    {q:'路由器工作在OSI哪一层？',o:['物理层','链路层','网络层','应用层'],a:2,e:'路由器根据IP路由，工作在网络层。'},
+    {q:'MAC地址是多少位？',o:['32','48','64','128'],a:1,e:'MAC地址48位(6字节)，固化在网卡。'},
+    {q:'电子邮件发送用什么协议？',o:['POP3','SMTP','FTP','HTTP'],a:1,e:'SMTP发邮件，POP3/IMAP收邮件。'},
+    {q:'127.0.0.1表示？',o:['广播地址','本机回环地址','组播地址','网关'],a:1,e:'127.0.0.1是本机环回测试地址。'},
+    {q:'下列哪个是私有IP地址？',o:['8.8.8.8','192.168.1.1','114.114.114.114','202.96.134.133'],a:1,e:'192.168.x.x是私有地址。'},
+    {q:'TCP/IP模型共几层？',o:['4','5','6','7'],a:0,e:'TCP/IP四层：网络接口、网际、传输、应用。'},
+    {q:'以下哪个应用层协议使用UDP？',o:['HTTP','FTP','DNS','Telnet'],a:2,e:'DNS用UDP，其余多用TCP。'},
+    {q:'ping命令使用哪个协议？',o:['TCP','UDP','ICMP','HTTP'],a:2,e:'ping使用ICMP协议测试连通性。'},
+    {q:'WWW是基于什么协议？',o:['FTP','HTTP','SMTP','Telnet'],a:1,e:'万维网基于HTTP协议。'},
+    {q:'交换机根据什么转发数据？',o:['IP地址','MAC地址','域名','端口号'],a:1,e:'交换机工作在链路层，根据MAC地址转发。'},
+    {q:'光纤的优点不包括？',o:['带宽高','抗干扰','重量轻','便宜'],a:3,e:'光纤贵但性能好。'},
+    {q:'子网掩码255.255.255.0对应哪类地址？',o:['A类','B类','C类','D类'],a:2,e:'C类默认子网掩码255.255.255.0。'},
+    {q:'URL中https://表示？',o:['文件传输','超文本传输安全','邮件传输','远程登录'],a:1,e:'HTTPS是HTTP加密版。'},
+    {q:'网络拓扑中，所有节点共享一条通信线路的是？',o:['星型','总线型','环型','树型'],a:1,e:'总线型所有节点共享一条总线。'},
+    {q:'OSI 参考模型共分为几层？',o:['4层','5层','6层','7层'],a:3,e:'OSI 七层：物理、数据链路、网络、传输、会话、表示、应用。'},
+    {q:'IP 协议工作在 TCP/IP 的哪一层？',o:['应用层','传输层','网络层','网络接口层'],a:2,e:'IP 属于网络层，负责寻址和路由。'},
+    {q:'HTTP 协议默认使用的端口号是？',o:['21','25','80','443'],a:2,e:'HTTP 默认 80，HTTPS 默认 443。'},
+    {q:'HTTPS 协议默认使用的端口号是？',o:['80','443','8080','3389'],a:1,e:'HTTPS = HTTP + SSL/TLS，默认端口 443。'},
+    {q:'负责把域名解析成 IP 地址的服务是？',o:['DHCP','DNS','FTP','SMTP'],a:1,e:'DNS（域名系统）负责域名与IP地址的转换。'},
+    {q:'自动为设备分配 IP 地址的协议是？',o:['DNS','DHCP','HTTP','ARP'],a:1,e:'DHCP 动态主机配置协议，自动分配IP、掩码、网关等。'},
+    {q:'IP 地址 192.168.1.1 属于哪一类地址？',o:['A类','B类','C类','D类'],a:2,e:'192-223 属于 C 类地址，默认掩码 255.255.255.0。'},
+    {q:'下列哪个是私有（内网）IP 地址？',o:['8.8.8.8','192.168.1.1','202.96.128.86','114.114.114.114'],a:1,e:'私有地址段：10.x.x.x、172.16-31.x.x、192.168.x.x。'},
+    {q:'子网掩码 255.255.255.0 对应的前缀长度是？',o:['/8','/16','/24','/32'],a:2,e:'255.255.255.0 有 24 个 1，即 /24。'},
+    {q:'交换机主要工作在 OSI 模型的哪一层？',o:['物理层','数据链路层','网络层','传输层'],a:1,e:'交换机在数据链路层，按 MAC 地址转发。'},
+    {q:'路由器主要工作在 OSI 模型的哪一层？',o:['物理层','数据链路层','网络层','应用层'],a:2,e:'路由器在网络层，按 IP 地址选路。'},
+    {q:'MAC 地址的长度是多少位？',o:['16位','32位','48位','64位'],a:2,e:'MAC 地址 48 位，全球唯一，又称物理地址。'},
+    {q:'测试与目标主机连通性最常用的命令是？',o:['ping','ipconfig','netstat','dir'],a:0,e:'ping 发送 ICMP 报文测试连通性。'},
+    {q:'查看本机 IP 地址、子网掩码和网关的命令是？',o:['ping','ipconfig','tracert','nslookup'],a:1,e:'ipconfig 查看本机网络配置，/all 可看详细信息。'},
+    {q:'192.168.1.0/24 网段最多可用的主机数是？',o:['256','254','255','128'],a:1,e:'可用主机数 = 2^8 - 2 = 254（减去网络地址和广播地址）。'}
+  ]},
+  db: { name: '数据库原理', qs: [
+    {q:'数据库系统的核心是？',o:['DB','DBMS','数据模型','OS'],a:1,e:'DBMS是数据库系统核心软件。'},
+    {q:'关系数据库用什么表示数据？',o:['树','图','二维表','链表'],a:2,e:'关系模型用二维表。'},
+    {q:'SQL中查询数据用？',o:['INSERT','SELECT','UPDATE','DELETE'],a:1,e:'SELECT查询。'},
+    {q:'SQL中分组用？',o:['ORDER BY','GROUP BY','WHERE','HAVING'],a:1,e:'GROUP BY分组。'},
+    {q:'统计行数用哪个函数？',o:['SUM','AVG','COUNT','MAX'],a:2,e:'COUNT计数。'},
+    {q:'实体完整性要求主键？',o:['可空','不可重复可空','非空且唯一','可重复'],a:2,e:'主键非空且唯一。'},
+    {q:'WHERE子句用于？',o:['分组','排序','条件筛选','连接表'],a:2,e:'WHERE筛选记录。'},
+    {q:'事务ACID中I代表？',o:['一致性','隔离性','持久性','原子性'],a:1,e:'A原子C一致I隔离D持久。'},
+    {q:'下列哪个是数据库管理系统？',o:['Word文字处理','MySQL数据库','Windows操作系统','Excel表格'],a:1,e:'MySQL是DBMS。'},
+    {q:'主键的英文缩写是？',o:['PK','FK','AK','CK'],a:0,e:'PK主键，FK外键。'},
+    {q:'SQL中删除表中所有数据用？',o:['DROP','DELETE','TRUNCATE','REMOVE'],a:2,e:'TRUNCATE清空表更快，DROP删表。'},
+    {q:'HAVING子句用于？',o:['行筛选','组筛选','表连接','排序'],a:1,e:'WHERE筛行，HAVING筛组。'},
+    {q:'E-R图中，实体用什么图形表示？',o:['菱形','椭圆','矩形','连线'],a:2,e:'实体矩形，属性椭圆，联系菱形。'},
+    {q:'数据库设计第一步是？',o:['概念设计','需求分析','逻辑设计','物理设计'],a:1,e:'需求分析→概念→逻辑→物理。'},
+    {q:'SQL中，升序排序用？',o:['ASC','DESC','GROUP','ORDER'],a:0,e:'ASC升序，DESC降序。'},
+    {q:'下列哪个不是关系运算？',o:['选择','投影','连接','排序'],a:3,e:'关系运算：选择、投影、连接、除。'},
+    {q:'关系表中，一行记录称为？',o:['属性','元组','域','关键字'],a:1,e:'行=元组/记录，列=属性/字段。'},
+    {q:'事务的原子性指？',o:['全部做或全不做','互不干扰','永久保存','数据一致'],a:0,e:'原子性：事务是不可分割的单位。'},
+    {q:'SQL中插入记录用？',o:['ADD','INSERT','CREATE','PUT'],a:1,e:'INSERT INTO插入。'},
+    {q:'外键的作用是？',o:['唯一标识行','表间关联','加快查询','加密数据'],a:1,e:'外键引用其他表主键，实现参照完整性。'},
+    {q:'数据库系统的核心是？',o:['数据库','数据库管理系统(DBMS)','数据库管理员','应用程序'],a:1,e:'DBMS 是数据库系统的核心，负责管理和维护数据库。'},
+    {q:'关系数据库中，一列称为？',o:['记录','字段（属性）','元组','表'],a:1,e:'行=记录/元组，列=字段/属性。'},
+    {q:'主键（PRIMARY KEY）的特性是？',o:['可重复可空','唯一且非空','唯一但可为空','非空但可重复'],a:1,e:'主键必须唯一且不能为空，一张表只能有一个主键。'},
+    {q:'SQL 中修改表中数据的语句是？',o:['INSERT','UPDATE','SELECT','DELETE'],a:1,e:'INSERT插入、UPDATE修改、DELETE删除、SELECT查询。'},
+    {q:'对查询结果进行分组的子句是？',o:['ORDER BY','GROUP BY','WHERE','HAVING'],a:1,e:'GROUP BY 用于分组，常配合聚合函数使用。'},
+    {q:'对分组后的结果进行过滤，用哪个子句？',o:['WHERE','HAVING','GROUP BY','ORDER BY'],a:1,e:'WHERE 过滤行，HAVING 过滤分组后的结果。'},
+    {q:'WHERE 和 HAVING 的区别是？',o:['两者完全相同','WHERE在分组前过滤行，HAVING在分组后过滤组','WHERE用于排序','HAVING用于连接表'],a:1,e:'这是高频考点：WHERE 在 GROUP BY 之前，HAVING 在之后。'},
+    {q:'内连接（INNER JOIN）返回的是？',o:['左表全部行','右表全部行','两表都匹配的行','两表所有行的笛卡尔积'],a:2,e:'内连接只返回两张表中都匹配的记录。'},
+    {q:'左外连接（LEFT JOIN）会保留？',o:['左表全部行','右表全部行','只有匹配行','两表的交集'],a:0,e:'左外连接保留左表所有行，右表无匹配时显示 NULL。'},
+    {q:'创建视图使用哪个语句？',o:['CREATE TABLE','CREATE VIEW','CREATE INDEX','ALTER VIEW'],a:1,e:'CREATE VIEW 视图名 AS SELECT ...。'},
+    {q:'视图的本质是？',o:['真实存在的表','虚拟表，只保存查询定义','一种索引','一种存储过程'],a:1,e:'视图不存储数据，只保存查询定义，数据仍来自基表。'},
+    {q:'索引的主要作用是？',o:['节省存储空间','加快查询速度','保证数据唯一','加密数据'],a:1,e:'索引加快查询，但会增加存储开销。'},
+    {q:'建立索引的代价是？',o:['没有任何缺点','降低增删改速度并占用额外空间','不能加快查询','影响数据完整性'],a:1,e:'索引提高查询效率，但插入/更新/删除时要维护索引，变慢并占空间。'},
+    {q:'第一范式（1NF）要求？',o:['字段不可再分（原子性）','消除部分函数依赖','消除传递依赖','必须有外键'],a:0,e:'1NF：每个字段都是不可再分的原子值。'},
+    {q:'第三范式（3NF）要求？',o:['字段具有原子性','消除部分函数依赖','消除传递函数依赖','消除多值依赖'],a:2,e:'3NF：在2NF基础上，非主属性不传递依赖于主键。'},
+    {q:'触发器（TRIGGER）的特点是？',o:['需要手动调用','由事件自动触发执行，不能手动调用','只能用于查询','与存储过程完全相同'],a:1,e:'触发器由 INSERT/UPDATE/DELETE 事件自动触发。'},
+    {q:'事务的四大特性（ACID）不包括？',o:['原子性','一致性','隔离性','并发性'],a:3,e:'ACID = 原子性、一致性、隔离性、持久性（不含并发性）。'},
+    {q:'约束 CHECK 的作用是？',o:['设置默认值','限制列的取值范围','唯一标识记录','建立表间关联'],a:1,e:'CHECK 约束用于限制列中数据的取值范围。'},
+    {q:'E-R图中 m:n（多对多）联系转关系模式时应？',o:['并入任意一端','并入"多"的一端','必须单独建一张表','不需要转换'],a:2,e:'多对多联系必须单独建表，以两端主键作为联合主键。'}
+  ]},
+  math: { name: '高等数学', qs: [
+    {q:'lim(x→0) sinx/x = ?',o:['0','1','e','∞'],a:1,e:'重要极限，等于1。'},
+    {q:'lim(x→∞)(1+1/x)^x = ?',o:['1','e','0','∞'],a:1,e:'第二个重要极限等于e。'},
+    {q:'(x^5)的导数是？',o:['5x^4','x^4','5x^5','x^6/6'],a:0,e:'(x^n)\'=nx^(n-1)。'},
+    {q:'(sinx)的导数是？',o:['-cosx','cosx','-sinx','tanx'],a:1,e:'(sinx)\'=cosx。'},
+    {q:'(e^x)的导数是？',o:['e^x','xe^(x-1)','lnx','e^(x-1)'],a:0,e:'(e^x)\'=e^x。'},
+    {q:'(lnx)的导数是？',o:['1/x','x','lnx','e^x'],a:0,e:'(lnx)\'=1/x。'},
+    {q:'∫x²dx = ?',o:['x³/3 + C','2x+C','x³+C','3x²+C'],a:0,e:'∫x^n dx=x^(n+1)/(n+1)+C。'},
+    {q:'∫1/x dx = ?',o:['x+C','ln|x|+C','1/x²+C','e^x+C'],a:1,e:'∫1/x dx=ln|x|+C。'},
+    {q:'函数f(x)在点x0可导，则f(x)在x0？',o:['连续','不连续','不一定连续','无定义'],a:0,e:'可导必连续，连续不一定可导。'},
+    {q:'f\'(x)>0说明函数？',o:['单调递增','单调递减','极大值','极小值'],a:0,e:'导数大于0单调增。'},
+    {q:'洛必达法则适用什么类型？',o:['0/0或∞/∞','任意类型','常数/0','∞/0'],a:0,e:'洛必达只适用于0/0和∞/∞型。'},
+    {q:'不定积分∫sinx dx = ?',o:['cosx+C','-cosx+C','-sinx+C','tanx+C'],a:1,e:'∫sinx dx=-cosx+C。'},
+    {q:'导数的几何意义是？',o:['面积','切线斜率','体积','曲率'],a:1,e:'导数是切线斜率。'},
+    {q:'下列哪个是奇函数？',o:['x²','x³','|x|','cosx'],a:1,e:'f(-x)=-f(x)是奇函数，x³是奇。'},
+    {q:'∫cosx dx = ?',o:['sinx+C','-sinx+C','cosx+C','-cosx+C'],a:0,e:'∫cosx dx=sinx+C。'},
+    {q:'复合函数y=f(g(x))的导数是？',o:['f\'(g(x))','f\'(g(x))·g\'(x)','g\'(x)','f\'(x)g\'(x)'],a:1,e:'链式法则：外导乘以内导。'},
+    {q:'当x→0时，与x等价的无穷小是？',o:['x²','sinx','√x','2x'],a:1,e:'sinx~x是等价无穷小。'},
+    {q:'牛顿-莱布尼茨公式用于？',o:['求极限','计算定积分','求导数','解方程'],a:1,e:'∫[a,b]f(x)dx=F(b)-F(a)。'},
+    {q:'函数在闭区间上连续，则它？',o:['必有最大值最小值','可导','可积','连续'],a:0,e:'闭区间连续函数必有最值（最值定理）。'},
+    {q:'f\'(x0)=0且f\'\'(x0)<0，则x0是？',o:['极大值点','极小值点','拐点','不是极值点'],a:0,e:'二阶导小于0是极大值。'},
+    {q:'lim(x→0) sinx/x 的值是？',o:['0','1','∞','不存在'],a:1,e:'第一个重要极限，结果为 1。'},
+    {q:'lim(x→∞) (1+1/x)^x 的值是？',o:['1','e','1/e','∞'],a:1,e:'第二个重要极限，结果为自然对数的底 e。'},
+    {q:'当 x→0 时，与 x 等价的无穷小是？',o:['sinx','x²','1-cosx','√x'],a:0,e:'常用等价无穷小：sinx ~ x（x→0）。'},
+    {q:'函数 f(x)=x³-3x 的驻点（导数为0的点）是？',o:['x=0','x=±1','x=3','x=±3'],a:1,e:'f\'(x)=3x²-3=0，解得 x=±1。'},
+    {q:'(x³) 的导数是？',o:['3x²','x²','3x','x⁴/4'],a:0,e:'幂函数求导公式 (x^n)\' = n·x^(n-1)。'},
+    {q:'(sinx) 的导数是？',o:['-cosx','cosx','-sinx','tanx'],a:1,e:'(sinx)\'=cosx；(cosx)\'=-sinx，注意区分。'},
+    {q:'(lnx) 的导数是？',o:['1/x','x','lnx','e^x'],a:0,e:'(lnx)\' = 1/x。'},
+    {q:'函数 y=x²+2x 在 x=1 处的导数值是？',o:['2','3','4','5'],a:2,e:'y\'=2x+2，代入 x=1 得 4。'},
+    {q:'函数在某点可导，是它在该点连续的什么条件？',o:['充分不必要','必要不充分','充分必要','无关条件'],a:0,e:'可导必连续，但连续不一定可导（如 y=|x| 在 x=0 处不可导）。'},
+    {q:'∫x²dx 的结果是？',o:['2x+C','x³+C','x³/3+C','3x²+C'],a:2,e:'幂函数积分：∫x^n dx = x^(n+1)/(n+1) + C。'},
+    {q:'∫(1/x)dx 的结果是？',o:['ln|x|+C','1/x²+C','x+C','-1/x²+C'],a:0,e:'∫(1/x)dx = ln|x| + C。'},
+    {q:'∫e^x dx 的结果是？',o:['e^x+C','xe^x+C','e^x/x+C','lnx+C'],a:0,e:'e^x 积分后仍是 e^x。'},
+    {q:'∫cosx dx 的结果是？',o:['-sinx+C','sinx+C','cosx+C','-cosx+C'],a:1,e:'∫cosx dx = sinx + C。'},
+    {q:'定积分 ∫[0,1] x dx 的值是？',o:['0','1/2','1','2'],a:1,e:'原函数为 x²/2，代入上下限得 1/2。'},
+    {q:'若在区间内 f\'(x)>0，则 f(x) 在该区间上？',o:['单调递增','单调递减','是常数函数','必有极值'],a:0,e:'导数大于 0 说明函数单调递增。'},
+    {q:'函数 y=x²-4x+3 的极小值是？',o:['0','-1','1','3'],a:1,e:'y\'=2x-4=0 得 x=2，代入得 y=4-8+3=-1。'},
+    {q:'分部积分公式 ∫u dv 等于？',o:['uv-∫v du','uv+∫v du','u∫dv','v∫du'],a:0,e:'分部积分公式：∫u dv = uv - ∫v du，口诀"反对幂指三"。'},
+    {q:'微分方程 y\'=2x 的通解是？',o:['y=2x+C','y=x²+C','y=2x²+C','y=x²/2+C'],a:1,e:'两边对 x 积分得 y = x² + C。'},
+    {q:'曲线 y=x² 在 x=1 处切线的斜率是？',o:['1','2','3','4'],a:1,e:'y\'=2x，代入 x=1 得斜率 2（导数即切线斜率）。'},
+    {q:'定积分 ∫[-1,1] x³ dx 的值是？',o:['0','1','2','1/2'],a:0,e:'x³ 是奇函数，在对称区间 [-1,1] 上积分为 0。'}
+  ]},
+  eng: { name: '英语', qs: [
+    {q:'He ___ to school every day.',o:['go','goes','going','went'],a:1,e:'一般现在时第三人称单数加es。'},
+    {q:'I ___ my homework when he came in.',o:['do','did','was doing','am doing'],a:2,e:'过去进行时：过去某时刻正在做。'},
+    {q:'By next month, I ___ here for 5 years.',o:['will work','will have worked','have worked','worked'],a:1,e:'将来完成时：by+将来时间。'},
+    {q:'The bridge ___ two years ago.',o:['built','was built','is built','builds'],a:1,e:'一般过去时被动语态。'},
+    {q:'This is the book ___ I bought yesterday.',o:['who','whose','which','what'],a:2,e:'定语从句指物用which/that。'},
+    {q:'The man ___ car was stolen called the police.',o:['who','which','whose','that'],a:2,e:'whose表示所属关系。'},
+    {q:'___ he is young, he knows a lot.',o:['Although','Because','If','When'],a:0,e:'although让步状语：虽然年轻但知道很多。'},
+    {q:'I don\'t know ___ he will come.',o:['that','whether','what','which'],a:1,e:'whether/if引导宾语从句表是否。'},
+    {q:'If I ___ you, I would take the advice.',o:['am','was','were','be'],a:2,e:'与现在相反虚拟语气，be动词用were。'},
+    {q:'He enjoys ___ football after school.',o:['play','to play','playing','played'],a:2,e:'enjoy doing sth固定搭配。'},
+    {q:'I have never seen ___ film before.',o:['such an interesting','so an interesting','such interesting','so interesting'],a:0,e:'such+a/an+adj+noun；so+adj+a/an+noun。'},
+    {q:'Not until he came back ___ home.',o:['he left','did he leave','he did leave','left he'],a:1,e:'否定词开头部分倒装。'},
+    {q:'It was in the park ___ I met Mary yesterday.',o:['where','which','that','when'],a:2,e:'强调句It is/was...that...。'},
+    {q:'The number of students in our school ___ increasing.',o:['is','are','has','have'],a:0,e:'the number of...作主语谓语用单数。'},
+    {q:'Either you or he ___ wrong.',o:['are','is','were','be'],a:1,e:'either...or就近原则，he单数用is。'},
+    {q:'I look forward ___ you soon.',o:['to see','to seeing','see','seeing'],a:1,e:'look forward to doing固定搭配。'},
+    {q:'The question is ___ we can finish it on time.',o:['that','whether','what','which'],a:1,e:'表语从句：问题是能否按时完成。'},
+    {q:'Hardly ___ the station when the train left.',o:['I had reached','had I reached','I reached','did I reach'],a:1,e:'hardly开头部分倒装，过去完成时。'},
+    {q:'You ___ have told him earlier; he was very sad.',o:['should','must','might','would'],a:0,e:'should have done本应该做而没做。'},
+    {q:'The teacher, with 6 girls and 8 boys, ___ coming.',o:['is','are','were','be'],a:0,e:'主语后接with短语不影响谓语，teacher单数。'},
+    {q:'It is important that he ___ the meeting.',o:['attends','attend','attended','will attend'],a:1,e:'It is important that+(should) do虚拟语气。'},
+    {q:'I prefer tea ___ coffee.',o:['than','to','over','against'],a:1,e:'prefer A to B固定搭配。'},
+    {q:'___ from the top, the city looks beautiful.',o:['Seeing','Seen','See','To see'],a:1,e:'过去分词作状语，city是被看，用seen。'},
+    {q:'He ran fast ___ he could catch the bus.',o:['so that','because','if','as'],a:0,e:'so that目的状语：以便。'},
+    {q:'The old man needs ___.',o:['look after','looking after','being looked after','to look after'],a:1,e:'need doing=need to be doing主动表被动。'},
+    {q:'I was made ___ the text.',o:['recite','to recite','reciting','recited'],a:1,e:'make sb do变被动要加to:be made to do。'},
+    {q:'The reason ___ he was late is unknown.',o:['which','why','that','for'],a:1,e:'why引导定语从句修饰reason。'},
+    {q:'Many a student ___ made the same mistake.',o:['have','has','is','are'],a:1,e:'many a+单数名词作主语谓语用单数。'},
+    {q:'Not only ___ study well, but also he is helpful.',o:['he does','does he','he','is he'],a:1,e:'not only开头部分倒装。'},
+    {q:'By the time he was 10, he ___ a lab of his own.',o:['built','has built','had built','would build'],a:2,e:'by+过去时间用过去完成时。'},
+    {q:'He ___ to school every day.',o:['go','goes','going','gone'],a:1,e:'一般现在时，主语第三人称单数，动词加 s。'},
+    {q:'She is good ___ English.',o:['in','at','on','for'],a:1,e:'固定搭配 be good at（擅长）。'},
+    {q:'I look forward to ___ from you.',o:['hear','hearing','heard','be heard'],a:1,e:'look forward to 中 to 是介词，后接 doing。'},
+    {q:'This book is ___ than that one.',o:['interesting','more interesting','most interesting','the most interesting'],a:1,e:'两者比较用比较级 more interesting + than。'},
+    {q:'He has lived here ___ 2010.',o:['for','since','from','at'],a:1,e:'since 接时间点，for 接时间段。'},
+    {q:'If it ___ tomorrow, we will stay at home.',o:['rain','rains','will rain','rained'],a:1,e:'if 引导的条件状语从句"主将从现"——从句用一般现在时。'},
+    {q:'The homework ___ by the students yesterday.',o:['finished','was finished','is finished','has finished'],a:1,e:'被动语态 + 过去时间，用 was/were + 过去分词。'},
+    {q:'___ you ever been to Beijing?',o:['Do','Have','Did','Are'],a:1,e:'现在完成时提问用 Have/Has + 主语 + 过去分词。'},
+    {q:'He is the man ___ helped me.',o:['which','who','whom','whose'],a:1,e:'先行词指人且在从句中作主语，用关系代词 who。'},
+    {q:'The book ___ I bought yesterday is interesting.',o:['who','that','what','whose'],a:1,e:'先行词指物，用 that 或 which 引导定语从句。'},
+    {q:'There ___ a lot of water in the bottle.',o:['are','is','have','has'],a:1,e:'There be 句型遵循就近原则，water 不可数，用 is。'},
+    {q:'Neither he nor I ___ right.',o:['is','are','am','be'],a:2,e:'neither...nor 遵循就近原则，靠近 I，用 am。'},
+    {q:'It is important ___ English well.',o:['learn','to learn','learning','learned'],a:1,e:'It is + adj. + to do sth. 固定句型。'},
+    {q:'Let us ___ a break.',o:['to take','take','taking','took'],a:1,e:'let sb. do sth.，后面接动词原形。'}
+  ]},
+  skill: { name: '技能考核', qs: [
+    {q:'HTML中，标题标签是？',o:['&lt;p&gt;','&lt;h1&gt;','&lt;div&gt;','&lt;span&gt;'],a:1,e:'h1-h6是标题标签。'},
+    {q:'CSS中设置文字颜色的属性是？',o:['font','color','background','text'],a:1,e:'color设置文字颜色。'},
+    {q:'HTML中超链接标签是？',o:['&lt;img&gt;','&lt;a&gt;','&lt;p&gt;','&lt;link&gt;'],a:1,e:'&lt;a href=""&gt;是超链接。'},
+    {q:'CSS中class选择器用什么符号？',o:['#','.','*','@'],a:1,e:'.class名，#id名。'},
+    {q:'HTML中插入图片的标签是？',o:['&lt;img&gt;','&lt;image&gt;','&lt;pic&gt;','&lt;photo&gt;'],a:0,e:'&lt;img src=""&gt;插入图片。'},
+    {q:'CSS盒模型不包括？',o:['content','padding','margin','color'],a:3,e:'盒模型：content+padding+border+margin。'},
+    {q:'HTML中无序列表用？',o:['&lt;ol&gt;','&lt;ul&gt;','&lt;li&gt;','&lt;dl&gt;'],a:1,e:'ul无序列表，ol有序列表。'},
+    {q:'CSS中设置外边距的属性是？',o:['padding','margin','border','spacing'],a:1,e:'margin外边距，padding内边距。'},
+    {q:'Word中邮件合并的主要作用是？',o:['美化文档','批量生成文档','打印','排版'],a:1,e:'邮件合并批量生成信件/成绩条等。'},
+    {q:'Excel数据透视表的主要功能是？',o:['画图','多维度汇总分析','打字','保存文件'],a:1,e:'数据透视表拖拽字段多角度分析。'},
+    {q:'Word中自动生成目录需要先设置？',o:['页码','样式','分节符','页眉'],a:1,e:'先给标题设置样式(标题1/2/3)再生成目录。'},
+    {q:'HTML文件的根标签是？',o:['&lt;body&gt;','&lt;html&gt;','&lt;head&gt;','&lt;div&gt;'],a:1,e:'&lt;html&gt;是根标签。'},
+    {q:'CSS中设置背景颜色的属性是？',o:['color','background-color','font','border'],a:1,e:'background-color设置背景色。'},
+    {q:'PPT中，统一修改所有幻灯片标题字体应修改？',o:['母版','单页版式','主题颜色','模板'],a:0,e:'幻灯片母版统一设置。'},
+    {q:'在网页中，&lt;br&gt;标签作用是？',o:['加粗','换行','段落','标题'],a:1,e:'&lt;br&gt;换行符。'},
+    {q:'Java程序的入口方法是？',o:['start()','main()','init()','run()'],a:1,e:'public static void main(String[] args)是程序入口。'},
+    {q:'Java中定义整型变量的关键字是？',o:['int','Integer','var','num'],a:0,e:'int是基本数据类型，Integer是包装类。'},
+    {q:'Java中创建对象使用的关键字是？',o:['new','create','object','class'],a:0,e:'new 类名()创建对象。'},
+    {q:'Java中输出一行内容到控制台用？',o:['System.out.print()','echo()','print()','console.log()'],a:0,e:'System.out.println()输出并换行。'},
+    {q:'SQL中查询数据的关键字是？',o:['SELECT','INSERT','UPDATE','DELETE'],a:0,e:'SELECT查询，INSERT插入，UPDATE修改，DELETE删除。'},
+    {q:'SQL中给查询结果按分数降序排列用？',o:['ORDER BY 分数 DESC','GROUP BY 分数','SORT 分数 DESC','WHERE 分数 DESC'],a:0,e:'ORDER BY 列 DESC降序，ASC升序。'},
+    {q:'位图与矢量图相比，正确的是？',o:['位图放大不失真','矢量图放大不失真','两者都失真','矢量图由像素组成'],a:1,e:'矢量图数学描述，无限放大不失真；位图由像素组成。'},
+    {q:'支持透明背景的图片格式是？',o:['JPEG','BMP','PNG','GIF不支持透明'],a:2,e:'PNG支持透明背景；JPEG不支持。'},
+    {q:'Photoshop默认的源文件格式是？',o:['.jpg','.png','.psd','.gif'],a:2,e:'.psd是PS工程文件，保留图层。'},
+    {q:'Excel中按条件计数的函数是？',o:['SUMIF','COUNTIF','VLOOKUP','IF'],a:1,e:'COUNTIF按条件计数，SUMIF按条件求和。'},
+    {q:'Word中要让每页出现相同的公司名称，应设置？',o:['分页符','页眉','批注','脚注'],a:1,e:'页眉/页脚内容在每页重复出现。'},
+    {q:'技能考核的满分是多少？',o:['50分','100分','150分','300分'],a:1,e:'技能考核满分100分，分两个项目，每项50分。'},
+    {q:'技能考核采用的考试方式是？',o:['上机操作','笔试','面试','提交作品'],a:1,e:'技能考核采用笔试方式（不是上机！）。'},
+    {q:'技能考核的总用时是多少？',o:['30分钟','60分钟','90分钟','120分钟'],a:1,e:'技能考核笔试总用时60分钟。'},
+    {q:'2026年技能考核的两个项目是？',o:['数据库技术＋图形图像','网页设计与制作＋应用文档编辑与数据处理','Java＋网页设计','数据库技术＋应用文档编辑与数据处理'],a:1,e:'2026年为网页设计与制作、应用文档编辑与数据处理；2025年为数据库技术、应用文档编辑与数据处理。'},
+    {q:'Word 中批量制作录取通知书最合适的功能是？',o:['超链接','邮件合并','宏','批注'],a:1,e:'邮件合并可把数据源与主文档结合，批量生成文档。'},
+    {q:'Excel 中公式必须以什么符号开头？',o:['+','=','@','#'],a:1,e:'Excel 公式必须以等号 = 开头。'},
+    {q:'Excel 中 =SUM(A1:A10) 的功能是？',o:['求平均值','求和','计数','求最大值'],a:1,e:'SUM 是求和函数，AVERAGE 求平均，COUNT 计数。'},
+    {q:'Excel 中绝对引用的正确写法是？',o:['A1','$A$1','A$1','#A1'],a:1,e:'$A$1 为绝对引用（行列都锁定），按 F4 可切换。'},
+    {q:'Excel 中按指定条件求和应使用哪个函数？',o:['COUNT','SUMIF','AVERAGE','MAX'],a:1,e:'SUMIF 按条件求和，COUNTIF 按条件计数。'},
+    {q:'Excel 中进行分类汇总之前，必须先对数据？',o:['筛选','排序','求和','分组'],a:1,e:'分类汇总要求同类数据连续，所以必须先排序。'},
+    {q:'PowerPoint 中要统一修改所有幻灯片的标题样式，应修改？',o:['单个幻灯片','幻灯片母版','版式','背景'],a:1,e:'修改母版可一次性统一所有幻灯片的风格。'},
+    {q:'PowerPoint 中从头开始放映幻灯片的快捷键是？',o:['F1','F5','F7','F12'],a:1,e:'F5 从头放映，Shift+F5 从当前页放映。'},
+    {q:'Word 中要使不同页面的页眉内容不一样，需要插入？',o:['分页符','分节符','换行符','制表符'],a:1,e:'插入分节符后，可对每一节单独设置页眉页脚。'},
+    {q:'Word 中让图片与文字混排显示的排版方式称为？',o:['分栏','图文混排','水印','首字下沉'],a:1,e:'设置图片的环绕方式即实现图文混排。'},
+    {q:'Excel 中让满足条件的数据自动变色，应使用？',o:['单元格样式','条件格式','数据验证','排序'],a:1,e:'条件格式可按规则自动突出显示数据。'}
+  ]},
+  web: { name: '网页制作', qs: [
+    {q:'HTML文档的根标签是？',o:['&lt;body&gt;','&lt;html&gt;','&lt;head&gt;','&lt;root&gt;'],a:1,e:'&lt;html&gt;是所有HTML元素的根标签。'},
+    {q:'网页标题（显示在浏览器标签页上）写在哪对标签里？',o:['&lt;head&gt;里的&lt;title&gt;','&lt;body&gt;里的&lt;h1&gt;','&lt;meta&gt;','&lt;header&gt;'],a:0,e:'&lt;title&gt;定义网页标题，位于head中。'},
+    {q:'下列标签中属于块级元素的是？',o:['&lt;span&gt;','&lt;a&gt;','&lt;div&gt;','&lt;img&gt;'],a:2,e:'div是块级元素，独占一行；span/a/img是行内元素。'},
+    {q:'&lt;img&gt;标签中指定图片路径的属性是？',o:['href','src','link','url'],a:1,e:'img用src指定图片路径，a用href指定链接。'},
+    {q:'超链接在新窗口打开应设置target为？',o:['_self','_blank','_new','_top'],a:1,e:'target="_blank"在新窗口/标签页打开。'},
+    {q:'下列哪个是正确的CSS类选择器？',o:['#title { }','.title { }','title { }','*title { }'],a:1,e:'.类名是类选择器，#id名是ID选择器。'},
+    {q:'CSS中设置内边距的属性是？',o:['margin','padding','border','spacing'],a:1,e:'padding内边距，margin外边距。'},
+    {q:'CSS盒模型从内到外的顺序是？',o:['margin-border-padding-content','content-padding-border-margin','content-margin-border-padding','padding-content-margin-border'],a:1,e:'内容→内边距padding→边框border→外边距margin。'},
+    {q:'让元素横向排列并方便对齐，推荐使用的布局是？',o:['float','Flex弹性布局','table表格','position'],a:1,e:'display:flex是现代弹性布局，justify-content/align-items对齐。'},
+    {q:'CSS中把元素定位为相对于浏览器窗口固定不动，用？',o:['position:relative','position:absolute','position:fixed','position:static'],a:2,e:'fixed相对视口固定，滚动页面也不动。'},
+    {q:'HTML表单中用于输入密码的input类型是？',o:['text','password','hidden','secret'],a:1,e:'type="password"输入内容显示为圆点。'},
+    {q:'单选按钮的input类型是？',o:['checkbox','radio','select','check'],a:1,e:'radio单选（同名一组），checkbox多选。'},
+    {q:'HTML中创建有序列表的标签是？',o:['&lt;ul&gt;','&lt;ol&gt;','&lt;li&gt;','&lt;dl&gt;'],a:1,e:'ol有序列表(带数字)，ul无序列表(带圆点)，li是列表项。'},
+    {q:'表格中定义一行的标签是？',o:['&lt;td&gt;','&lt;tr&gt;','&lt;th&gt;','&lt;table&gt;'],a:1,e:'tr是行，td是单元格，th是表头单元格。'},
+    {q:'引入外部CSS样式表文件的标签是？',o:['&lt;script src&gt;','&lt;link rel="stylesheet" href&gt;','&lt;style src&gt;','&lt;css href&gt;'],a:1,e:'link标签引入外部.css文件，script引入js文件。'},
+    {q:'CSS中设置字号为16px正确的写法是？',o:['font-size:16px','font:16','text-size:16px','size:16px'],a:0,e:'font-size设置字号。'},
+    {q:'JavaScript中声明变量（可变）通常用？',o:['var/let','const只能声明常量','dim','def'],a:0,e:'let/var声明变量，const声明常量。'},
+    {q:'JavaScript中点击按钮触发事件用的事件名是？',o:['onclick','onpush','ontap','onselect'],a:0,e:'onclick鼠标点击事件。'},
+    {q:'在JS中通过id获取页面元素的方法是？',o:['document.getElementById()','document.getElement()','window.getId()','$()'],a:0,e:'document.getElementById("id")获取元素。'},
+    {q:'下列颜色值写法表示红色的是？',o:['#ff0000','#00ff00','#0000ff','#ffffff'],a:0,e:'#RRGGBB，ff0000红，00ff00绿，0000ff蓝，ffffff白。'},
+    {q:'HTML注释的正确写法是？',o:['// 注释','&lt;!-- 注释 --&gt;','/* 注释 */','# 注释'],a:1,e:'HTML注释&lt;!-- --&gt;；CSS/JS用/* */，JS也可用//。'},
+    {q:'让超链接默认没有下划线的CSS是？',o:['decoration:none','text-decoration:none','underline:false','border:none'],a:1,e:'text-decoration:none去除下划线。'},
+    {q:'HTML 中定义段落的标签是？',o:['&lt;div&gt;','&lt;p&gt;','&lt;span&gt;','&lt;br&gt;'],a:1,e:'&lt;p&gt; 是段落标签。'},
+    {q:'HTML 中表示换行的标签是？',o:['&lt;p&gt;','&lt;br&gt;','&lt;hr&gt;','&lt;div&gt;'],a:1,e:'&lt;br&gt; 换行，&lt;hr&gt; 是水平线。'},
+    {q:'HTML 中创建超链接的标签是？',o:['&lt;link&gt;','&lt;a&gt;','&lt;href&gt;','&lt;url&gt;'],a:1,e:'&lt;a href="网址"&gt;文字&lt;/a&gt;。'},
+    {q:'HTML 中显示图片的标签是？',o:['&lt;image&gt;','&lt;img&gt;','&lt;pic&gt;','&lt;photo&gt;'],a:1,e:'&lt;img src="路径" alt="替代文字"&gt;。'},
+    {q:'CSS 中设置文字颜色的属性是？',o:['font-color','color','text-color','font'],a:1,e:'设置文字颜色用 color，背景色用 background-color。'},
+    {q:'CSS 中设置字体大小的属性是？',o:['font-size','text-size','size','font-style'],a:0,e:'font-size 设置字号，font-style 设置斜体。'},
+    {q:'CSS 中类选择器的写法是？',o:['#类名','.类名','*类名','@类名'],a:1,e:'类选择器用点号 . ，ID 选择器用 #。'},
+    {q:'CSS 中 ID 选择器的写法是？',o:['.id名','#id名','&id名','*id名'],a:1,e:'ID 选择器用 # 开头，如 #box。'},
+    {q:'CSS 盒模型从内到外的正确顺序是？',o:['margin→border→padding→content','content→padding→border→margin','content→border→padding→margin','padding→content→border→margin'],a:1,e:'盒模型从内到外：内容→内边距→边框→外边距。'},
+    {q:'让块级元素水平居中的 CSS 写法是？',o:['text-align:center','margin:0 auto','padding:0 auto','align:center'],a:1,e:'定宽块级元素用 margin:0 auto 实现水平居中。'},
+    {q:'HTML 表格中表示"行"的标签是？',o:['&lt;td&gt;','&lt;tr&gt;','&lt;th&gt;','&lt;table&gt;'],a:1,e:'&lt;tr&gt; 行，&lt;td&gt; 单元格，&lt;th&gt; 表头单元格。'},
+    {q:'HTML 表格中横向合并单元格使用的属性是？',o:['rowspan','colspan','merge','span'],a:1,e:'colspan 跨列（横向合并），rowspan 跨行（纵向合并）。'},
+    {q:'表单中提交按钮的 type 属性值是？',o:['button','submit','reset','text'],a:1,e:'type="submit" 提交按钮，type="reset" 重置按钮。'},
+    {q:'CSS 中隐藏元素并且不占据页面位置的是？',o:['visibility:hidden','display:none','opacity:0','display:block'],a:1,e:'display:none 不占位置；visibility:hidden 占位置但不可见。'},
+    {q:'JavaScript 中弹出提示框的函数是？',o:['print()','alert()','echo()','log()'],a:1,e:'alert() 弹出提示框，console.log() 输出到控制台。'}
+  ]}
+};
+
+// ========== 考试三大板块 ==========
+const examGroups = [
+  { key:'pub', name:'公共课', score:340, desc:'高等数学120 + 英语120 + 计算机基础100', color:'#2563eb', subs:['math','eng','comp'] },
+  { key:'pro', name:'专业综合课', score:300, desc:'C语言100 + 计算机网络100 + 数据库100', color:'#f59e0b', subs:['c','net','db'] },
+  { key:'skl', name:'技能考核', score:100, desc:'网页设计与制作50 + 应用文档编辑与数据处理50', color:'#10b981', subs:['web','skill'] }
+];
+let curQuizGroup='pub';
+
+// ========== 2026分数线 ==========
+const scores2026 = [
+  {school:'辽宁师范大学',major:'计算机科学与技术',score:652,city:'大连',type:'公办',fee:5200,plan:55},
+  {school:'沈阳师范大学',major:'计算机科学与技术',score:628,city:'沈阳',type:'公办',fee:11000,plan:55},
+  {school:'辽宁工程技术大学',major:'计算机科学与技术',score:628,city:'阜新',type:'公办',fee:5700,plan:55},
+  {school:'沈阳工业大学',major:'计算机科学与技术',score:615,city:'辽阳',type:'公办',fee:5200,plan:64},
+  {school:'沈阳师范大学',major:'软件工程',score:613,city:'沈阳',type:'公办',fee:11000,plan:55},
+  {school:'沈阳化工大学',major:'网络工程',score:594,city:'沈阳',type:'公办',fee:5200,plan:27},
+  {school:'沈阳工程学院',major:'计算机科学与技术',score:596,city:'沈阳',type:'公办',fee:5200,plan:119},
+  {school:'沈阳工程学院',major:'软件工程',score:582,city:'沈阳',type:'公办',fee:5200,plan:69},
+  {school:'辽宁工程技术大学',major:'软件工程',score:579,city:'阜新',type:'公办',fee:13000,plan:165},
+  {school:'辽宁科技学院',major:'计算机科学与技术',score:552,city:'本溪',type:'公办',fee:4900,plan:64},
+  {school:'大连交通大学',major:'软件工程',score:548,city:'大连',type:'公办',fee:16000,plan:367},
+  {school:'辽宁科技大学',major:'软件工程',score:543,city:'鞍山',type:'公办',fee:12700,plan:220},
+  {school:'鞍山师范学院',major:'计算机科学与技术',score:511,city:'鞍山',type:'公办',fee:5200,plan:137},
+  {school:'辽宁工业大学',major:'软件工程',score:513,city:'锦州',type:'公办',fee:12000,plan:551},
+  {school:'辽东学院',major:'计算机科学与技术',score:509,city:'丹东',type:'公办',fee:4900,plan:82},
+  {school:'辽宁科技学院',major:'数据科学与大数据技术',score:507,city:'本溪',type:'公办',fee:4900,plan:27},
+  {school:'朝阳师范学院',major:'计算机科学与技术',score:507,city:'朝阳',type:'公办',fee:4900,plan:55},
+  {school:'辽宁科技学院',major:'物联网工程',score:506,city:'本溪',type:'公办',fee:4900,plan:27},
+  {school:'辽东学院',major:'网络工程',score:502,city:'丹东',type:'公办',fee:4900,plan:110},
+  {school:'沈阳工学院',major:'计算机科学与技术',score:476,city:'抚顺',type:'民办',fee:28000,plan:104},
+  {school:'沈阳城市学院',major:'计算机科学与技术',score:430,city:'沈阳',type:'民办',fee:29000,plan:161},
+  {school:'沈阳城市建设学院',major:'计算机科学与技术',score:411,city:'沈阳',type:'民办',fee:29800,plan:133},
+  {school:'沈阳城市建设学院',major:'数据科学与大数据技术',score:384,city:'沈阳',type:'民办',fee:29800,plan:28},
+  {school:'沈阳科技学院',major:'计算机科学与技术',score:377,city:'沈阳',type:'民办',fee:29800,plan:95},
+  {school:'沈阳城市学院',major:'数据科学与大数据技术',score:376,city:'沈阳',type:'民办',fee:29000,plan:47},
+  {school:'沈阳科技学院',major:'物联网工程',score:360,city:'沈阳',type:'民办',fee:29800,plan:33},
+  {school:'大连东软信息学院',major:'计算机科学与技术',score:352,city:'大连',type:'民办',fee:28000,plan:1774},
+  {school:'辽宁理工职业大学',major:'软件工程',score:324,city:'锦州',type:'民办',fee:27000,plan:76},
+  {school:'大连东软信息学院',major:'网络工程',score:321,city:'大连',type:'民办',fee:28000,plan:33},
+  {school:'大连东软信息学院',major:'数据科学与大数据技术',score:331,city:'大连',type:'民办',fee:28000,plan:90},
+  {school:'大连科技学院',major:'计算机科学与技术',score:313,city:'大连',type:'民办',fee:27000,plan:142},
+  {school:'大连东软信息学院',major:'物联网工程',score:305,city:'大连',type:'民办',fee:28000,plan:33},
+  {school:'大连东软信息学院',major:'软件工程技术(职业本科)',score:299,city:'大连',type:'民办',fee:28000,plan:85},
+  {school:'大连东软信息学院',major:'软件工程',score:304,city:'大连',type:'民办',fee:28000,plan:660},
+  {school:'辽宁理工学院',major:'计算机科学与技术',score:302,city:'锦州',type:'民办',fee:29800,plan:76},
+  {school:'大连科技学院',major:'软件工程',score:287,city:'大连',type:'民办',fee:27000,plan:95},
+  {school:'辽宁理工学院',major:'软件工程',score:287,city:'锦州',type:'民办',fee:29800,plan:57},
+  {school:'辽宁财贸学院',major:'软件工程',score:280,city:'葫芦岛',type:'民办',fee:26800,plan:136},
+  {school:'大连科技学院',major:'物联网工程',score:279,city:'大连',type:'民办',fee:27000,plan:57},
+  {school:'大连科技学院',major:'网络工程',score:273,city:'大连',type:'民办',fee:27000,plan:95},
+  {school:'辽宁财贸学院',major:'网络工程',score:263,city:'葫芦岛',type:'民办',fee:26800,plan:114},
+  {school:'辽宁财贸学院',major:'数据科学与大数据技术',score:263,city:'葫芦岛',type:'民办',fee:26800,plan:76}
+];
+
+// ========== 逻辑 ==========
+let curTopic='comp', curQuiz='comp', curMajor='全部', curMinScore=0;
+let qs={idx:0,ans:[],sel:null,done:false};
+
+function getS(){return JSON.parse(localStorage.getItem('zsb_v2')||'{}')}
+function setS(s){localStorage.setItem('zsb_v2',JSON.stringify(s))}
+function go(v){
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+  const view=document.getElementById('view-'+v);
+  if(view)view.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));
+  const nav=document.querySelector(`.nav-item[data-v="${v}"]`);
+  if(nav)nav.classList.add('active');
+  // 进入错题本/收藏/导入页时刷新列表
+  if(v==='wrong')renderWrong();
+  if(v==='fav')renderFav();
+  if(v==='import')renderImport();
+  window.scrollTo(0,0);
+}
+
+// 倒计时（自动识别本机本地时间）
+(function(){
+  // 考试日期按本地时间构造：2027年4月17日上午9点（月份从0开始，3=4月）
+  const exam=new Date(2027,3,17,9,0,0);
+  const weekCN=['日','一','二','三','四','五','六'];
+  const pad=n=>String(n).padStart(2,'0');
+  function tick(){
+    const now=new Date(); // 本机本地时间
+    // 按"天"计算：清零时分秒后求天数差，避免时区/小时误差
+    const today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+    const examDay=new Date(exam.getFullYear(),exam.getMonth(),exam.getDate());
+    const diff=Math.max(0,Math.round((examDay-today)/86400000));
+    document.getElementById('cd-days').textContent=diff;
+    document.getElementById('cd-now').textContent=
+      now.getFullYear()+'年'+(now.getMonth()+1)+'月'+now.getDate()+'日 周'+weekCN[now.getDay()]+' '+
+      pad(now.getHours())+':'+pad(now.getMinutes())+':'+pad(now.getSeconds());
+  }
+  tick();
+  setInterval(tick,1000);
+})();
+
+// 目标
+function loadTarget(){
+  const s=getS();
+  const set=(id,v)=>{const e=document.getElementById(id);e.textContent=v||'点击设置';e.classList.toggle('empty',!v);};
+  set('t-math',s.tM);set('t-eng',s.tE);set('t-comp',s.tC);
+  const t=(s.tM||0)+(s.tE||0)+(s.tC||0);
+  document.getElementById('set-target').textContent=t>0?t+' 分':'未设置';
+}
+function openTarget(){
+  const s=getS();
+  document.getElementById('in-math').value=s.tM||'';
+  document.getElementById('in-eng').value=s.tE||'';
+  document.getElementById('in-comp').value=s.tC||'';
+  document.getElementById('target-modal').classList.add('show');
+}
+function saveTarget(){
+  const s=getS();
+  s.tM=+document.getElementById('in-math').value||0;
+  s.tE=+document.getElementById('in-eng').value||0;
+  s.tC=+document.getElementById('in-comp').value||0;
+  setS(s);
+  document.getElementById('target-modal').classList.remove('show');
+  loadTarget();
+}
+
+// 知识精讲
+let curTopicGroup='pub';
+function renderTopicGroups(){
+  const c=document.getElementById('topic-groups');c.innerHTML='';
+  examGroups.forEach(g=>{
+    const d=document.createElement('div');
+    d.className='exam-group'+(g.key===curTopicGroup?' active':'');
+    d.style.borderTopColor=g.color;
+    d.innerHTML=`<div class="eg-name" style="color:${g.key===curTopicGroup?g.color:''}">${g.name}</div>
+      <div class="eg-score">${g.score}<span>分</span></div>
+      <div class="eg-desc">${g.desc}</div>`;
+    d.onclick=()=>{
+      curTopicGroup=g.key;
+      if(!g.subs.includes(curTopic))curTopic=g.subs[0];
+      renderTopicGroups();renderTopicTabs();renderTopics();
+    };
+    c.appendChild(d);
+  });
+}
+function renderTopicTabs(){
+  const c=document.getElementById('topic-tabs');c.innerHTML='';
+  const group=examGroups.find(g=>g.key===curTopicGroup);
+  group.subs.forEach(k=>{
+    const t=document.createElement('div');
+    t.className='subject-tab'+(k===curTopic?' active':'');
+    t.textContent=topics[k].name;
+    t.onclick=()=>{curTopic=k;renderTopicTabs();renderTopics()};
+    c.appendChild(t);
+  });
+}
+function renderTopics(){
+  const c=document.getElementById('topic-list');
+  c.innerHTML='';
+  topics[curTopic].list.forEach((t,i)=>{
+    const d=document.createElement('div');
+    d.className='topic-card';
+    d.innerHTML=`<div class="topic-header" onclick="this.parentElement.classList.toggle('open')">
+      <div class="topic-num">${i+1}</div><div class="topic-title">${t.title}</div>
+      <svg class="topic-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </div><div class="topic-body"><div class="topic-inner">${t.html}</div></div>`;
+    c.appendChild(d);
+  });
+}
+
+// 题库
+function renderQuizGroups(){
+  const c=document.getElementById('quiz-groups');c.innerHTML='';
+  examGroups.forEach(g=>{
+    const d=document.createElement('div');
+    d.className='exam-group'+(g.key===curQuizGroup?' active':'');
+    d.style.borderTopColor=g.color;
+    d.innerHTML=`<div class="eg-name" style="color:${g.key===curQuizGroup?g.color:''}">${g.name}</div>
+      <div class="eg-score">${g.score}<span>分</span></div>
+      <div class="eg-desc">${g.desc}</div>`;
+    d.onclick=()=>{
+      curQuizGroup=g.key;
+      if(!g.subs.includes(curQuiz))curQuiz=g.subs[0];
+      qs={idx:0,ans:[],sel:null,done:false};
+      renderQuizGroups();renderQuizTabs();renderQuiz();
+    };
+    c.appendChild(d);
+  });
+}
+function renderQuizTabs(){
+  const c=document.getElementById('quiz-tabs');c.innerHTML='';
+  const group=examGroups.find(g=>g.key===curQuizGroup);
+  group.subs.forEach(k=>{
+    const t=document.createElement('div');
+    t.className='subject-tab'+(k===curQuiz?' active':'');
+    t.textContent=quiz[k].name;
+    t.onclick=()=>{curQuiz=k;qs={idx:0,ans:[],sel:null,done:false};renderQuizTabs();renderQuiz();};
+    c.appendChild(t);
+  });
+}
+function renderQuiz(){
+  const box=document.getElementById('quiz-box');
+  const qsArr=quiz[curQuiz].qs;
+  const total=qsArr.length;
+  if(qs.idx>=total){
+    const right=qs.ans.filter(a=>a.correct).length;
+    const s=getS();
+    s.quizCount=(s.quizCount||0)+total;
+    s.rightCount=(s.rightCount||0)+right;
+    setS(s);
+    updateStats();
+    box.innerHTML=`<div class="quiz-card quiz-result">
+      <div class="score-big">${right}/${total}</div>
+      <div class="score-label">正确率 ${Math.round(right/total*100)}%</div>
+      <button class="btn-primary" style="width:100%" onclick="qs={idx:0,ans:[],sel:null,done:false};renderQuiz()">重新练习</button>
+    </div>`;
+    return;
+  }
+  const q=qsArr[qs.idx];
+  const pct=Math.round(qs.idx/total*100);
+  const letters=['A','B','C','D'];
+  let opts=q.o.map((opt,i)=>{
+    let cls='option-item';
+    if(qs.done){if(i===q.a)cls+=' correct';else if(i===qs.sel)cls+=' wrong';}
+    else if(i===qs.sel)cls+=' selected';
+    return `<div class="${cls}" onclick="pick(${i})"><span class="option-label">${letters[i]}</span><span>${opt}</span></div>`;
+  }).join('');
+  const acc=qs.ans.length?Math.round(qs.ans.filter(a=>a.correct).length/qs.ans.length*100):0;
+  const faved=isFav(curQuiz,qs.idx);
+  box.innerHTML=`<div class="quiz-card">
+    <div class="quiz-progress"><span>第 ${qs.idx+1}/${total} 题</span><span>正确率 ${acc}%</span></div>
+    <div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width:${pct}%"></div></div>
+    <div class="quiz-tools"><span class="fav-btn${faved?' on':''}" onclick="toggleFav()">${faved?'★ 已收藏':'☆ 收藏'}</span></div>
+    <div class="question-text">${q.q}</div>${opts}
+    <div class="explanation ${qs.done?'show':''}"><div class="title">解析</div>${q.e}</div>
+    <div class="quiz-nav">
+      ${qs.idx>0?'<button class="btn btn-outline" onclick="prevQ()">上一题</button>':''}
+      <button class="btn btn-primary" onclick="nextQ()">${qs.idx===total-1?'查看结果':'下一题'}</button>
+    </div></div>`;
+}
+function pick(i){if(qs.done)return;qs.sel=i;renderQuiz()}
+function nextQ(){
+  const q=quiz[curQuiz].qs[qs.idx];
+  if(!qs.done){
+    if(qs.sel===null){alert('请选择答案');return}
+    qs.done=true;
+    const ok=(qs.sel===q.a);
+    qs.ans.push({sel:qs.sel,correct:ok});
+    // 【新增】答错自动进错题本；答对则自动移出（表示已掌握）
+    if(ok){removeWrong(curQuiz,qs.idx)}else{addWrong(curQuiz,qs.idx)}
+    updateStats();
+    renderQuiz();
+  }else{
+    qs.idx++;qs.sel=null;qs.done=false;renderQuiz();
+  }
+}
+function prevQ(){qs.idx--;qs.ans.pop();qs.sel=null;qs.done=false;renderQuiz()}
+
+// 分数线
+function renderMajorFilter(){
+  const c=document.getElementById('major-filter');
+  const majors=['全部','计算机科学与技术','软件工程','网络工程','数据科学与大数据技术','物联网工程'];
+  c.innerHTML='';
+  majors.forEach(m=>{
+    const chip=document.createElement('div');
+    chip.className='filter-chip'+(curMajor===m?' active':'');
+    chip.textContent=m;
+    chip.onclick=()=>{curMajor=m;renderMajorFilter();renderSchools()};
+    c.appendChild(chip);
+  });
+}
+function renderSchools(){
+  const c=document.getElementById('school-list');
+  let list=[...scores2026];
+  if(curMajor!=='全部')list=list.filter(s=>s.major===curMajor);
+  if(curMinScore>0)list=list.filter(s=>s.score>=curMinScore);
+  list.sort((a,b)=>b.score-a.score);
+  c.innerHTML='';
+  if(!list.length){c.innerHTML='<div class="card" style="text-align:center;color:var(--text-sec)">无符合条件院校</div>';return}
+  list.forEach((s,i)=>{
+    const rc=i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':'rank-other';
+    const sc=s.score>=550?'score-high':s.score>=400?'score-mid':'score-low';
+    const card=document.createElement('div');
+    card.className='school-card';
+    card.innerHTML=`<div class="school-rank ${rc}">${i+1}</div>
+      <div class="school-info"><div class="school-name">${s.school} <span class="badge ${s.type==='公办'?'badge-primary':'badge-warning'}" style="margin-left:4px">${s.type}</span></div>
+      <div class="school-major">${s.major} · ${s.city} · 学费${s.fee? s.fee.toLocaleString()+'元/年':'-'}</div>
+      <div class="school-major" style="font-size:11px;color:var(--text-light)">招生计划：${s.plan>0? s.plan+'人':'见官方'}</div></div>
+      <div class="school-score"><div class="score-num ${sc}">${s.score}</div><div class="score-label">录取最低分</div></div>`;
+    c.appendChild(card);
+  });
+}
+document.getElementById('min-score').addEventListener('input',function(){
+  curMinScore=+this.value||0;renderSchools();
+});
+
+// 统计
+function updateStats(){
+  const s=getS();
+  let topicCount=0;
+  Object.keys(topics).forEach(k=>topicCount+=topics[k].list.length);
+  document.getElementById('st-topics').textContent=topicCount;
+  document.getElementById('st-quiz').textContent=s.quizCount||0;
+  document.getElementById('st-right').textContent=s.rightCount||0;
+  // 【新增】错题本 / 收藏 / 导入 数量
+  const wc=(s.wrongs||[]).length, fc=(s.favs||[]).length, ic=(s.customQs||[]).length;
+  const ew=document.getElementById('set-wrong');if(ew)ew.textContent=wc+' 题';
+  const ef=document.getElementById('set-fav');if(ef)ef.textContent=fc+' 题';
+  const ei=document.getElementById('set-imp');if(ei)ei.textContent=ic+' 题';
+  const totalQuiz=Object.values(quiz).reduce((a,b)=>a+b.qs.length,0);
+  const pct=totalQuiz?Math.round((s.quizCount||0)/totalQuiz*100):0;
+  document.getElementById('prog-pct').textContent=pct+'%';
+  document.getElementById('prog-ring').style.strokeDashoffset=326.7-(pct/100)*326.7;
+}
+
+function resetAll(){
+  if(confirm('确定重置所有学习进度？')){
+    localStorage.removeItem('zsb_v2');
+    updateStats();
+  }
+}
+
+// ==================== 错题本 & 收藏（新增）====================
+// 题目用「科目key + 题号」唯一标识，统一存在 localStorage('zsb_v2') 里
+
+function getWrongs(){const s=getS();return s.wrongs||[]}
+function getFavs(){const s=getS();return s.favs||[]}
+function isFav(k,i){return getFavs().some(f=>f.k===k&&f.i===i)}
+
+// 加入错题本（已在里面就不重复加）
+function addWrong(k,i){
+  const s=getS();s.wrongs=s.wrongs||[];
+  if(!s.wrongs.some(w=>w.k===k&&w.i===i)){s.wrongs.push({k:k,i:i,t:Date.now()});setS(s)}
+}
+// 移出错题本（答对时自动调用 = 已掌握）
+function removeWrong(k,i){
+  const s=getS();const old=s.wrongs||[];
+  const arr=old.filter(w=>!(w.k===k&&w.i===i));
+  if(arr.length!==old.length){s.wrongs=arr;setS(s)}
+}
+// 收藏 / 取消收藏「当前正在做的题」
+function toggleFav(){
+  const s=getS();s.favs=s.favs||[];
+  const idx=s.favs.findIndex(f=>f.k===curQuiz&&f.i===qs.idx);
+  if(idx>=0)s.favs.splice(idx,1);else s.favs.push({k:curQuiz,i:qs.idx});
+  setS(s);renderQuiz();updateStats();
+}
+
+// 生成「一道题」的卡片内容（错题本、收藏共用）
+function questionCard(k,i,mode){
+  const q=quiz[k]&&quiz[k].qs[i];
+  if(!q)return '';
+  const letters=['A','B','C','D'];
+  const right=letters[q.a]+'. '+q.o[q.a];
+  const btn2=mode==='wrong'
+    ? `<button class="btn btn-outline" style="flex:1" onclick="removeWrongItem('${k}',${i})">✅ 已掌握</button>`
+    : `<button class="btn btn-outline" style="flex:1" onclick="toggleFavItem('${k}',${i})">☆ 取消收藏</button>`;
+  return `<div style="font-size:12px;color:var(--text-light);margin-bottom:6px">${quiz[k].name} · 第${i+1}题</div>
+    <div style="font-weight:600;margin-bottom:8px;line-height:1.5">${q.q}</div>
+    <div style="font-size:13px;color:var(--text-sec);margin-bottom:6px">正确答案：<b style="color:var(--success)">${right}</b></div>
+    <div style="font-size:13px;color:var(--text-sec);background:var(--bg);padding:8px 10px;border-radius:8px;margin-bottom:10px;line-height:1.6">解析：${q.e}</div>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-primary" style="flex:1" onclick="practiceOne('${k}',${i})">重做这题</button>${btn2}
+    </div>`;
+}
+
+// 渲染错题本
+function renderWrong(){
+  const c=document.getElementById('wrong-list');if(!c)return;
+  const list=getWrongs();
+  const tag=document.getElementById('wrong-count-tag');if(tag)tag.textContent=list.length;
+  c.innerHTML='';
+  if(!list.length){c.innerHTML='<div class="card" style="text-align:center;color:var(--text-sec)">还没有错题，去刷题吧 ✏️</div>';return}
+  [...list].reverse().forEach(w=>{
+    const d=document.createElement('div');d.className='card';
+    d.innerHTML=questionCard(w.k,w.i,'wrong');
+    c.appendChild(d);
+  });
+}
+
+// 渲染收藏
+function renderFav(){
+  const c=document.getElementById('fav-list');if(!c)return;
+  const list=getFavs();
+  const tag=document.getElementById('fav-count-tag');if(tag)tag.textContent=list.length;
+  c.innerHTML='';
+  if(!list.length){c.innerHTML='<div class="card" style="text-align:center;color:var(--text-sec)">还没有收藏题目，刷题时点「☆ 收藏」试试 ⭐</div>';return}
+  [...list].reverse().forEach(f=>{
+    const d=document.createElement('div');d.className='card';
+    d.innerHTML=questionCard(f.k,f.i,'fav');
+    c.appendChild(d);
+  });
+}
+
+function removeWrongItem(k,i){removeWrong(k,i);renderWrong();updateStats();}
+function toggleFavItem(k,i){
+  const s=getS();s.favs=(s.favs||[]).filter(f=>!(f.k===k&&f.i===i));setS(s);
+  renderFav();updateStats();
+}
+// 跳到指定题目重做
+function practiceOne(k,i){
+  curQuiz=k;
+  const g=examGroups.find(g=>g.subs.includes(k));
+  if(g)curQuizGroup=g.key;
+  qs={idx:i,ans:[],sel:null,done:false};
+  renderQuizGroups();renderQuizTabs();renderQuiz();go('quiz');
+}
+
+// ==================== 题目导入（新增）====================
+// 把你自己收集的题目（真题/资料）粘贴进来，解析后并入对应科目的题库
+
+// 把各种来源的题目文本「自动挡」规整成标准格式
+// 支持：全角字母/数字、①②③④、A. A、A) A: 、【答案】【解析】、判断题、题号前缀等
+function normalizeQuestionText(raw){
+  let s = String(raw || '').replace(/\r\n?/g, '\n');
+  // 1) 全角字母、数字 → 半角
+  s = s.replace(/[Ａ-Ｚａ-ｚ０-９]/g, c => String.fromCharCode(c.charCodeAt(0) - 0xFEE0));
+  // 2) ①②③④ → A. B. C. D.（同时补上点号，便于后续识别）
+  s = s.replace(/[①②③④⑤⑥⑦⑧⑨⑩]/g, c => {
+    const i = '①②③④⑤⑥⑦⑧⑨⑩'.indexOf(c);
+    return i >= 0 ? 'ABCDEFGHIJ'[i] + '. ' : c;
+  });
+  // 3) 全角标点 → 半角
+  s = s.replace(/（/g, '(').replace(/）/g, ')').replace(/：/g, ':').replace(/．/g, '.').replace(/、/g, '.');
+  // 4) 【答案】【解析】等标记统一
+  s = s.replace(/[【\[]\s*(正确答案|参考答案|答案)\s*[】\]]\s*:?/g, '\n答案:');
+  s = s.replace(/[【\[]\s*(解析|分析|解答|解释|说明)\s*[】\]]\s*:?/g, '\n解析:');
+  // 5) 行首的答案/解析标记统一
+  s = s.replace(/(^|\n)\s*(正确答案|参考答案|答案)\s*[:.]?\s*/g, '\n答案:');
+  s = s.replace(/(^|\n)\s*(解析|分析|解答|解释|说明)\s*[:.]?\s*/g, '\n解析:');
+  // 6) 去掉题号前缀：1. / 1、 / (1) / 第1题
+  s = s.replace(/(^|\n)\s*(?:第\s*\d+\s*题|\(\s*\d+\s*\)|\d+\s*[.、)）:：])\s*/g, '\n');
+  // 7) 选项前缀（A. / A、 / A) / A: / A空格）→ 统一成换行 + "A. "
+  s = s.replace(/(^|[\s])([A-D])\s*[.:)）]\s*/g, '\n$2. ');
+  // 8) 压缩空行
+  s = s.replace(/\n{2,}/g, '\n');
+  return s.trim();
+}
+
+// 解析粘贴的文本 → 题目数组（支持判断、选择、各种杂乱格式）
+function parseQuestions(text){
+  const s = normalizeQuestionText(text);
+  const lines = s.split('\n').map(l => l.trim()).filter(l => l !== '');
+  const out = [];
+  let cur = null;
+  let pending = null;   // 兜底：答案/解析出现在题干之前的情况
+  const newQ = (q) => {
+    const o = {q: q || '', o: [], a: 0, e: ''};
+    if (pending){
+      o.a = pending.a; o.hasAns = true;
+      if (typeof pending.tf === 'number') o.tf = pending.tf;
+      if (pending.e) o.e = pending.e;
+      pending = null;
+    }
+    out.push(o);
+    return o;
+  };
+  for (const line of lines){
+    let m;
+    // 答案行
+    if ((m = line.match(/^答案\s*:?\s*(.*)$/))){
+      const v = m[1] || '';
+      const letter = v.match(/[A-D]/);
+      let a = null, tf = null;
+      if (letter) a = 'ABCD'.indexOf(letter[0]);
+      else if (/对|正确|是|无误|√|T\b/i.test(v)) tf = 0;
+      else if (/错|错误|否|×|F\b/i.test(v)) tf = 1;
+      if (!cur){
+        if (a !== null) pending = {a: a, e: ''};
+        else if (tf !== null) pending = {a: tf, tf: tf, e: ''};
+        continue;
+      }
+      if (a !== null){ cur.a = a; cur.hasAns = true; }
+      else if (tf !== null){ cur.tf = tf; cur.hasAns = true; }
+      continue;
+    }
+    // 解析行
+    if ((m = line.match(/^解析\s*:?\s*(.*)$/))){
+      const v = m[1] || '';
+      if (!cur){ if (pending) pending.e = (pending.e ? pending.e + ' ' : '') + v; continue; }
+      cur.e = (cur.e ? cur.e + ' ' : '') + v;
+      continue;
+    }
+    // 选项行
+    if ((m = line.match(/^([A-D])\.\s*(.*)$/))){
+      if (!cur) cur = newQ('');
+      cur.o.push(m[2]);
+      continue;
+    }
+    // 普通行：当前题目还没选项、也没答案 → 作为题干；否则开启新题
+    if (cur && cur.o.length === 0 && !cur.hasAns){
+      cur.q = cur.q ? cur.q + ' ' + line : line;
+    } else {
+      cur = newQ(line);
+    }
+  }
+  // 判断题：没有选项但有答案 → 自动生成「正确 / 错误」两个选项
+  out.forEach(x => {
+    if (x.o.length === 0 && typeof x.tf === 'number'){
+      x.o = ['正确','错误'];
+      x.a = x.tf;
+    }
+  });
+  // 只保留有效题目：有题干、至少2个选项、有答案
+  return out.filter(x => x.q && x.o.length >= 2 && x.hasAns);
+}
+
+// 从剪贴板读取（Electron/WebView 都试试，失败就提示手动粘贴）
+async function pasteFromClipboard(){
+  const ta = document.getElementById('imp-text');
+  try {
+    const txt = await navigator.clipboard.readText();
+    if (txt && txt.trim()){
+      ta.value = txt;
+      alert('已从剪贴板读取 ' + txt.length + ' 个字符，可以点「导入题目」了。');
+    } else {
+      alert('剪贴板是空的。');
+    }
+  } catch (e) {
+    alert('读不到剪贴板（浏览器/系统权限限制）。\n请手动在下面输入框按 Ctrl+V 粘贴。');
+    ta.focus();
+  }
+}
+
+// 填入示例（方便先试一下格式）
+function fillImportSample(){
+  document.getElementById('imp-text').value =
+    '1、计算机中，1KB等于多少字节？\n' +
+    'A、1000\nB、1024\nC、512\nD、2048\n' +
+    '【答案】B\n【解析】1KB = 1024B，注意不是1000。\n\n' +
+    '2、下列哪个是私有IP地址？\n' +
+    '① 8.8.8.8\n② 114.114.114.114\n③ 192.168.1.1\n④ 202.96.128.86\n' +
+    '答案：C\n\n' +
+    '3、TCP协议是面向连接的可靠传输协议。\n' +
+    '答案：正确';
+}
+
+// 自动识别的格式说明（点开看）
+function showFormatHelp(){
+  alert('【支持的格式（自动识别，无需手工整理）】\n\n' +
+    '✓ 题号：1. / 1、 / (1) / 第1题（可省略）\n' +
+    '✓ 选项：A. / A、 / A) / A: / ①②③④（可混用）\n' +
+    '✓ 答案：答案：A / 【答案】A / 正确答案A\n' +
+    '✓ 解析：解析：xxx / 【解析】xxx（可省略）\n' +
+    '✓ 判断题：直接写「答案：正确」或「答案：错误」\n' +
+    '✓ 全角字母数字（Ａ Ｂ １ ２）自动转半角\n\n' +
+    '题目之间空一行或直接连着写都行。\n' +
+    '建议几道题先试一次，确认解析对了再批量导入。');
+}
+
+// 启动时把已保存的导入题目并入题库（内存）
+function applyCustomQs(){
+  const s = getS();
+  (s.customQs || []).forEach(item => {
+    if (quiz[item.k]) {
+      quiz[item.k].qs.push({q:item.q, o:item.o, a:item.a, e:item.e || '（本题为你导入的题目）', custom:true});
+    }
+  });
+}
+
+// 执行导入
+function doImport(){
+  const subj = document.getElementById('imp-subject').value;
+  const text = document.getElementById('imp-text').value;
+  if (!text.trim()){ alert('请先粘贴题目内容'); return; }
+  const parsed = parseQuestions(text);
+  if (!parsed.length){
+    alert('没有解析出有效题目。\n\n常见原因：\n① 缺少答案行（必须写「答案：A」或「【答案】A」）\n② 选项少于 2 个\n\n可以点「📄 填示例」看看标准格式。');
+    return;
+  }
+  // 导入前预览确认（防止自动识别出错）
+  const p0 = parsed[0];
+  const preview = '第1题：' + p0.q + '\n选项：' + p0.o.join(' ／ ') + '\n答案：' + 'ABCD'[p0.a] + '. ' + p0.o[p0.a];
+  if (!confirm('✅ 自动识别出 ' + parsed.length + ' 道题\n\n【预览第1题】\n' + preview + '\n\n确认导入到「' + quiz[subj].name + '」吗？')) return;
+  const s = getS();
+  s.customQs = s.customQs || [];
+  parsed.forEach(p => {
+    s.customQs.push({k:subj, q:p.q, o:p.o, a:p.a, e:p.e});
+    quiz[subj].qs.push({q:p.q, o:p.o, a:p.a, e:p.e || '（本题为你导入的题目）', custom:true});
+  });
+  setS(s);
+  document.getElementById('imp-text').value = '';
+  renderImport();
+  updateStats();
+  alert('导入成功！共 ' + parsed.length + ' 道题，已加入「' + quiz[subj].name + '」题库。\n现在就可以去刷题了。');
+}
+
+// 渲染导入页
+function renderImport(){
+  const sel = document.getElementById('imp-subject');
+  if (sel && sel.options.length === 0){
+    Object.keys(quiz).forEach(k => {
+      const o = document.createElement('option');
+      o.value = k; o.textContent = quiz[k].name;
+      sel.appendChild(o);
+    });
+  }
+  const s = getS();
+  const list = s.customQs || [];
+  const cnt = document.getElementById('imp-count'); if (cnt) cnt.textContent = list.length;
+  const c = document.getElementById('imp-list'); if (!c) return;
+  c.innerHTML = '';
+  if (!list.length){
+    c.innerHTML = '<div class="card" style="text-align:center;color:var(--text-sec)">还没有导入题目</div>';
+    return;
+  }
+  const bar = document.createElement('div');
+  bar.className = 'card'; bar.style.textAlign = 'center';
+  bar.innerHTML = '<button class="btn btn-outline" onclick="clearCustomQs()">清空全部导入题目</button>';
+  c.appendChild(bar);
+  const letters = ['A','B','C','D'];
+  [...list].reverse().forEach((item, ri) => {
+    const idx = list.length - 1 - ri;
+    const d = document.createElement('div');
+    d.className = 'card';
+    d.innerHTML = `<div style="font-size:12px;color:var(--text-light);margin-bottom:6px">${quiz[item.k] ? quiz[item.k].name : '未知科目'}</div>
+      <div style="font-weight:600;margin-bottom:8px;line-height:1.5">${item.q}</div>
+      <div style="font-size:13px;color:var(--text-sec);margin-bottom:6px">正确答案：<b style="color:var(--success)">${letters[item.a]}. ${item.o[item.a]}</b></div>
+      ${item.e ? `<div style="font-size:13px;color:var(--text-sec);background:var(--bg);padding:8px 10px;border-radius:8px;margin-bottom:10px;line-height:1.6">解析：${item.e}</div>` : ''}
+      <button class="btn btn-outline" onclick="deleteCustomQ(${idx})">删除这道题</button>`;
+    c.appendChild(d);
+  });
+}
+
+// 删除某道导入的题目
+function deleteCustomQ(idx){
+  const s = getS();
+  const list = s.customQs || [];
+  const item = list[idx];
+  if (!item) return;
+  // 同步从内存题库中移除（按题干匹配）
+  if (quiz[item.k]){
+    const qi = quiz[item.k].qs.findIndex(x => x.custom && x.q === item.q);
+    if (qi >= 0) quiz[item.k].qs.splice(qi, 1);
+  }
+  list.splice(idx, 1);
+  s.customQs = list;
+  setS(s);
+  renderImport(); updateStats();
+}
+
+// 清空全部导入题目
+function clearCustomQs(){
+  if (!confirm('确定清空所有已导入的题目？（此操作不可恢复）')) return;
+  const s = getS();
+  (s.customQs || []).forEach(item => {
+    if (quiz[item.k]){
+      const qi = quiz[item.k].qs.findIndex(x => x.custom && x.q === item.q);
+      if (qi >= 0) quiz[item.k].qs.splice(qi, 1);
+    }
+  });
+  s.customQs = [];
+  setS(s);
+  renderImport(); updateStats();
+}
+
+document.querySelectorAll('.modal-mask').forEach(m=>{
+  m.addEventListener('click',function(e){if(e.target===this)this.classList.remove('show')});
+});
+
+// init
+applyCustomQs();   // 先把你导入的题目并入题库，再渲染
+loadTarget();renderTopicGroups();renderTopicTabs();renderTopics();renderQuizGroups();renderQuizTabs();renderQuiz();renderMajorFilter();renderSchools();updateStats();
+</script>
+</body>
+</html>
