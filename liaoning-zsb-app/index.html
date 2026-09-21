@@ -146,6 +146,36 @@ body{font-family:'Noto Sans SC',-apple-system,sans-serif;background:var(--bg);co
 .quiz-tools{display:flex;justify-content:flex-end;margin:2px 0 8px}
 .fav-btn{font-size:13px;color:var(--text-light);cursor:pointer;padding:3px 10px;border:1px solid var(--border);border-radius:14px;user-select:none;transition:.15s}
 .fav-btn.on{color:#d97706;border-color:#fbbf24;background:#fffbeb;font-weight:600}
+
+/* ===== 英语单词模块（新增）===== */
+.wb-hero{background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff;border-radius:var(--radius);padding:22px;margin-bottom:16px;box-shadow:var(--shadow)}
+.wb-hero h2{font-size:19px;font-weight:800;margin-bottom:4px}
+.wb-hero p{font-size:12.5px;opacity:.9}
+.wb-stat{display:flex;justify-content:space-around;margin-top:16px;text-align:center}
+.wb-stat .n{font-size:23px;font-weight:800;line-height:1.2}
+.wb-stat .l{font-size:11px;opacity:.85;margin-top:2px}
+.wb-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:6px}
+.wb-cell{aspect-ratio:1;border-radius:6px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--text-light)}
+.wb-cell.on{background:#14b8a6;color:#fff;font-weight:700}
+.wb-cell.today{box-shadow:0 0 0 2px var(--accent)}
+.wb-btnrow{display:flex;gap:10px;margin-top:14px}
+.wb-btnrow .btn{flex:1}
+.wb-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px 20px;text-align:center;margin-bottom:16px;min-height:240px;display:flex;flex-direction:column;justify-content:center;cursor:pointer}
+.wb-word{font-size:34px;font-weight:800;color:var(--primary);letter-spacing:.5px;word-break:break-word}
+.wb-phon{font-size:14px;color:var(--text-sec);margin-top:8px}
+.wb-mean{font-size:17px;font-weight:600;margin-top:16px;color:var(--text);line-height:1.7}
+.wb-ex{font-size:13px;color:var(--text-sec);margin-top:12px;font-style:italic;line-height:1.6}
+.wb-tip{margin-top:12px;background:#fffbeb;border-left:3px solid var(--accent);padding:8px 12px;border-radius:0 8px 8px 0;font-size:12.5px;color:#92400e;text-align:left;line-height:1.6}
+.wb-hint{color:var(--text-light);font-size:13px;margin-top:14px}
+.wb-bar{display:flex;justify-content:space-between;font-size:13px;color:var(--text-sec);margin-bottom:10px}
+.wb-prog{height:6px;background:#e2e8f0;border-radius:3px;overflow:hidden;margin-bottom:16px}
+.wb-prog i{display:block;height:100%;background:#14b8a6;border-radius:3px;transition:width .3s}
+.wb-list{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:6px 0;margin-bottom:16px}
+.wb-row{display:flex;align-items:baseline;gap:10px;padding:10px 16px;border-bottom:1px solid var(--border);font-size:13.5px}
+.wb-row:last-child{border-bottom:none}
+.wb-row .w{font-weight:700;color:var(--primary);min-width:96px}
+.wb-row .m{flex:1;color:var(--text-sec)}
+.wb-row .d{font-size:11px;color:var(--text-light)}
 </style>
 </head>
 <body>
@@ -181,6 +211,7 @@ body{font-family:'Noto Sans SC',-apple-system,sans-serif;background:var(--bg);co
   <div class="quick-grid">
     <div class="quick-item" onclick="go('topics')"><div class="quick-icon qi-blue">📚</div><div class="quick-text"><div class="title">知识精讲</div><div class="desc">8科详细知识点</div></div></div>
     <div class="quick-item" onclick="go('quiz')"><div class="quick-icon qi-orange">✏️</div><div class="quick-text"><div class="title">刷题练习</div><div class="desc">316道 · 按考点编写</div></div></div>
+    <div class="quick-item" onclick="go('words')"><div class="quick-icon qi-green">🔤</div><div class="quick-text"><div class="title">英语单词本</div><div class="desc">每日打卡 · 可导入</div></div></div>
     <div class="quick-item" onclick="go('scores')"><div class="quick-icon qi-green">🎯</div><div class="quick-text"><div class="title">2026分数线</div><div class="desc">最新录取数据</div></div></div>
     <div class="quick-item" onclick="go('profile')"><div class="quick-icon qi-purple">📊</div><div class="quick-text"><div class="title">学习进度</div><div class="desc">目标与统计</div></div></div>
   </div>
@@ -192,15 +223,6 @@ body{font-family:'Noto Sans SC',-apple-system,sans-serif;background:var(--bg);co
     <a href="https://zhaosheng.sie.edu.cn/" target="_blank" class="resource-link"><div class="resource-info"><div class="resource-name">沈阳工业大学招生网（考点）</div><div class="resource-desc">计算机组考点、技能考核要点、考试须知</div></div><div class="resource-arrow">›</div></a>
   </div>
 
-  <div class="section-title" style="margin-top:20px">免费真题资源</div>
-  <div class="card" style="padding:0;overflow:hidden">
-    <a href="https://www.hlsok.com/news/linianzhenti/ln/" target="_blank" class="resource-link"><div class="resource-info"><div class="resource-name">好老师升学帮 · 辽宁真题</div><div class="resource-desc">2023英语/高数真题还原、历年试题</div></div><div class="resource-arrow">›</div></a>
-    <a href="https://www.educity.cn/zhuanjieben/c1631/liaoning-1.html" target="_blank" class="resource-link"><div class="resource-info"><div class="resource-name">希赛网 · 辽宁专升本真题</div><div class="resource-desc">2022高数/英语/计算机真题及答案</div></div><div class="resource-arrow">›</div></a>
-    <a href="https://www.zikaosw.cn/zsbks/subject-6710.html" target="_blank" class="resource-link"><div class="resource-info"><div class="resource-name">自考生网 · 计算机基础真题</div><div class="resource-desc">2010-2016年辽宁专升本计算机真题</div></div><div class="resource-arrow">›</div></a>
-    <a href="https://m.etest8.com/product/db-13856.html" target="_blank" class="resource-link"><div class="resource-info"><div class="resource-name">易考吧 · 计算机在线题库</div><div class="resource-desc">2020-2024计算机应用基础真题及答案</div></div><div class="resource-arrow">›</div></a>
-    <a href="https://m.huajiwap.cn/book/21761" target="_blank" class="resource-link"><div class="resource-info"><div class="resource-name">滑记 · 计算机基础历年真题</div><div class="resource-desc">2014年起历年真题（含程序题）</div></div><div class="resource-arrow">›</div></a>
-  </div>
-
   <div class="section-title" style="margin-top:20px">免费视频课</div>
   <div class="card" style="padding:0;overflow:hidden">
     <a href="https://search.bilibili.com/all?keyword=%E8%BE%BD%E5%AE%81%E4%B8%93%E5%8D%87%E6%9C%AC" target="_blank" class="resource-link"><div class="resource-info"><div class="resource-name">B站 · 搜索"辽宁专升本"</div><div class="resource-desc">各科免费课程、真题讲解、备考经验</div></div><div class="resource-arrow">›</div></a>
@@ -208,8 +230,8 @@ body{font-family:'Noto Sans SC',-apple-system,sans-serif;background:var(--bg);co
   </div>
 
   <div class="tip-box" style="margin-top:12px">
-    📥 <b>拿到真题后怎么做？</b>用「我的 → 导入题目」把题目粘贴进去，就能刷题、进错题本、加收藏了。<br>
-    ⚖️ 真题版权归考试院所有，请通过官方/公开渠道获取学习使用，<b>不要传播牟利</b>。
+    📥 <b>拿到真题后怎么做？</b>用「我的 → 导入题目」把题目粘贴或导入进去，就能刷题、进错题本、加收藏了。<br>
+    ⚖️ 真题请通过<b>学校、老师、官方渠道</b>获取（网上那些"免费真题"多数要收费或已失效，别浪费钱）。真题版权归考试院所有，仅供个人学习，<b>不要传播牟利</b>。
   </div>
 </div></section>
 
@@ -223,7 +245,7 @@ body{font-family:'Noto Sans SC',-apple-system,sans-serif;background:var(--bg);co
 
 <section class="view" id="view-quiz"><div class="container">
   <div class="section-title">刷题练习</div>
-  <div class="tip-box" style="margin-bottom:12px">本页为按考点编写的<b>练习题</b>（非历年真题）。历年真题请通过首页「免费真题资源」中的官方渠道获取。</div>
+  <div class="tip-box" style="margin-bottom:12px">本页为按考点编写的<b>练习题</b>（非历年真题）。历年真题请通过<b>学校、老师或官方渠道</b>获取，也可以用「我的 → 导入题目」把自己手上的真题导进来刷。</div>
   <div class="exam-groups" id="quiz-groups"></div>
   <div class="subject-tabs" id="quiz-tabs"></div>
   <div id="quiz-box"></div>
@@ -252,6 +274,7 @@ body{font-family:'Noto Sans SC',-apple-system,sans-serif;background:var(--bg);co
   <div class="settings-list">
     <div class="setting-item" onclick="go('wrong')"><div class="setting-icon" style="background:#fee2e2;color:#dc2626">📕</div><div class="setting-label">我的错题本</div><div class="setting-value" id="set-wrong">0 题</div><div style="color:var(--text-light)">›</div></div>
     <div class="setting-item" onclick="go('fav')"><div class="setting-icon" style="background:#fef3c7;color:#d97706">⭐</div><div class="setting-label">我的收藏</div><div class="setting-value" id="set-fav">0 题</div><div style="color:var(--text-light)">›</div></div>
+    <div class="setting-item" onclick="go('words')"><div class="setting-icon" style="background:#d1fae5;color:#059669">🔤</div><div class="setting-label">英语单词本</div><div class="setting-value" id="set-words">0 词</div><div style="color:var(--text-light)">›</div></div>
     <div class="setting-item" onclick="go('import')"><div class="setting-icon" style="background:#e0e7ff;color:#4f46e5">📥</div><div class="setting-label">导入题目</div><div class="setting-value" id="set-imp">0 题</div><div style="color:var(--text-light)">›</div></div>
   </div>
   <div class="section-title">备考设置</div>
@@ -313,10 +336,15 @@ body{font-family:'Noto Sans SC',-apple-system,sans-serif;background:var(--bg);co
   <div id="imp-list"></div>
 </div></section>
 
+<section class="view" id="view-words"><div class="container">
+  <div id="words-box"></div>
+</div></section>
+
 <nav class="bottom-nav">
   <a class="nav-item active" data-v="home" onclick="go('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg><span>首页</span></a>
   <a class="nav-item" data-v="topics" onclick="go('topics')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20V4H6.5A2.5 2.5 0 004 6.5v13z"/></svg><span>知识精讲</span></a>
   <a class="nav-item" data-v="quiz" onclick="go('quiz')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11H5a2 2 0 00-2 2v7h6v-7a2 2 0 012-2 2 2 0 012 2v7h6v-7a2 2 0 00-2-2h-4"/></svg><span>刷题</span></a>
+  <a class="nav-item" data-v="words" onclick="go('words')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h11a3 3 0 013 3v13H7a3 3 0 01-3-3V4z"/><path d="M8 9h7M8 13h5"/></svg><span>单词</span></a>
   <a class="nav-item" data-v="scores" onclick="go('scores')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 14l4-4 4 4 5-5"/></svg><span>分数线</span></a>
   <a class="nav-item" data-v="profile" onclick="go('profile')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a6 6 0 016-6h4a6 6 0 016 6v2"/></svg><span>我的</span></a>
 </nav>
@@ -2042,6 +2070,7 @@ function go(v){
   if(v==='wrong')renderWrong();
   if(v==='fav')renderFav();
   if(v==='import')renderImport();
+  if(v==='words')renderWords();
   window.scrollTo(0,0);
 }
 
@@ -2274,6 +2303,12 @@ function updateStats(){
   const ew=document.getElementById('set-wrong');if(ew)ew.textContent=wc+' 题';
   const ef=document.getElementById('set-fav');if(ef)ef.textContent=fc+' 题';
   const ei=document.getElementById('set-imp');if(ei)ei.textContent=ic+' 题';
+  // 【新增】单词本：已学词数 + 连续打卡
+  const ewd=document.getElementById('set-words');
+  if(ewd){
+    const r=wbLoad();
+    ewd.textContent=Object.keys(r.w.prog).length+' 词 · 打卡 '+wbStreak()+' 天';
+  }
   const totalQuiz=Object.values(quiz).reduce((a,b)=>a+b.qs.length,0);
   const pct=totalQuiz?Math.round((s.quizCount||0)/totalQuiz*100):0;
   document.getElementById('prog-pct').textContent=pct+'%';
@@ -2809,13 +2844,623 @@ function clearCustomQs(){
   renderImport(); updateStats();
 }
 
+/* =====================================================================
+   英语单词本模块
+   —— 每日打卡 / 学习卡教学 / 自测(带解析) / 自己导入单词
+   ⚠️ 内置词库为 AI 整理的高频词汇，非教材原词表，仅供辅助记忆
+   ===================================================================== */
+
+// ---------- 内置词库（专升本高频核心词汇）----------
+const VOCAB=[
+{w:'abandon',p:'/əˈbændən/',t:'v.',m:'放弃；抛弃；遗弃',e:'He abandoned the plan.',tip:'abandon oneself to 沉溺于'},
+{w:'ability',p:'/əˈbɪləti/',t:'n.',m:'能力；才能',e:'the ability to do sth',tip:'be able to do 能够做'},
+{w:'absorb',p:'/əbˈzɔːb/',t:'v.',m:'吸收；使专心',e:'Plants absorb water.',tip:'be absorbed in 专心于'},
+{w:'abstract',p:'/ˈæbstrækt/',t:'adj./n.',m:'抽象的；摘要',e:'an abstract concept',tip:'反义词 concrete 具体的'},
+{w:'academic',p:'/ˌækəˈdemɪk/',t:'adj.',m:'学术的；学院的',e:'academic performance'},
+{w:'accept',p:'/əkˈsept/',t:'v.',m:'接受；承认',e:'accept the invitation',tip:'区分 receive 收到(客观) / accept 接受(主观)'},
+{w:'access',p:'/ˈækses/',t:'n./v.',m:'通道；访问权；进入',e:'access to the Internet',tip:'have access to 有权使用'},
+{w:'accident',p:'/ˈæksɪdənt/',t:'n.',m:'事故；意外',e:'a traffic accident',tip:'by accident 偶然地'},
+{w:'accompany',p:'/əˈkʌmpəni/',t:'v.',m:'陪伴；伴随',e:'She accompanied me home.'},
+{w:'accomplish',p:'/əˈkʌmplɪʃ/',t:'v.',m:'完成；实现',e:'accomplish the task'},
+{w:'account',p:'/əˈkaʊnt/',t:'n./v.',m:'账户；描述；解释',e:'open an account',tip:'account for 解释；占(比例)'},
+{w:'accurate',p:'/ˈækjərət/',t:'adj.',m:'准确的；精确的',e:'accurate data'},
+{w:'achieve',p:'/əˈtʃiːv/',t:'v.',m:'实现；取得；达到',e:'achieve one\'s goal',tip:'achieve 多接抽象目标(goal/success)'},
+{w:'acknowledge',p:'/əkˈnɒlɪdʒ/',t:'v.',m:'承认；感谢；确认收到',e:'acknowledge the mistake'},
+{w:'acquire',p:'/əˈkwaɪə(r)/',t:'v.',m:'获得；学到(知识/技能)',e:'acquire knowledge',tip:'acquire 强调长期努力获得'},
+{w:'adapt',p:'/əˈdæpt/',t:'v.',m:'适应；改编',e:'adapt to the new life',tip:'adapt to 适应 / adapt from 改编自'},
+{w:'addition',p:'/əˈdɪʃn/',t:'n.',m:'增加；加法',e:'in addition',tip:'in addition to 除…之外(还)'},
+{w:'adequate',p:'/ˈædɪkwət/',t:'adj.',m:'足够的；适当的',e:'adequate supply'},
+{w:'adjust',p:'/əˈdʒʌst/',t:'v.',m:'调整；适应',e:'adjust the plan'},
+{w:'admire',p:'/ədˈmaɪə(r)/',t:'v.',m:'钦佩；欣赏',e:'I admire his courage.'},
+{w:'admit',p:'/ədˈmɪt/',t:'v.',m:'承认；准许进入',e:'admit doing sth',tip:'admit doing 承认做过某事'},
+{w:'adopt',p:'/əˈdɒpt/',t:'v.',m:'采用；采纳；收养',e:'adopt a method'},
+{w:'advance',p:'/ədˈvɑːns/',t:'v./n.',m:'前进；进步；提前',e:'in advance',tip:'in advance 提前(副词短语)'},
+{w:'advantage',p:'/ədˈvɑːntɪdʒ/',t:'n.',m:'优势；有利条件',e:'take advantage of',tip:'take advantage of 利用'},
+{w:'adventure',p:'/ədˈventʃə(r)/',t:'n.',m:'冒险；奇遇',e:'a great adventure'},
+{w:'advertise',p:'/ˈædvətaɪz/',t:'v.',m:'做广告；宣传',e:'advertise a product',tip:'名词 advertisement 广告'},
+{w:'affect',p:'/əˈfekt/',t:'v.',m:'影响；感动',e:'Smoking affects health.',tip:'affect 动词 / effect 名词，考试常考'},
+{w:'afford',p:'/əˈfɔːd/',t:'v.',m:'负担得起；抽得出(时间)',e:'can\'t afford a car',tip:'can\'t afford to do 负担不起做某事'},
+{w:'agriculture',p:'/ˈæɡrɪkʌltʃə(r)/',t:'n.',m:'农业；农学',e:'modern agriculture'},
+{w:'aim',p:'/eɪm/',t:'n./v.',m:'目标；瞄准；旨在',e:'aim at the target',tip:'be aimed at 旨在'},
+{w:'alarm',p:'/əˈlɑːm/',t:'n./v.',m:'警报；惊恐；使惊恐',e:'a fire alarm'},
+{w:'alternative',p:'/ɔːlˈtɜːnətɪv/',t:'n./adj.',m:'替代品；可替代的',e:'an alternative plan',tip:'have no alternative but to do 别无选择只能'},
+{w:'amount',p:'/əˈmaʊnt/',t:'n./v.',m:'数量；总计',e:'a large amount of',tip:'a large amount of + 不可数名词'},
+{w:'analysis',p:'/əˈnæləsɪs/',t:'n.',m:'分析；解析',e:'data analysis',tip:'复数 analyses'},
+{w:'ancient',p:'/ˈeɪnʃənt/',t:'adj.',m:'古代的；古老的',e:'ancient China',tip:'反义词 modern 现代的'},
+{w:'announce',p:'/əˈnaʊns/',t:'v.',m:'宣布；通告',e:'announce the result'},
+{w:'annual',p:'/ˈænjuəl/',t:'adj.',m:'每年的；年度的',e:'annual meeting'},
+{w:'anxious',p:'/ˈæŋkʃəs/',t:'adj.',m:'焦虑的；渴望的',e:'be anxious about',tip:'be anxious about 担心 / be anxious to do 渴望做'},
+{w:'apologize',p:'/əˈpɒlədʒaɪz/',t:'v.',m:'道歉',e:'apologize to sb for sth',tip:'道歉对象用 to，事由用 for'},
+{w:'apparent',p:'/əˈpærənt/',t:'adj.',m:'明显的；表面上的',e:'It is apparent that...'},
+{w:'appeal',p:'/əˈpiːl/',t:'v./n.',m:'呼吁；吸引；上诉',e:'appeal to young people',tip:'appeal to 对…有吸引力'},
+{w:'application',p:'/ˌæplɪˈkeɪʃn/',t:'n.',m:'申请；应用；应用程序',e:'job application'},
+{w:'appreciate',p:'/əˈpriːʃieɪt/',t:'v.',m:'感激；欣赏；领会',e:'I appreciate your help.',tip:'appreciate doing 感谢做某事(不接不定式)'},
+{w:'approach',p:'/əˈprəʊtʃ/',t:'n./v.',m:'方法；途径；接近',e:'a new approach to',tip:'an approach to doing sth 做某事的方法'},
+{w:'appropriate',p:'/əˈprəʊpriət/',t:'adj.',m:'适当的；合适的',e:'appropriate for the occasion',tip:'be appropriate for/to 适合于'},
+{w:'approve',p:'/əˈpruːv/',t:'v.',m:'批准；赞成',e:'approve of the plan',tip:'approve of 赞成(不及物)'},
+{w:'argue',p:'/ˈɑːɡjuː/',t:'v.',m:'争论；主张；论证',e:'argue with sb about sth',tip:'argue that... 主张…'},
+{w:'arrange',p:'/əˈreɪndʒ/',t:'v.',m:'安排；整理；布置',e:'arrange a meeting'},
+{w:'artificial',p:'/ˌɑːtɪˈfɪʃl/',t:'adj.',m:'人造的；人工的',e:'artificial intelligence',tip:'AI = 人工智能'},
+{w:'aspect',p:'/ˈæspekt/',t:'n.',m:'方面；外观',e:'every aspect of life'},
+{w:'assess',p:'/əˈses/',t:'v.',m:'评估；评定',e:'assess the risk'},
+{w:'assign',p:'/əˈsaɪn/',t:'v.',m:'分配；布置(作业)；指派',e:'assign homework'},
+{w:'assist',p:'/əˈsɪst/',t:'v.',m:'帮助；协助',e:'assist sb with sth',tip:'assist sb in doing 帮助某人做'},
+{w:'assume',p:'/əˈsjuːm/',t:'v.',m:'假设；认为；承担',e:'assume responsibility'},
+{w:'attach',p:'/əˈtætʃ/',t:'v.',m:'附上；贴上；重视',e:'attach a file',tip:'attach importance to 重视'},
+{w:'attempt',p:'/əˈtempt/',t:'v./n.',m:'尝试；努力',e:'make an attempt to do',tip:'attempt to do = try to do'},
+{w:'attitude',p:'/ˈætɪtjuːd/',t:'n.',m:'态度；看法',e:'attitude towards',tip:'attitude to/towards 对…的态度'},
+{w:'attract',p:'/əˈtrækt/',t:'v.',m:'吸引；引起',e:'attract attention',tip:'be attracted to 被…吸引'},
+{w:'authority',p:'/ɔːˈθɒrəti/',t:'n.',m:'权威；权力；当局(复数)',e:'the local authorities'},
+{w:'available',p:'/əˈveɪləbl/',t:'adj.',m:'可获得的；可用的；有空的',e:'Is the room available?',tip:'常考：be available to sb 对某人可用'},
+{w:'avoid',p:'/əˈvɔɪd/',t:'v.',m:'避免；回避',e:'avoid doing sth',tip:'avoid 后必须接 doing，不接不定式'},
+{w:'aware',p:'/əˈweə(r)/',t:'adj.',m:'意识到的；知道的',e:'be aware of the danger',tip:'be aware of / be aware that'},
+{w:'balance',p:'/ˈbæləns/',t:'n./v.',m:'平衡；余额；使平衡',e:'keep a balance'},
+{w:'basis',p:'/ˈbeɪsɪs/',t:'n.',m:'基础；根据',e:'on the basis of',tip:'on the basis of 根据；复数 bases'},
+{w:'behave',p:'/bɪˈheɪv/',t:'v.',m:'表现；举止；行事',e:'behave well',tip:'名词 behaviour 行为'},
+{w:'belief',p:'/bɪˈliːf/',t:'n.',m:'信念；信仰；相信',e:'a strong belief'},
+{w:'benefit',p:'/ˈbenɪfɪt/',t:'n./v.',m:'益处；受益；有益于',e:'benefit from',tip:'benefit from 从…中受益'},
+{w:'brief',p:'/briːf/',t:'adj./n.',m:'简短的；简要',e:'in brief',tip:'in brief 简言之'},
+{w:'campaign',p:'/kæmˈpeɪn/',t:'n.',m:'运动；战役；活动',e:'an advertising campaign'},
+{w:'capable',p:'/ˈkeɪpəbl/',t:'adj.',m:'有能力的；能干的',e:'be capable of doing',tip:'be capable of 能够(接doing)'},
+{w:'career',p:'/kəˈrɪə(r)/',t:'n.',m:'职业；生涯；事业',e:'career planning'},
+{w:'cause',p:'/kɔːz/',t:'v./n.',m:'引起；导致；原因',e:'cause trouble',tip:'cause sb to do 导致某人做'},
+{w:'challenge',p:'/ˈtʃælɪndʒ/',t:'n./v.',m:'挑战；质疑；向…挑战',e:'face a challenge'},
+{w:'character',p:'/ˈkærəktə(r)/',t:'n.',m:'性格；角色；字符；特征',e:'Chinese characters',tip:'计算机里指"字符"'},
+{w:'charge',p:'/tʃɑːdʒ/',t:'v./n.',m:'收费；指控；充电；负责',e:'in charge of',tip:'in charge of 负责 / free of charge 免费'},
+{w:'circumstance',p:'/ˈsɜːkəmstəns/',t:'n.',m:'情况；环境；境遇',e:'under no circumstances',tip:'under no circumstances 决不(倒装)'},
+{w:'claim',p:'/kleɪm/',t:'v./n.',m:'声称；索取；索赔',e:'claim that...'},
+{w:'combine',p:'/kəmˈbaɪn/',t:'v.',m:'结合；联合；混合',e:'combine A with B',tip:'combine A with B 把A和B结合'},
+{w:'comment',p:'/ˈkɒment/',t:'n./v.',m:'评论；意见',e:'comment on',tip:'comment on 对…评论'},
+{w:'commit',p:'/kəˈmɪt/',t:'v.',m:'犯(罪/错)；承诺；投入',e:'commit a mistake',tip:'commit oneself to 致力于'},
+{w:'communicate',p:'/kəˈmjuːnɪkeɪt/',t:'v.',m:'交流；沟通；传达',e:'communicate with',tip:'communicate with sb 与某人交流'},
+{w:'compare',p:'/kəmˈpeə(r)/',t:'v.',m:'比较；对比',e:'compare A with B',tip:'compare A with B 比较 / compare to 比作'},
+{w:'compete',p:'/kəmˈpiːt/',t:'v.',m:'竞争；比赛',e:'compete with/against',tip:'名词 competition 竞争'},
+{w:'complain',p:'/kəmˈpleɪn/',t:'v.',m:'抱怨；投诉',e:'complain about',tip:'complain about/of 抱怨'},
+{w:'complex',p:'/ˈkɒmpleks/',t:'adj.',m:'复杂的；综合的',e:'a complex problem'},
+{w:'concentrate',p:'/ˈkɒnsntreɪt/',t:'v.',m:'集中；专心；浓缩',e:'concentrate on',tip:'concentrate on 专注于'},
+{w:'conclude',p:'/kənˈkluːd/',t:'v.',m:'得出结论；结束；推断',e:'conclude that...'},
+{w:'condition',p:'/kənˈdɪʃn/',t:'n.',m:'条件；状况；环境',e:'on condition that',tip:'on condition that 条件是'},
+{w:'confidence',p:'/ˈkɒnfɪdəns/',t:'n.',m:'信心；信任；自信',e:'have confidence in',tip:'have confidence in 对…有信心'},
+{w:'confirm',p:'/kənˈfɜːm/',t:'v.',m:'确认；证实',e:'confirm the booking'},
+{w:'conflict',p:'/ˈkɒnflɪkt/',t:'n./v.',m:'冲突；矛盾；抵触',e:'in conflict with'},
+{w:'confuse',p:'/kənˈfjuːz/',t:'v.',m:'使困惑；混淆',e:'confuse A with B',tip:'confuse A with B 把A和B混淆'},
+{w:'consequence',p:'/ˈkɒnsɪkwəns/',t:'n.',m:'结果；后果；重要性',e:'as a consequence',tip:'as a consequence of 由于'},
+{w:'consider',p:'/kənˈsɪdə(r)/',t:'v.',m:'考虑；认为；体谅',e:'consider doing sth',tip:'consider 后接 doing'},
+{w:'consist',p:'/kənˈsɪst/',t:'v.',m:'组成；在于；一致',e:'consist of',tip:'consist of 由…组成(无被动)'},
+{w:'constant',p:'/ˈkɒnstənt/',t:'adj.',m:'不断的；持续的；恒定的',e:'constant effort'},
+{w:'contribute',p:'/kənˈtrɪbjuːt/',t:'v.',m:'贡献；捐助；促成；投稿',e:'contribute to',tip:'contribute to 有助于；导致'},
+{w:'convenient',p:'/kənˈviːniənt/',t:'adj.',m:'方便的；便利的',e:'It is convenient for sb',tip:'主语不能是人：不能说 I am convenient'},
+{w:'convince',p:'/kənˈvɪns/',t:'v.',m:'说服；使确信',e:'convince sb of sth',tip:'convince sb to do 说服某人做'}
+];
+
+// ---------- 日期与状态 ----------
+function fmtDate(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function todayStr(){return fmtDate(new Date())}
+function wbLoad(){
+  const s=getS();
+  s.wb=s.wb||{};
+  const w=s.wb;
+  w.custom=w.custom||[];
+  w.prog=w.prog||{};
+  w.days=w.days||[];
+  w.goal=w.goal||10;
+  w.today=w.today||null;
+  return {s:s,w:w};
+}
+function wbAll(){const r=wbLoad();return VOCAB.concat(r.w.custom)}
+function wbFind(word){return wbAll().find(x=>x.w===word)}
+
+let wbMode='home', wbIdx=0, wbReveal=false, wbQuiz=null, wbSearch='', wbSkipCount=0;
+
+// ---------- 今日单词：每天自动换一批，优先没学过的 ----------
+function wbTodayWords(){
+  const r=wbLoad(), w=r.w, t=todayStr();
+  if(w.today && w.today.date===t && w.today.words && w.today.words.length) return w.today.words;
+  const all=wbAll();
+  const fresh=all.filter(x=>!w.prog[x.w]);
+  const pool=(fresh.length>=w.goal)?fresh:all;
+  // 用日期当随机种子：同一天永远选到同一批
+  let seed=0; for(const ch of t) seed=seed*31+ch.charCodeAt(0);
+  const idx=pool.map((x,i)=>i);
+  for(let i=idx.length-1;i>0;i--){ seed=(seed*9301+49297)%233280; const j=seed%(i+1); const tmp=idx[i]; idx[i]=idx[j]; idx[j]=tmp; }
+  const picked=idx.slice(0,Math.min(w.goal,pool.length)).map(i=>pool[i].w);
+  w.today={date:t,words:picked,done:(w.today&&w.today.date===t&&w.today.done)?w.today.done:[]};
+  setS(r.s);
+  return picked;
+}
+function wbDone(){
+  const r=wbLoad();
+  if(!r.w.today||r.w.today.date!==todayStr()) return [];
+  return r.w.today.done||[];
+}
+function wbMarkDone(word){
+  const r=wbLoad(), w=r.w, t=todayStr();
+  w.today=w.today||{date:t,words:[],done:[]};
+  if(w.today.date!==t) w.today={date:t,words:[],done:[]};
+  w.today.done=w.today.done||[];
+  if(!w.today.done.includes(word)) w.today.done.push(word);
+  w.prog[word]=w.prog[word]||{n:0,last:0};
+  w.prog[word].n=(w.prog[word].n||0)+1;
+  w.prog[word].last=Date.now();
+  // 学满每日目标 → 自动打卡
+  if(w.today.done.length>=(w.goal||10) && !w.days.includes(t)) w.days.push(t);
+  setS(r.s);
+}
+function wbStreak(){
+  const r=wbLoad(), set=new Set(r.w.days), d=new Date();
+  if(!set.has(fmtDate(d))) d.setDate(d.getDate()-1);
+  let n=0;
+  while(set.has(fmtDate(d))){n++;d.setDate(d.getDate()-1)}
+  return n;
+}
+
+// ---------- 主渲染 ----------
+function renderWords(){
+  const box=document.getElementById('words-box'); if(!box) return;
+  if(wbMode==='study')  return renderWordStudy(box);
+  if(wbMode==='quiz')   return renderWordQuiz(box);
+  if(wbMode==='import') return renderWordImport(box);
+  if(wbMode==='book')   return renderWordBook(box);
+  renderWordHome(box);
+}
+function wbGo(mode){wbMode=mode;wbReveal=false;if(mode==='study')wbIdx=0;if(mode==='quiz')wbStartQuiz();renderWords();window.scrollTo(0,0)}
+
+// ---------- 主页：打卡 ----------
+function renderWordHome(box){
+  const r=wbLoad(), w=r.w, all=wbAll();
+  const today=wbTodayWords(), done=wbDone();
+  const streak=wbStreak(), learned=Object.keys(w.prog).length;
+  const checkedIn=w.days.includes(todayStr());
+  const pct=today.length?Math.round(done.length/today.length*100):0;
+
+  let cal='';
+  const d0=new Date();
+  for(let i=27;i>=0;i--){
+    const dd=new Date(d0); dd.setDate(d0.getDate()-i);
+    const ds=fmtDate(dd);
+    const on=w.days.includes(ds);
+    const isToday=(i===0);
+    cal+='<div class="wb-cell'+(on?' on':'')+(isToday?' today':'')+'" title="'+ds+'">'+(on?'✓':dd.getDate())+'</div>';
+  }
+
+  const list=today.map(x=>{
+    const it=wbFind(x); if(!it) return '';
+    const ok=done.includes(x);
+    return '<div class="wb-row"><span class="w">'+(ok?'✓ ':'')+it.w+'</span><span class="m">'+(ok?it.m:'<span style="color:var(--text-light)">未学</span>')+'</span></div>';
+  }).join('');
+
+  box.innerHTML=`
+  <div class="wb-hero">
+    <h2>🔤 英语单词本</h2>
+    <p>每天打卡背单词 · 目标 ${w.goal} 个/天</p>
+    <div class="wb-stat">
+      <div><div class="n">${streak}</div><div class="l">连续打卡(天)</div></div>
+      <div><div class="n">${w.days.length}</div><div class="l">累计打卡(天)</div></div>
+      <div><div class="n">${learned}</div><div class="l">已学单词</div></div>
+      <div><div class="n">${all.length}</div><div class="l">词库总量</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="wb-bar"><span>今日进度 ${done.length} / ${today.length}</span><span>${checkedIn?'✅ 今日已打卡':'还差 '+(today.length-done.length)+' 个打卡'}</span></div>
+    <div class="wb-prog"><i style="width:${pct}%"></i></div>
+    <div class="wb-btnrow" style="margin-top:0">
+      <button class="btn btn-primary" onclick="wbGo('study')">📖 开始学习</button>
+      <button class="btn btn-outline" onclick="wbGo('quiz')">✍️ 自测</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title" style="font-size:15px;margin-bottom:10px">最近 4 周打卡</div>
+    <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-light);margin-bottom:4px">
+      <span>周一</span><span>周二</span><span>周三</span><span>周四</span><span>周五</span><span>周六</span><span>周日</span>
+    </div>
+    <div class="wb-cal">${cal}</div>
+    <div style="font-size:11.5px;color:var(--text-light);margin-top:10px">每天学满 ${w.goal} 个单词就自动打卡 ✅</div>
+  </div>
+
+  <div class="card">
+    <div class="section-title" style="font-size:15px;margin-bottom:10px">今日单词</div>
+    <div class="wb-list" style="box-shadow:none;padding:0;margin:0">${list||'<div class="wb-row">词库为空</div>'}</div>
+  </div>
+
+  <div class="wb-btnrow">
+    <button class="btn btn-outline" onclick="wbGo('import')">📥 导入我的单词</button>
+    <button class="btn btn-outline" onclick="wbGo('book')">📚 词库管理</button>
+  </div>
+
+  <div class="tip-box" style="margin-top:14px">
+    <b>⚠️ 说明：</b>内置词库为 <b>AI 整理</b>的高频词汇（${VOCAB.length} 词），<b>不是教材原词表、也不完整</b>。<br>
+    强烈建议把你自己教材/老师给的单词表<b>导入进来</b>背，那才是贴合考试的。
+  </div>`;
+}
+
+// ---------- 学习卡：教学 ----------
+function renderWordStudy(box){
+  const today=wbTodayWords(), done=wbDone();
+  if(!today.length){box.innerHTML='<div class="card">词库为空，请先导入单词</div>';return}
+  if(wbIdx>=today.length) wbIdx=today.length-1;
+  if(wbIdx<0) wbIdx=0;
+  const word=today[wbIdx], it=wbFind(word);
+  if(!it){box.innerHTML='<div class="card">单词数据缺失</div>';return}
+  const pct=Math.round((wbIdx+1)/today.length*100);
+
+  box.innerHTML=`
+  <div class="back-bar" onclick="wbGo('home')">‹ 返回单词本</div>
+  <div class="wb-bar"><span>第 ${wbIdx+1} / ${today.length} 个</span><span>今日已学 ${done.length} 个</span></div>
+  <div class="wb-prog"><i style="width:${pct}%"></i></div>
+
+  <div class="wb-card" onclick="wbReveal=true;renderWords()">
+    <div class="wb-word">${it.w}</div>
+    ${it.p?`<div class="wb-phon">${it.p}</div>`:''}
+    ${wbReveal?`
+      <div class="wb-mean">${it.t?it.t+' ':''}${it.m}</div>
+      ${it.e?`<div class="wb-ex">例：${it.e}</div>`:''}
+      ${it.tip?`<div class="wb-tip">💡 考点：${it.tip}</div>`:''}
+    `:`<div class="wb-hint">👆 点一下卡片看释义</div>`}
+  </div>
+
+  <div class="wb-btnrow">
+    <button class="btn btn-outline" onclick="wbIdx--;wbReveal=false;renderWords()" ${wbIdx<=0?'disabled style="opacity:.4"':''}>‹ 上一个</button>
+    <button class="btn ${wbReveal?'btn-outline':'btn-primary'}" onclick="wbReveal=true;renderWords()">${wbReveal?'已显示释义':'显示释义'}</button>
+    <button class="btn btn-primary" onclick="wbKnow()">认识 →</button>
+  </div>
+  <div class="wb-btnrow" style="margin-top:8px">
+    <button class="btn btn-outline" onclick="wbAgain()">🤔 不熟，再看一遍</button>
+  </div>`;
+}
+function wbKnow(){
+  const today=wbTodayWords();
+  const word=today[wbIdx];
+  if(word) wbMarkDone(word);
+  wbReveal=false;
+  if(wbIdx<today.length-1){wbIdx++}else{wbGo('home');return}
+  renderWords();
+}
+function wbAgain(){wbReveal=false;renderWords()}
+
+// ---------- 自测（带解析）----------
+function wbStartQuiz(){
+  const today=wbTodayWords(), all=wbAll();
+  const pick=today.slice(0,10).filter(x=>wbFind(x));
+  const list=pick.map(wd=>{
+    const right=wbFind(wd);
+    const others=all.filter(x=>x.w!==wd&&x.m!==right.m);
+    const opts=[right];
+    while(opts.length<4&&others.length){
+      const k=Math.floor(Math.random()*others.length);
+      opts.push(others.splice(k,1)[0]);
+    }
+    for(let i=opts.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=opts[i];opts[i]=opts[j];opts[j]=t}
+    return {w:wd,opts:opts.map(o=>o.m),a:opts.findIndex(o=>o.w===wd),sel:null,done:false};
+  });
+  wbQuiz={idx:0,list:list,ans:[]};
+}
+function renderWordQuiz(box){
+  if(!wbQuiz||!wbQuiz.list.length){box.innerHTML='<div class="back-bar" onclick="wbGo(\'home\')">‹ 返回单词本</div><div class="card">今日单词为空，无法自测</div>';return}
+  const q=wbQuiz.list[wbQuiz.idx];
+
+  // 交卷
+  if(!q){
+    const right=wbQuiz.ans.filter(a=>a).length, n=wbQuiz.list.length;
+    const score=Math.round(right/n*100);
+    box.innerHTML=`
+    <div class="back-bar" onclick="wbGo('home')">‹ 返回单词本</div>
+    <div class="card quiz-result">
+      <div class="score-big">${score}</div>
+      <div class="score-label">得分（答对 ${right} / ${n} 题）</div>
+      <div style="font-size:14px;color:var(--text-sec);margin-bottom:18px">${score>=90?'太棒了，这批词汇掌握得不错！':score>=70?'还不错，错的再复习一遍 👌':'别灰心，回到「开始学习」再过一遍 💪'}</div>
+      <button class="btn-primary" style="width:100%" onclick="wbStartQuiz();renderWords()">再测一次</button>
+      <div style="margin-top:10px"><button class="btn btn-outline" style="width:100%" onclick="wbGo('home')">返回单词本</button></div>
+    </div>`;
+    return;
+  }
+
+  const it=wbFind(q.w);
+  const letters=['A','B','C','D'];
+  const optsHtml=q.opts.map((o,i)=>{
+    let cls='option-item';
+    if(q.done){
+      if(i===q.a) cls+=' correct';
+      else if(i===q.sel) cls+=' wrong';
+    } else if(i===q.sel) cls+=' selected';
+    return `<div class="${cls}" onclick="wbPick(${i})"><span class="option-label">${letters[i]}</span><span>${o}</span></div>`;
+  }).join('');
+
+  const pct=Math.round(wbQuiz.idx/wbQuiz.list.length*100);
+  box.innerHTML=`
+  <div class="back-bar" onclick="wbGo('home')">‹ 返回单词本</div>
+  <div class="wb-bar"><span>第 ${wbQuiz.idx+1} / ${wbQuiz.list.length} 题</span><span>答对 ${wbQuiz.ans.filter(a=>a).length} 题</span></div>
+  <div class="wb-prog"><i style="width:${pct}%"></i></div>
+  <div class="quiz-card">
+    <div style="font-size:12px;color:var(--text-light);margin-bottom:8px">选择正确的中文释义</div>
+    <div class="wb-word" style="font-size:30px;text-align:left">${q.w}</div>
+    ${it&&it.p?`<div class="wb-phon" style="text-align:left">${it.p} ${it.t||''}</div>`:''}
+    <div style="height:16px"></div>
+    ${optsHtml}
+    ${q.done?`
+      <div class="explanation show">
+        <div class="title">解析</div>
+        <div><b>${it.w}</b> ${it.p||''} ${it.t||''} <b style="color:var(--success)">${it.m}</b></div>
+        ${it.e?`<div style="margin-top:6px">例句：${it.e}</div>`:''}
+        ${it.tip?`<div style="margin-top:6px">💡 考点：${it.tip}</div>`:''}
+        <div style="margin-top:6px;color:${q.sel===q.a?'var(--success)':'var(--danger)'};font-weight:600">${q.sel===q.a?'✅ 答对了':'❌ 答错了，正确答案是 '+'ABCD'[q.a]}</div>
+      </div>
+      <div class="quiz-nav"><button class="btn-primary" onclick="wbNext()">${wbQuiz.idx<wbQuiz.list.length-1?'下一题':'看成绩'}</button></div>
+    `:''}
+  </div>`;
+}
+function wbPick(i){
+  const q=wbQuiz.list[wbQuiz.idx];
+  if(!q||q.done) return;
+  q.sel=i; q.done=true;
+  wbQuiz.ans[wbQuiz.idx]=(i===q.a);
+  const word=q.w, r=wbLoad();
+  r.w.prog[word]=r.w.prog[word]||{n:0,last:0};
+  r.w.prog[word].n=(r.w.prog[word].n||0)+1;
+  r.w.prog[word].last=Date.now();
+  setS(r.s);
+  renderWords();
+}
+function wbNext(){
+  wbQuiz.idx++;
+  renderWords();
+  window.scrollTo(0,0);
+}
+
+// ---------- 导入单词 ----------
+function parseWords(text){
+  const out=[], seen=new Set();
+  wbSkipCount=0;
+  text.split(/\r?\n/).forEach(raw=>{
+    let line=(raw||'').replace(/\u3000/g,' ').trim();
+    if(!line||line.startsWith('#')||line.startsWith('//')) return;
+    line=line.replace(/^\d+[\.、\)]\s*/,'');
+    // 音标 /.../ 或 [...]
+    let p='';
+    const ph=line.match(/(\/[^\/\n]{1,40}\/|\[[^\]\n]{1,40}\])/);
+    if(ph){p=ph[1];line=line.replace(ph[1],' ')}
+    // 清掉残留的空括号（如 【/.../】 取走音标后剩下的【 】）
+    // 注意：这里不能把连续空格压成单个空格，否则会破坏「2个以上空格」这个分隔符
+    line=line.replace(/[【〔\[（(]\s*[】〕\]）)]/g,' ').trim();
+    if(!line) return;
+
+    let w='', rest='';
+    // ① 显式分隔符：制表符 / 2个以上空格 / | / 逗号 / 分号 / 破折号
+    const parts=line.split(/\t+|\s{2,}|\s*[|｜]\s*|\s*[,，;；]\s*|\s+[—–\-]\s+/).map(s=>s.trim()).filter(Boolean);
+    if(parts.length>=2){
+      w=parts.shift();
+      rest=parts.join('；');
+    }else{
+      // ② 冒号：abandon: 放弃
+      const cm=line.match(/^([A-Za-z][A-Za-z'’\- ]{0,30}?)\s*[:：]\s*(.+)$/);
+      if(cm){w=cm[1];rest=cm[2]}
+      else{
+        // ③ 单个空格：第1个词（允许两词短语，如 according to）当单词，其余当释义
+        const sm=line.match(/^([A-Za-z][A-Za-z'’\-]*(?:\s+[a-z]+)?)\s+(.+)$/);
+        if(!sm){wbSkipCount++;return}
+        w=sm[1];rest=sm[2];
+      }
+    }
+
+    w=w.replace(/[^A-Za-z'’\- ]/g,'').trim();
+    if(!w||!/^[A-Za-z][A-Za-z'’\- ]*$/.test(w)){wbSkipCount++;return}
+    const key=w.toLowerCase();
+    if(seen.has(key)) return;
+    seen.add(key);
+
+    rest=rest.replace(/^[：:，,；;\s【〔\[（(]+/,'').replace(/[；;，,\s】〕\]）)]+$/,'').trim();
+    // 词性
+    let t='';
+    const tm=rest.match(/^((?:n|v|vt|vi|adj|adv|prep|pron|conj|num|art|int|aux|abbr)\s*\.(?:\s*[&/]\s*(?:n|v|adj|adv)\s*\.)*)\s*/i);
+    if(tm){t=tm[1].replace(/\s+/g,'');rest=rest.slice(tm[0].length).trim()}
+    // 例句（含空格的英文句子）
+    let e='';
+    const em=rest.match(/([A-Z][A-Za-z'’,\.\?!\-\s]{8,})/);
+    if(em&&/ /.test(em[1])){e=em[1].trim();rest=rest.replace(em[1],' ').replace(/^[；;，,\s]+|[；;，,\s]+$/g,'').trim()}
+    let m=rest.replace(/^[：:，,\s]+/,'').replace(/[；;，,\s]+$/,'').trim();
+    if(!m){wbSkipCount++;return}
+    out.push({w:w,p:p,t:t,m:m,e:e,custom:true});
+  });
+  return out;
+}
+function renderWordImport(box){
+  const r=wbLoad(), custom=r.w.custom;
+  const list=custom.slice().reverse().map((x,i)=>{
+    const idx=custom.length-1-i;
+    return `<div class="wb-row"><span class="w">${x.w}</span><span class="m">${x.t?x.t+' ':''}${x.m}</span>
+      <span class="d" style="cursor:pointer;color:var(--danger)" onclick="delWord(${idx})">删除</span></div>`;
+  }).join('');
+
+  box.innerHTML=`
+  <div class="back-bar" onclick="wbGo('home')">‹ 返回单词本</div>
+  <div class="section-title">导入我的单词</div>
+  <div class="tip-box" style="margin-bottom:12px">
+    <b>🤖 格式自动识别，怎么排都行</b><br>
+    支持的写法（任选）：<br>
+    · <code>abandon /əˈbændən/ v. 放弃；抛弃</code><br>
+    · <code>abandon,放弃</code> ／ <code>abandon 放弃</code> ／ <code>abandon - 放弃</code><br>
+    · 带序号也行：<code>1. abandon 放弃</code>
+  </div>
+  <div class="card">
+    <div class="input-group"><label>① 粘贴单词（一行一个）</label>
+      <textarea id="wb-text" rows="9" style="width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;line-height:1.7"
+        placeholder="例：&#10;abandon /əˈbændən/ v. 放弃；抛弃&#10;ability,能力&#10;absorb 吸收&#10;academic adj. 学术的"></textarea>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+      <button class="btn btn-outline" style="flex:1;min-width:110px" onclick="wbPaste()">📋 读剪贴板</button>
+      <button class="btn btn-outline" style="flex:1;min-width:110px" onclick="wbSample()">📄 填示例</button>
+      <button class="btn btn-outline" style="flex:1;min-width:110px" onclick="wbHelp()">❓ 说明</button>
+    </div>
+    <div class="input-group"><label>② 或者选文件（.txt / .csv / .md）</label>
+      <input type="file" id="wb-file" accept=".txt,.csv,.md" multiple onchange="wbFiles(this.files)"
+        style="width:100%;font-size:13px;padding:8px;border:1px dashed var(--border);border-radius:8px;background:#fafbfc">
+    </div>
+    <button class="btn-primary-full" onclick="wbDoImport()">导入单词（自动识别）</button>
+  </div>
+
+  <div class="section-title">我导入的单词 <span class="year-tag">${custom.length}</span></div>
+  ${custom.length?`<div class="wb-list">${list}</div>
+    <div class="wb-btnrow"><button class="btn btn-outline" onclick="wbClear()">清空全部导入单词</button></div>`
+   :'<div class="card" style="text-align:center;color:var(--text-sec)">还没有导入单词</div>'}
+  `;
+}
+function wbPaste(){
+  navigator.clipboard.readText().then(t=>{document.getElementById('wb-text').value=t})
+  .catch(()=>alert('读不到剪贴板，请手动粘贴进去（Ctrl+V）'));
+}
+function wbSample(){
+  document.getElementById('wb-text').value=
+    'abandon /əˈbændən/ v. 放弃；抛弃\n'+
+    'ability,能力；才能\n'+
+    'absorb 吸收；使专心\n'+
+    'academic adj. 学术的；学院的\n'+
+    'access 【/ˈækses/】 n. 通道；访问权';
+}
+function wbHelp(){
+  alert('【支持的格式（自动识别）】\n\n'+
+  '✓ 单词 音标 词性 释义：abandon /əˈbændən/ v. 放弃\n'+
+  '✓ 用逗号：abandon,放弃\n'+
+  '✓ 用空格：abandon 放弃\n'+
+  '✓ 用破折号：abandon - 放弃\n'+
+  '✓ 带序号：1. abandon 放弃\n'+
+  '✓ 音标可写 /.../ 或 [...]\n'+
+  '✓ 释义里带英文句子会被当成例句\n\n'+
+  '每行一个单词；重复的会自动跳过。\n'+
+  '建议先导入 5 个试用一下，确认解析对了再批量导入。');
+}
+function wbFiles(files){
+  const arr=[...files]; if(!arr.length)return;
+  let done=0, buf=[];
+  arr.forEach(f=>{
+    const fr=new FileReader();
+    fr.onload=()=>{buf.push(fr.result);if(++done===arr.length){
+      document.getElementById('wb-text').value=buf.join('\n');
+      alert('已读取 '+arr.length+' 个文件，点「导入单词」即可。');
+    }};
+    fr.onerror=()=>{if(++done===arr.length)alert('文件读取失败')};
+    fr.readAsText(f,'UTF-8');
+  });
+}
+function wbDoImport(){
+  const text=document.getElementById('wb-text').value;
+  if(!text.trim()){alert('请先粘贴或选择单词');return}
+  const parsed=parseWords(text);
+  if(!parsed.length){
+    alert('没有识别出单词。\n\n请确认每行都写成「英文单词 + 中文释义」，例如：\n\nabandon 放弃\nability,能力\nacademic adj. 学术的'+
+      (wbSkipCount?('\n\n（本次有 '+wbSkipCount+' 行无法识别）'):''));
+    return;
+  }
+  const p0=parsed[0];
+  if(!confirm('✅ 识别出 '+parsed.length+' 个单词'+(wbSkipCount?('，另有 '+wbSkipCount+' 行无法识别'):'')+
+    '\n\n【预览前 3 个】\n'+
+    parsed.slice(0,3).map(x=>x.w+'  '+(x.p||'')+'  '+(x.t||'')+'  '+x.m).join('\n')+
+    '\n\n确认导入吗？')) return;
+  const r=wbLoad();
+  const exists=new Set(wbAll().map(x=>x.w.toLowerCase()));
+  let added=0, skip=0;
+  parsed.forEach(x=>{
+    if(exists.has(x.w.toLowerCase())){skip++;return}
+    exists.add(x.w.toLowerCase());
+    r.w.custom.push(x); added++;
+  });
+  setS(r.s);
+  document.getElementById('wb-text').value='';
+  renderWords();
+  alert('导入完成！\n新增 '+added+' 个单词'+(skip?('\n跳过重复 '+skip+' 个'):'')+'\n\n现在可以去「开始学习」背了。');
+}
+function delWord(idx){
+  const r=wbLoad();
+  const x=r.w.custom[idx]; if(!x)return;
+  if(!confirm('删除单词「'+x.w+'」？')) return;
+  r.w.custom.splice(idx,1);
+  delete r.w.prog[x.w];
+  setS(r.s); renderWords();
+}
+function wbClear(){
+  if(!confirm('确定清空所有导入的单词？（此操作不可恢复）')) return;
+  const r=wbLoad();
+  r.w.custom.forEach(x=>{delete r.w.prog[x.w]});
+  r.w.custom=[];
+  setS(r.s); renderWords();
+}
+
+// ---------- 词库管理 ----------
+function renderWordBook(box){
+  const r=wbLoad(), w=r.w;
+  const all=wbAll();
+  const kw=wbSearch.trim().toLowerCase();
+  const filtered=kw?all.filter(x=>x.w.toLowerCase().includes(kw)||(x.m||'').includes(wbSearch)):all;
+  const shown=filtered.slice(0,300);
+
+  box.innerHTML=`
+  <div class="back-bar" onclick="wbGo('home')">‹ 返回单词本</div>
+  <div class="section-title">词库管理</div>
+  <div class="card">
+    <div class="input-group" style="margin-bottom:10px">
+      <label>每日目标（个/天）</label>
+      <select id="wb-goal" style="width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:15px;background:#fff" onchange="wbSetGoal(this.value)">
+        ${[5,10,15,20,30,50].map(n=>`<option value="${n}" ${w.goal==n?'selected':''}>${n} 个 / 天</option>`).join('')}
+      </select>
+    </div>
+    <div style="font-size:12.5px;color:var(--text-light)">内置词库 ${VOCAB.length} 词 · 导入 ${w.custom.length} 词 · 合计 ${all.length} 词</div>
+  </div>
+  <div class="card">
+    <div class="input-group" style="margin-bottom:0">
+      <label>搜索单词 / 释义</label>
+      <input id="wb-search" value="${wbSearch.replace(/"/g,'&quot;')}" placeholder="如 abandon 或 放弃"
+        oninput="wbSearch=this.value;renderWords()" style="width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:15px">
+    </div>
+  </div>
+  <div class="wb-list">
+    ${shown.map(x=>`<div class="wb-row" onclick="wbShowWord('${x.w.replace(/'/g,"\\'")}')">
+      <span class="w">${x.w}</span><span class="m">${x.t?x.t+' ':''}${x.m}${x.custom?' <span class="badge badge-warning">导入</span>':''}</span>
+    </div>`).join('')||'<div class="wb-row">没找到</div>'}
+    ${filtered.length>shown.length?`<div class="wb-row" style="color:var(--text-light)">…还有 ${filtered.length-shown.length} 个，请用搜索缩小范围</div>`:''}
+  </div>`;
+}
+function wbSetGoal(v){
+  const r=wbLoad();
+  r.w.goal=+v||10;
+  // 目标变了，今天重新选词
+  if(r.w.today) r.w.today=null;
+  setS(r.s);
+  renderWords();
+}
+function wbShowWord(word){
+  const x=wbFind(word); if(!x)return;
+  alert(x.w+'\n'+(x.p||'')+'  '+(x.t||'')+'\n\n释义：'+x.m+
+    (x.e?('\n\n例句：'+x.e):'')+
+    (x.tip?('\n\n💡 考点：'+x.tip):''));
+}
+
 document.querySelectorAll('.modal-mask').forEach(m=>{
   m.addEventListener('click',function(e){if(e.target===this)this.classList.remove('show')});
 });
 
 // init
 applyCustomQs();   // 先把你导入的题目并入题库，再渲染
-loadTarget();renderTopicGroups();renderTopicTabs();renderTopics();renderQuizGroups();renderQuizTabs();renderQuiz();renderMajorFilter();renderSchools();updateStats();
+loadTarget();renderTopicGroups();renderTopicTabs();renderTopics();renderQuizGroups();renderQuizTabs();renderQuiz();renderMajorFilter();renderSchools();updateStats();renderWords();
 </script>
 </body>
 </html>

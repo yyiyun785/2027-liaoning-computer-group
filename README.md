@@ -28,6 +28,12 @@
   - 专业综合课：C语言程序设计、计算机网络、数据库（各 100 分）
   - 技能考核：网页设计与制作、应用文档编辑与数据处理
 - **刷题练习**：**316 道练习题**（按考点编写，非历年真题），每题带答案解析
+- **英语单词本** 🆕：内置 **99 个高频核心词汇**，支持**每日打卡**、学习卡教学、**自测（带解析）**、**自己导入单词表**
+  - **每日打卡**：每天学满目标（默认 10 个/天，可调 5~50）自动打卡，记录**连续打卡天数** + 最近 4 周打卡日历
+  - **学习卡教学**：正面英文→点一下看音标/词性/释义/例句/考点，标记「认识」自动计入进度
+  - **自测带解析**：英译中四选一，答完显示**音标 + 词性 + 释义 + 例句 + 考点**完整解析
+  - **自己导入单词**：粘贴或选文件（.txt/.csv/.md），**格式自动识别** —— `abandon /əˈbændən/ v. 放弃`、`ability,能力`、`absorb 吸收`、`adopt - 采用`、`1. achieve 实现` 都能认，导入前有预览
+  - ⚠️ 内置词库为 **AI 整理**，**不是教材原词表、也不完整**；强烈建议把**自己教材的单词表导入进来**背
 - **考试倒计时**：自动计算距考试天数
 - **录取分数线查询**：42 条院校×专业数据，支持按专业筛选、最低分过滤
 
@@ -94,7 +100,9 @@
 ├── android-app/               # 安卓端源码
 │   ├── AndroidManifest.xml
 │   ├── src/com/zsb/study/MainActivity.java
-│   └── assets/                # 前端资源（含 index.html、pdf.js）
+│   ├── assets/                # 前端资源（含 index.html、pdf.js）
+│   ├── 打包APK.ps1            # 🆕 一键打包脚本（7 步全自动）
+│   └── tools/pack-apk.js      # 🆕 打包工具（保证 resources.arsc 不压缩）
 ├── 辽宁专升本备考助手.apk      # 安卓安装包（已签名）
 └── README.md
 ```
@@ -117,24 +125,36 @@ npm run package    # 打包（electron-packager）
 > ```
 
 ### 安卓端
-用 Android Studio 打开 `android-app`，或使用命令行工具链：
-```bash
-# 编译 Java
-javac -source 8 -target 8 -bootclasspath <android.jar> -d build/classes src/com/zsb/study/MainActivity.java
-# 转 dex
-d8 --lib <android.jar> --min-api 21 --output build/dex build/classes/**/*.class
-# 对齐 + 签名
-zipalign -f 4 app-unsigned.apk app-aligned.apk
-apksigner sign --ks zsb.keystore --out app-signed.apk app-aligned.apk
+
+**推荐：直接用一键脚本**（会自动做完下面全部 7 步）
+
+```powershell
+powershell -ExecutionPolicy Bypass -File "android-app\打包APK.ps1"
 ```
+
+脚本流程：环境检查 → aapt 编译资源 → javac → d8 → **重新打包（resources.arsc 保持不压缩）** → zipalign → **v1+v2+v3 三重签名** → 验证
+
+> ⚠️ **打包三个必须知道的坑**（脚本里已处理，手动打包时务必注意）
+>
+> 1. **`resources.arsc` 必须「不压缩 + 4 字节对齐」**
+>    Android 11（API 30）以上的硬性要求，否则系统**直接拒绝安装**，vivo 等国产 ROM 报
+>    「安装应用与当前系统有兼容性问题」。用普通 zip 工具重新打包会把压缩方式改回去 —— 所以有 `tools/pack-apk.js`。
+> 2. **签名必须包含 v1（JAR）**
+>    只签 v2/v3 时，部分国产 ROM 会拦截。脚本用 `--min-sdk-version 21` 强制启用 v1+v2+v3。
+> 3. **中文路径会让 `apksigner` 崩**
+>    Java 的 `getCanonicalPath()` 遇到中文路径抛 `Bad pathname`，
+>    所以脚本把中间产物放在纯英文的临时目录，最后再拷回中文路径。
+>
+> 另外：`.ps1` 脚本必须存成 **UTF-8 with BOM**，否则 PowerShell 5.1 会把中文读成乱码（输出文件名会出错）。
 
 ---
 
 ## ⚖️ 说明与声明
 
-- 题库中的题目为**按考点编写的练习题**，**不是历年真题**；历年真题请通过官方渠道获取
+- 题库中的题目为**按考点编写的练习题**，**不是历年真题**；历年真题请通过**学校、老师或官方渠道**获取
+  （网上流传的"免费真题"资源多为收费或已失效，本项目**不收集、不推荐**这类链接）
 - 分数线数据来源于公开信息，仅供参考，**以辽宁省招考办官方通知为准**
-- 真题版权归考试院所有，本项目仅提供官方/公开渠道的**链接**，不存储、不传播真题内容
+- 真题版权归考试院所有，本 App 只提供**导入功能**供个人学习使用，不存储、不传播真题内容
 - 本项目为个人学习作品，仅供学习交流使用
 
 ---
